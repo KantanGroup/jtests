@@ -47,7 +47,6 @@ class Header extends React.Component {
               <FormattedMessage {...messages.brand} />
             </span>
           </Link>
-          <LanguageSwitcher />
           <div className={s.banner}>
             <h1 className={s.bannerTitle}>
               <FormattedMessage {...messages.bannerTitle} />

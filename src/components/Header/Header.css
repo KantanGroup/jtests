@@ -14,7 +14,7 @@
 }
 
 .root {
-  background: #373277;
+  background: #6f5499;
   color: #fff;
 }
 
@@ -36,6 +36,7 @@
 
 .brandTxt {
   margin-left: 10px;
+  font-weight: 400;
 }
 
 .nav {
