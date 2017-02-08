@@ -10,6 +10,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
+import Flag from '../../components/Flag';
 
 class Home extends React.Component {
 
@@ -21,6 +22,9 @@ class Home extends React.Component {
             <p className={s.description}>
               Infographic highlighting the top mobile app trends in 2017
             </p>
+            <Flag countryCode="vn"countryName="Vietnam" size={9} />
+            <Flag countryCode="jp"countryName="Japan" size={9} />
+            <Flag countryCode="us"countryName="America" size={9} />
           </center>
         </div>
       </div>
