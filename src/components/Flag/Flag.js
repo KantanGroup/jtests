@@ -19,7 +19,7 @@ class Flag extends React.Component {
   };
 
   render() {
-    const { countryCode, countryName, size, ...props } = this.props;
+    const { countryCode, countryName, size } = this.props;
     const flag = require(`./flags/${countryCode}.svg`);
     return (
       <div className={s.flag}>

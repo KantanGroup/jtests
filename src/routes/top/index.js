@@ -11,7 +11,9 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import Top from './Top';
 
-const title = 'Log In';
+const capitalize = function capitalize(text) {
+  return text.toLowerCase().replace(/\b\w/g, (m) => m.toUpperCase());
+};
 
 export default {
 
@@ -21,7 +23,8 @@ export default {
     const countryName = params.countryName;
     const countryCode = params.countryCode;
     return {
-      title,
+      title: `Top mobile app trends in ${capitalize(countryName.split('-').join(' '))}`,
+      description: `Infographic highlighting the top mobile app trends in ${countryName.split('-').join(' ')}.`,
       component: <Layout><Top countryName={countryName} countryCode={countryCode} /></Layout>,
     };
   },
