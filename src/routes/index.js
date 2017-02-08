@@ -19,10 +19,8 @@ export default {
     require('./home').default,
     require('./contact').default,
     require('./login').default,
-    require('./register').default,
     require('./about').default,
     require('./privacy').default,
-    require('./admin').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,
@@ -33,8 +31,8 @@ export default {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
-    route.description = route.description || '';
+    route.title = `${route.title || 'Mobile app trends in 2017'} - App trends`;
+    route.description = route.description || 'Enjoy millions of the latest Android apps, games, music, movies, TV, books, magazines & more. Anytime, anywhere, across your devices.';
 
     return route;
   },

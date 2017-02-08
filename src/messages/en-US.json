@@ -3,7 +3,7 @@
     "id": "header.banner.desc",
     "description": "Description in header",
     "defaultMessage": "Complex web apps made easy",
-    "message": "",
+    "message": "Infographic highlighting the top mobile app trends in 2017",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -12,7 +12,7 @@
     "id": "header.banner.title",
     "description": "Title in page header",
     "defaultMessage": "React",
-    "message": "",
+    "message": "Top app trends 2017",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -21,7 +21,7 @@
     "id": "header.brand",
     "description": "Brand name displayed in header",
     "defaultMessage": "Your Company Brand",
-    "message": "",
+    "message": "Top mobile app trends",
     "files": [
       "src/components/Header/Header.js"
     ]

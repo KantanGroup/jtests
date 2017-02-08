@@ -52,7 +52,7 @@ class Header extends React.Component {
             <h1 className={s.bannerTitle}>
               <FormattedMessage {...messages.bannerTitle} />
             </h1>
-            <FormattedMessage tagName="p" {...messages.bannerDesc} />
+            <p className={s.bannerDesc}><FormattedMessage {...messages.bannerDesc} /></p>
           </div>
         </div>
       </div>

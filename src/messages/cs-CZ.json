@@ -2,7 +2,7 @@
   {
     "id": "header.banner.desc",
     "defaultMessage": "Complex web apps made easy",
-    "message": "Komplexní aplikace jednodušše",
+    "message": "Infographic zvýraznění horní mobilních aplikací trendy v roce 2017",
     "description": "Description in header",
     "files": [
       "src/components/Header/Header.js"
@@ -11,7 +11,7 @@
   {
     "id": "header.banner.title",
     "defaultMessage": "React",
-    "message": "React",
+    "message": "Nejlepší aplikace trendy 2017",
     "description": "Title in page header",
     "files": [
       "src/components/Header/Header.js"
@@ -20,7 +20,7 @@
   {
     "id": "header.brand",
     "defaultMessage": "Your Company Brand",
-    "message": "Vaše firma",
+    "message": "Nejlepší mobilní aplikace trendy",
     "description": "Brand name displayed in header",
     "files": [
       "src/components/Header/Header.js"

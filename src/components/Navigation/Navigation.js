@@ -62,12 +62,6 @@ class Navigation extends React.Component {
         <Link className={s.link} to="/login">
           <FormattedMessage {...messages.login} />
         </Link>
-        <span className={s.spacer}>
-          <FormattedMessage {...messages.or} />
-        </span>
-        <Link className={cx(s.link, s.highlight)} to="/register">
-          <FormattedMessage {...messages.signup} />
-        </Link>
       </div>
     );
   }

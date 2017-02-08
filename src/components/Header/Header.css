@@ -30,6 +30,10 @@
   font-size: 1.75em; /* ~28px */
 }
 
+.brand:hover {
+  color: color(var(--brand-color) lightness(+30%));
+}
+
 .brandTxt {
   margin-left: 10px;
 }
@@ -47,7 +51,7 @@
   margin: 0;
   padding: 10px;
   font-weight: normal;
-  font-size: 4em;
+  font-size: 3em;
   line-height: 1em;
 }
 
