@@ -10,5 +10,26 @@
 @import '../variables.css';
 
 .flag {
-  padding: 2px;
+  margin: 5px;
+  padding: 4px;
+  line-height: 1.4;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.flag:hover {
+  background-color: #ddd;
+}
+
+.country {
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
 }

@@ -9,25 +9,31 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Flag.css';
+import s from './Top.css';
 
-class Flag extends React.Component {
+const capitalize = function capitalize(text) {
+  return text.toLowerCase().replace(/\b\w/g, (m) => m.toUpperCase());
+};
+
+/* eslint max-len: ["error", 200]*/
+class Top extends React.Component {
   static propTypes = {
     countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
-    size: PropTypes.number.isRequired,
   };
 
   render() {
-    const { countryCode, countryName, size, ...props } = this.props;
-    const flag = require(`./flags/${countryCode}.svg`);
+    const { countryName } = this.props;
     return (
-      <div className={s.flag}>
-        <div className={s.country}>{countryName}</div>
-        <img src={flag} width={4*size} height={3*size} alt={`Top mobile app trends in ${countryName}`} />
+      <div className={s.root}>
+        <div className={s.container}>
+          <center>
+            <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+          </center>
+        </div>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Flag);
+export default withStyles(s)(Top);

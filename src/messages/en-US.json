@@ -21,7 +21,7 @@
     "id": "header.brand",
     "description": "Brand name displayed in header",
     "defaultMessage": "Your Company Brand",
-    "message": "Top mobile app trends",
+    "message": "Mobile app trends",
     "files": [
       "src/components/Header/Header.js"
     ]
