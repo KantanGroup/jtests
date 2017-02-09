@@ -9,7 +9,7 @@
 
 /* eslint-disable max-len */
 
-export const port = process.env.PORT || 6000;
+export const port = process.env.PORT || 5000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 
 // default locale is the first one

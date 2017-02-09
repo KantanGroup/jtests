@@ -21,10 +21,9 @@ import ReactDOM from 'react-dom/server';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
 import { IntlProvider } from 'react-intl';
-
-import './serverIntlPolyfill';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './serverIntlPolyfill';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -38,6 +37,8 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
+import facebookAuth from './core/auth/facebook';
+import googleAuth from './core/auth/google';
 import googleplay from './data/googleplay';
 import googleplayapi from './data/api';
 
@@ -78,23 +79,20 @@ app.use(expressJwt({
   credentialsRequired: false,
   getToken: req => req.cookies.id_token,
 }));
+app.use((req, res, next) => {
+  const token = req.cookies.id_token;
+  if (token) {
+    try {
+      req.user = jwt.verify(token, auth.jwt.secret); // eslint-disable-line no-param-reassign
+    } catch (e) {
+      console.error(e); // eslint-disable-line no-console
+    }
+  }
+  next();
+});
 app.use(passport.initialize());
-
-if (process.env.NODE_ENV !== 'production') {
-  app.enable('trust proxy');
-}
-app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false }),
-);
-app.get('/login/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
-  (req, res) => {
-    const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
-    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/');
-  },
-);
+facebookAuth(app);
+googleAuth(app);
 
 //
 // Register API middleware
