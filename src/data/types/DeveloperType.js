@@ -7,19 +7,17 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import DataType from 'sequelize';
-import Model from '../sequelize';
+import {
+  GraphQLObjectType as ObjectType,
+  GraphQLString as StringType,
+} from 'graphql';
 
-const UserClaim = Model.define('UserClaim', {
-
-  type: {
-    type: DataType.STRING,
+const DeveloperType = new ObjectType({
+  name: 'Developer',
+  fields: {
+    devId: { type: StringType },
+    url: { type: StringType },
   },
-
-  value: {
-    type: DataType.STRING,
-  },
-
 });
 
-export default UserClaim;
+export default DeveloperType;

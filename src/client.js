@@ -12,6 +12,7 @@ import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
 import queryString from 'query-string';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createPath } from 'history/PathUtils';
 import { addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
@@ -157,7 +158,7 @@ async function onLocationChange(location) {
     }
 
     appInstance = ReactDOM.render(
-      <App context={context}>{route.component}</App>,
+      <App context={context}><MuiThemeProvider>{route.component}</MuiThemeProvider></App>,
       container,
       () => onRenderComplete(route, location),
     );

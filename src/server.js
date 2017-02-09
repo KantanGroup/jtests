@@ -23,6 +23,8 @@ import PrettyError from 'pretty-error';
 import { IntlProvider } from 'react-intl';
 
 import './serverIntlPolyfill';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -36,6 +38,8 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
+import googleplay from './data/googleplay';
+import googleplayapi from './data/api';
 
 const app = express();
 
@@ -96,12 +100,16 @@ app.get('/login/facebook/return',
 // Register API middleware
 // -----------------------------------------------------------------------------
 app.use('/graphql', expressGraphQL(req => ({
+  context: {
+    googleplay,
+  },
   schema,
   graphiql: process.env.NODE_ENV !== 'production',
   rootValue: { request: req },
   pretty: process.env.NODE_ENV !== 'production',
 })));
 
+app.use('/api', googleplayapi);
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
@@ -155,9 +163,12 @@ app.get('*', async (req, res, next) => {
       res.redirect(route.status || 302, route.redirect);
       return;
     }
-
+    const muiTheme = getMuiTheme({ userAgent: req.headers['user-agent'] });
     const data = { ...route };
-    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
+    data.children = ReactDOM.renderToString(
+      <App context={context}>
+        <MuiThemeProvider muiTheme={muiTheme}>{route.component}</MuiThemeProvider>
+      </App>);
     data.style = [...css].join('');
     data.scripts = [
       assets.vendor.js,

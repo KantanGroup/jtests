@@ -9,43 +9,66 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
+import IconButton from 'material-ui/IconButton';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import { GridList, GridTile } from 'material-ui/GridList';
+
+import Link from './../../components/Link';
 import s from './Home.css';
-import Flag from '../../components/Flag';
-import Link from '../../components/Link';
 
-const countries = require('./countries.json');
+const desktopStyles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    overflowY: 'auto',
+  },
+  image: {
+    padding: 20,
+  },
+};
 
-/* eslint max-len: ["error", 200]*/
 class Home extends React.Component {
+  static propTypes = {
+    apps: React.PropTypes.arrayOf(React.PropTypes.object),
+  }
 
   render() {
-    const topCountries = [];
-    countries.forEach((country) => {
-      if (country.type === 9) {
-        topCountries.push(country);
-      }
-    });
-    topCountries.sort((a, b) => a.id - b.id);
+    const { apps } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <center>
-            <h2>Top mobile app trends in the world in 2017</h2>
-            {topCountries.map((country) => (
-              <Link key={`country_id_${country.id}`} to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}>
-                <Flag countryCode={country.countryCode} countryName={country.countryName} size={30} />
-              </Link>
-            ))}
-            <br />
-            <Link to={'/top-mobile-app-trend-in-the-world'}>
-              <Button bsStyle="primary"><Glyphicon glyph="search" /> View more counties</Button>
-            </Link>
-          </center>
-          <center>
-            <h2>Infographic highlighting the top mobile app trends in 2017</h2>
-          </center>
+          <div style={desktopStyles.root}>
+            <center>
+              <h1>Mobile app store</h1>
+              <p>Browse and install your favorite applications and games on your phone</p>
+            </center>
+            <GridList
+              cellHeight={250}
+              cols={4}
+              style={desktopStyles.gridList}
+            >
+              {apps.map((app) => (
+                <Link key={`link_${app.appId}`} to={`/download/apk/${app.appId}`}>
+                  <GridTile
+                    key={app.appId}
+                    title={app.title}
+                    subtitle={<span>by <b>{app.developer.devId}</b></span>}
+                    actionIcon={<IconButton>{app.score}<StarBorder color="white" /></IconButton>}
+                  >
+                    <img
+                      style={desktopStyles.image}
+                      className="img-rounded"
+                      src={`${app.icon.startsWith('http') ? app.icon : `http:${app.icon}`}`}
+                      alt={`Download ${app.title} apk`}
+                    />
+                  </GridTile>
+                </Link>
+              ))}
+            </GridList>
+          </div>
         </div>
       </div>
     );
