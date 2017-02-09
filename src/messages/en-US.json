@@ -3,7 +3,7 @@
     "id": "header.banner.desc",
     "description": "Description in header",
     "defaultMessage": "Complex web apps made easy",
-    "message": "Infographic highlighting the top mobile app trends in 2017",
+    "message": "Browse and install your favorite applications and games on your phone",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -12,7 +12,7 @@
     "id": "header.banner.title",
     "description": "Title in page header",
     "defaultMessage": "React",
-    "message": "Top app trends 2017",
+    "message": "Mobile app store",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -21,7 +21,7 @@
     "id": "header.brand",
     "description": "Brand name displayed in header",
     "defaultMessage": "Your Company Brand",
-    "message": "Mobile app trends",
+    "message": "Zuzuapp Store",
     "files": [
       "src/components/Header/Header.js"
     ]

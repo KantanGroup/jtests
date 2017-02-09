@@ -41,13 +41,9 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <div style={desktopStyles.root}>
-            <center>
-              <h1>Mobile app store</h1>
-              <p>Browse and install your favorite applications and games on your phone</p>
-            </center>
             <GridList
-              cellHeight={250}
-              cols={4}
+              cellHeight={160}
+              cols={6}
               style={desktopStyles.gridList}
             >
               {apps.map((app) => (
