@@ -39,6 +39,7 @@ import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
 import googleAuth from './core/auth/google';
+import dataloader from './data/dataloader';
 
 const app = express();
 
@@ -96,6 +97,7 @@ googleAuth(app);
 // Register API middleware
 // -----------------------------------------------------------------------------
 app.use('/graphql', expressGraphQL(req => ({
+  context: { loaders: dataloader },
   schema,
   graphiql: process.env.NODE_ENV !== 'production',
   rootValue: { request: req },

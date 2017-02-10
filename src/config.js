@@ -11,6 +11,7 @@
 
 export const port = process.env.PORT || 6000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
+export const baseURL = 'http://127.0.0.1:9000/api/v1';
 
 // default locale is the first one
 export const locales = ['en-US', 'cs-CZ'];
