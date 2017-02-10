@@ -9,25 +9,25 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Layout.css';
-import Header from '../Header';
-import Footer from '../Footer';
+import s from './Grammar.css';
 
-class Layout extends React.Component {
+/* eslint func-names: ["error", "always"]*/
+
+class Grammar extends React.Component {
   static propTypes = {
-    type: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    content: PropTypes.string.isRequired,
   };
 
   render() {
+    const { content } = this.props;
     return (
-      <div>
-        <Header type={this.props.type}/>
-        {this.props.children}
-        <Footer />
+      <div className={s.root}>
+        <div className={s.container}>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Layout);
+export default withStyles(s)(Grammar);

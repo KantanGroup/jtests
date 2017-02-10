@@ -21,7 +21,15 @@ export default {
     require('./login').default,
     require('./about').default,
     require('./privacy').default,
-    require('./apps').default,
+    require('./jlpt').default,
+    require('./kanji').default,
+    require('./kanjipage').default,
+    require('./kanjis').default,
+    require('./grammar').default,
+    require('./grammars').default,
+
+    // place new routes before...
+    require('./content').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,
@@ -32,8 +40,8 @@ export default {
     const route = await next();
 
     // Provide default values for title, description etc.
-    route.title = `${route.title || 'Android apps - Iphone apps'} - Zuzu Apps store`;
-    route.description = route.description || 'Enjoy millions of the latest Android apps, games, music, movies, TV, books, magazines & more. Anytime, anywhere, across your devices.';
+    route.title = `${route.title || 'Japanese Tests - Japanese Quizzes'} - Jtests`;
+    route.description = route.description || 'Try new Japanese quizzes every day. Improve your Japanese significantly with our free online practice tests.';
 
     return route;
   },

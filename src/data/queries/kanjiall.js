@@ -7,15 +7,13 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-@import '../../components/variables.css';
+import KanjisType from '../types/KanjisType';
 
-.root {
-  padding-left: 20px;
-  padding-right: 20px;
-}
+const kanjiall = {
+  type: KanjisType,
+  async resolve({ request }, { page }, { loaders }) {
+    return loaders.kanji.loadAll();
+  },
+};
 
-.container {
-  margin: 0 auto;
-  padding: 0 0 40px;
-  max-width: var(--max-content-width);
-}
+export default kanjiall;

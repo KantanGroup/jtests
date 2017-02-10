@@ -13,10 +13,15 @@ import {
 } from 'graphql';
 
 import me from './queries/me';
+import content from './queries/content';
 import news from './queries/news';
 import intl from './queries/intl';
-import apps from './queries/apps';
-import app from './queries/app';
+import kanjimatome from './queries/kanjimatome';
+import kanjis from './queries/kanjis';
+import kanjiall from './queries/kanjiall';
+import grammars from './queries/grammars';
+import grammar from './queries/grammar';
+import grammarall from './queries/grammarall';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -25,8 +30,13 @@ const schema = new Schema({
       me,
       news,
       intl,
-      apps,
-      app,
+      content,
+      kanjis,
+      kanjimatome,
+      kanjiall,
+      grammar,
+      grammars,
+      grammarall,
     },
   }),
 });

@@ -10,37 +10,15 @@
 import React from 'react';
 import Home from './Home';
 import Layout from '../../components/Layout';
-import Maintenance from '../../components/Maintenance';
-import fetch from '../../core/fetch';
 
 export default {
 
   path: '/',
 
   async action() {
-    const resp = await fetch('/graphql', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: '{apps(page:0){appId,title,summary,icon,developer{devId},score,price,free,playstoreUrl}}',
-      }),
-      credentials: 'include',
-    });
-    const { data } = await resp.json();
-    let component = (
-      <Maintenance />
-    );
-    if (data && data.apps) {
-      component = (
-        <Home apps={data.apps} />
-      );
-    }
     return {
-      title: 'Download Android apps, Download IPhone apps',
-      component: <Layout>{component}</Layout>,
+      title: 'Japanese Test - Japanese Quiz',
+      component: <Layout><Home /></Layout>,
     };
   },
 

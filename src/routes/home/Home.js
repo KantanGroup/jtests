@@ -9,62 +9,27 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import { GridList, GridTile } from 'material-ui/GridList';
-
-import Link from './../../components/Link';
+import RaisedButton from 'material-ui/RaisedButton';
 import s from './Home.css';
+import Link from './../../components/Link';
 
-const desktopStyles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    overflowY: 'auto',
-  },
-  image: {
-    padding: 20,
-  },
+const style = {
+  width: 280,
+  margin: 5,
 };
 
 class Home extends React.Component {
-  static propTypes = {
-    apps: React.PropTypes.arrayOf(React.PropTypes.object),
-  }
 
   render() {
-    const { apps } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <div style={desktopStyles.root}>
-            <GridList
-              cellHeight={160}
-              cols={6}
-              style={desktopStyles.gridList}
-            >
-              {apps.map((app) => (
-                <Link key={`link_${app.appId}`} to={`/download/apk/${app.appId}`}>
-                  <GridTile
-                    key={app.appId}
-                    title={app.title}
-                    subtitle={<span>by <b>{app.developer.devId}</b></span>}
-                    actionIcon={<IconButton>{app.score}<StarBorder color="white" /></IconButton>}
-                  >
-                    <img
-                      style={desktopStyles.image}
-                      className="img-rounded"
-                      src={`${app.icon.startsWith('http') ? app.icon : `http:${app.icon}`}`}
-                      alt={`Download ${app.title} apk`}
-                    />
-                  </GridTile>
-                </Link>
-              ))}
-            </GridList>
-          </div>
+          <center>
+            <h1>Japanese test</h1>
+            <Link to="/japanese/kanjis"><RaisedButton label="漢字" primary style={style} /></Link>
+            <br />
+            <Link to="/japanese/grammars"><RaisedButton label="文法" primary style={style} /></Link>
+          </center>
         </div>
       </div>
     );

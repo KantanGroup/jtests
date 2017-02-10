@@ -20,6 +20,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
+import MobileDetect from 'mobile-detect';
+import device from 'express-device';
 import { IntlProvider } from 'react-intl';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -35,12 +37,17 @@ import routes from './routes';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
+import { detectDevice } from './actions/device';
+import { getGrammars } from './actions/grammars';
+import { getKanjis } from './actions/kanjis';
 import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
 import googleAuth from './core/auth/google';
-import googleplay from './data/googleplay';
-import googleplayapi from './data/api';
+import dataloader from './data/dataloader';
+
+const grammars = require('./data/grammars.json');
+const kanjis = require('./data/kanjis.json');
 
 const app = express();
 
@@ -70,6 +77,7 @@ app.use(requestLanguage({
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(device.capture());
 
 //
 // Authentication
@@ -98,16 +106,13 @@ googleAuth(app);
 // Register API middleware
 // -----------------------------------------------------------------------------
 app.use('/graphql', expressGraphQL(req => ({
-  context: {
-    googleplay,
-  },
+  context: { loaders: dataloader },
   schema,
   graphiql: process.env.NODE_ENV !== 'production',
   rootValue: { request: req },
   pretty: process.env.NODE_ENV !== 'production',
 })));
 
-app.use('/api', googleplayapi);
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
@@ -119,9 +124,23 @@ app.get('*', async (req, res, next) => {
       cookie: req.headers.cookie,
     });
 
+    const userAgent = new MobileDetect(req.headers['user-agent']);
+    store.dispatch(detectDevice({
+      device: req.device,
+      userAgent,
+    }));
+
     store.dispatch(setRuntimeVariable({
       name: 'initialNow',
       value: Date.now(),
+    }));
+
+    store.dispatch(getGrammars({
+      grammars: grammars.data.grammarall.grammars,
+    }));
+
+    store.dispatch(getKanjis({
+      kanjis: kanjis.data.kanjiall.kanjis,
     }));
 
     store.dispatch(setRuntimeVariable({
