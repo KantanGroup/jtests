@@ -23,7 +23,7 @@ class Grammars extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>日本語文型辞典</h1>
+          <center><h1>日本語文型辞典</h1></center>
           <Grid>
             {this.props.grammars.map(item => (
               <Col xs={6} md={6}>
