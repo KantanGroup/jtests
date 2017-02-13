@@ -32,6 +32,7 @@ async function copy() {
     copyDir('node_modules/bootstrap/dist/css', 'build/public/css'),
     copyDir('node_modules/bootstrap/dist/fonts', 'build/public/fonts'),
     copyDir('public', 'build/public'),
+    copyDir('src/content', 'build/content'),
     copyDir('src/messages', 'build/messages'),
   ]);
 

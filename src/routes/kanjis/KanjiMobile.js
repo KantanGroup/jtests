@@ -19,7 +19,7 @@ const mobileStyles = {
 
 class KanjiMobile extends React.Component {
   static propTypes = {
-    kanjis: React.PropTypes.arrayOf(React.PropTypes.object),
+    kanjis: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   }
 
   render() {
@@ -31,7 +31,7 @@ class KanjiMobile extends React.Component {
           cols={2}
           style={mobileStyles.gridList}
         >
-          {kanjis.map((kanji) => (
+          {kanjis.map(kanji => (
             <GridTile
               key={kanji.code}
               title={<span><b>{kanji.meaning}</b></span>}

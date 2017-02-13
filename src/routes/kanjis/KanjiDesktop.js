@@ -16,7 +16,7 @@ const desktopStyles = {
 
 class KanjiDesktop extends React.Component {
   static propTypes = {
-    kanjis: React.PropTypes.arrayOf(React.PropTypes.object),
+    kanjis: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   }
 
   render() {
@@ -28,7 +28,7 @@ class KanjiDesktop extends React.Component {
           cols={10}
           style={desktopStyles.gridList}
         >
-          {kanjis.map((kanji) => (
+          {kanjis.map(kanji => (
             <GridTile
               key={kanji.code}
               title={<span><b>{kanji.meaning}</b></span>}

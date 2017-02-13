@@ -135,11 +135,11 @@ app.get('*', async (req, res, next) => {
     }));
 
     store.dispatch(getGrammars({
-      grammars: grammars.data.grammarall.grammars,
+      grammars,
     }));
 
     store.dispatch(getKanjis({
-      kanjis: kanjis.data.kanjiall.kanjis,
+      kanjis,
     }));
 
     store.dispatch(setRuntimeVariable({
