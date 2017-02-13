@@ -22,6 +22,8 @@ import kanjiall from './queries/kanjiall';
 import grammars from './queries/grammars';
 import grammar from './queries/grammar';
 import grammarall from './queries/grammarall';
+import jlpt from './queries/jlpt';
+import grade from './queries/grade';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -37,6 +39,8 @@ const schema = new Schema({
       grammar,
       grammars,
       grammarall,
+      jlpt,
+      grade,
     },
   }),
 });

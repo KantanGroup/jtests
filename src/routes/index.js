@@ -25,6 +25,7 @@ export default {
     require('./kanji').default,
     require('./kanjipage').default,
     require('./kanjis').default,
+    require('./grades').default,
     require('./grammar').default,
     require('./grammars').default,
 

@@ -1,20 +1,23 @@
+
 import React from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 
 import Link from './../../components/Link';
 
-const desktopStyles = {
+const mobileStyles = {
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
   },
   gridList: {
+    width: 500,
+    height: 450,
     overflowY: 'auto',
   },
 };
 
-class KanjiDesktop extends React.Component {
+class KanjiMobile extends React.Component {
   static propTypes = {
     kanjis: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   }
@@ -22,11 +25,11 @@ class KanjiDesktop extends React.Component {
   render() {
     const { kanjis } = this.props;
     return (
-      <div style={desktopStyles.root}>
+      <div style={mobileStyles.root}>
         <GridList
-          cellHeight={125}
-          cols={8}
-          style={desktopStyles.gridList}
+          cellHeight={180}
+          cols={2}
+          style={mobileStyles.gridList}
         >
           {kanjis.map(kanji => (
             <GridTile
@@ -34,7 +37,7 @@ class KanjiDesktop extends React.Component {
               title={<span><b>{kanji.meaning}</b></span>}
             >
               <center>
-                <Link to={`/japanese/kanji/${String.fromCharCode(kanji.code)}`}><h1 style={{ fontSize: 36 }}>{String.fromCharCode(kanji.code)}</h1></Link>
+                <Link to={`/japanese/kanji/${String.fromCharCode(kanji.code)}`}><h1 style={{ fontSize: 48 }}>{String.fromCharCode(kanji.code)}</h1></Link>
               </center>
             </GridTile>
           ))}
@@ -44,4 +47,4 @@ class KanjiDesktop extends React.Component {
   }
 }
 
-export default KanjiDesktop;
+export default KanjiMobile;

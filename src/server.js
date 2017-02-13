@@ -38,7 +38,6 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { detectDevice } from './actions/device';
 import { getGrammars } from './actions/grammars';
-import { getKanjis } from './actions/kanjis';
 import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
@@ -46,7 +45,6 @@ import googleAuth from './core/auth/google';
 import dataloader from './data/dataloader';
 
 const grammars = require('./data/grammars.json');
-const kanjis = require('./data/kanjis.json');
 
 const app = express();
 
@@ -136,10 +134,6 @@ app.get('*', async (req, res, next) => {
 
     store.dispatch(getGrammars({
       grammars,
-    }));
-
-    store.dispatch(getKanjis({
-      kanjis,
     }));
 
     store.dispatch(setRuntimeVariable({

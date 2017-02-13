@@ -15,7 +15,7 @@ import Maintenance from '../../components/Maintenance';
 
 export default {
 
-  path: '/japanese/jlpt-kanji-n:level',
+  path: '/japanese/joyo-kanji-grade-:level',
 
   async action({ params }) {
     const level = params.level;
@@ -26,7 +26,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{jlpt(level:${level}){kanjis{code,meaning,gradeLevel,jlptLevel,kunReading,onReading,frequency,strokePaths}}}`,
+        query: `{grade(level:${level}){kanjis{code,meaning,gradeLevel,jlptLevel,kunReading,onReading,frequency,strokePaths}}}`,
       }),
       credentials: 'include',
     });
@@ -34,9 +34,9 @@ export default {
     let component = (
       <Maintenance />
     );
-    if (data && data.jlpt.kanjis) {
+    if (data && data.grade.kanjis) {
       component = (
-        <Kanjis kanjis={data.jlpt.kanjis} />
+        <Kanjis kanjis={data.grade.kanjis} />
       );
     }
     return {

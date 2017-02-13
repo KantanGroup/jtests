@@ -15,7 +15,7 @@ function getDataByURL(relativeURL) {
 
 function getKanjis(page) {
   return getJSONFromRelativeURL(`/kanjis/search/kanjiOrderBy?page=${page}&size=100`)
-    .then(data => {
+    .then((data) => {
       const kanjiInfo = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
@@ -32,7 +32,7 @@ function getKanjis(page) {
 
 function getAllKanji() {
   return getJSONFromRelativeURL('/kanjis/search/allKanji')
-    .then(data => {
+    .then((data) => {
       const kanjiInfo = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
@@ -61,9 +61,43 @@ function getWordOfKanji(id) {
   .then(data => data._embedded.words.sort((a, b) => a.id - b.id));
 }
 
+function getJLPTOfKanji(level) {
+  return getDataByURL(`/kanjis/search/findByJlptLevel?level=${level}`)
+    .then((data) => {
+      const kanjiInfo = {};
+      /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
+      if (data._embedded) {
+        kanjiInfo.kanjis = data._embedded.kanjis;
+        kanjiInfo.kanjis.sort((a, b) => a.code - b.code);
+      }
+
+      if (data.page) {
+        kanjiInfo.page = data.page;
+      }
+      return kanjiInfo;
+    });
+}
+
+function getJoyoGradeOfKanji(level) {
+  return getDataByURL(`/kanjis/search/findByGradeLevel?level=${level}`)
+    .then((data) => {
+      const kanjiInfo = {};
+      /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
+      if (data._embedded) {
+        kanjiInfo.kanjis = data._embedded.kanjis;
+        kanjiInfo.kanjis.sort((a, b) => a.code - b.code);
+      }
+
+      if (data.page) {
+        kanjiInfo.page = data.page;
+      }
+      return kanjiInfo;
+    });
+}
+
 function getGrammars(page) {
   return getJSONFromRelativeURL(`/grammars?page=${page}&size=20`)
-    .then(data => {
+    .then((data) => {
       const grammarInfo = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
@@ -84,7 +118,7 @@ function getGrammar(id) {
 
 function getAllGrammar() {
   return getJSONFromRelativeURL('/grammars/search/allGrammar')
-    .then(data => {
+    .then((data) => {
       const grammarInfo = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
@@ -131,6 +165,18 @@ const wordOfKanjiLoader =
     cacheMap,
   });
 
+const jlptKanjiLoader =
+  new DataLoader(keys => Promise.all(keys.map(getJLPTOfKanji)), {
+    cacheKeyFn: key => `/kanjis/${key}/jlpt/`,
+    cacheMap,
+  });
+
+const joyoGradeKanjiLoader =
+  new DataLoader(keys => Promise.all(keys.map(getJoyoGradeOfKanji)), {
+    cacheKeyFn: key => `/kanjis/${key}/joyograde/`,
+    cacheMap,
+  });
+
 const grammarsLoader =
   new DataLoader(keys => Promise.all(keys.map(getGrammars)), {
     cacheKeyFn: key => `/grammars/${key}/`,
@@ -153,6 +199,8 @@ kanjiLoader.loadKanjis = kanjisLoader.load.bind(kanjisLoader);
 kanjiLoader.loadAll = allKanjiLoader.load.bind(allKanjiLoader, '__all__');
 kanjiLoader.loadSentences = sentenceOfKanjiLoader.load.bind(sentenceOfKanjiLoader);
 kanjiLoader.loadWords = wordOfKanjiLoader.load.bind(wordOfKanjiLoader);
+kanjiLoader.loadJLPT = jlptKanjiLoader.load.bind(jlptKanjiLoader);
+kanjiLoader.loadJoyoGrade = joyoGradeKanjiLoader.load.bind(joyoGradeKanjiLoader);
 
 grammarLoader.loadGrammars = grammarsLoader.load.bind(grammarsLoader);
 grammarLoader.loadAll = allGrammarLoader.load.bind(allGrammarLoader, '__all__');
