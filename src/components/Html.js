@@ -52,7 +52,7 @@ class Html extends React.Component {
               dangerouslySetInnerHTML={{ __html: style.cssText }}
             />,
           )}
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
+          <link rel="stylesheet" href="/css/bootstrap.min.css" />
         </head>
         <body>
           <div
