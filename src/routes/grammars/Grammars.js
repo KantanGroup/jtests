@@ -10,6 +10,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { Grid, Col } from 'react-bootstrap';
 import s from './Grammars.css';
 import Link from '../../components/Link';
 
@@ -23,13 +24,13 @@ class Grammars extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>日本語文型辞典</h1>
-          <ul className={s.news}>
+          <Grid>
             {this.props.grammars.map(item => (
-              <li key={`grammar_id_${item.id}`} className={s.newsItem}>
-                <Link className={s.newsTitle} to={`/japanese/grammar/${item.id}/${item.grammar.trim()}`}>{item.id} {item.grammar}</Link>
-              </li>
+              <Col xs={6} md={6}>
+                <Link className={s.newsTitle} to={`/japanese/grammar/${item.id}/${item.grammar.trim()}`}>{item.id}. {item.grammar}</Link>
+              </Col>
             ))}
-          </ul>
+          </Grid>
         </div>
       </div>
     );
