@@ -28,7 +28,7 @@ class Home extends React.Component {
             <h1>Japanese test</h1>
             <Link to="/japanese/kanjis"><RaisedButton label="漢字" primary style={style} /></Link>
             <br />
-            <Link to="/japanese/grammars"><RaisedButton label="文法" primary style={style} /></Link>
+            <Link to="/japanese/grammars"><RaisedButton label="日本語文型辞典" primary style={style} /></Link>
           </center>
         </div>
       </div>

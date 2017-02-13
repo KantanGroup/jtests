@@ -14,7 +14,7 @@ import Layout from '../../components/Layout';
 
 export default {
 
-  path: '/japanese/grammar/:id',
+  path: '/japanese/grammar/:id/:grammar',
 
   async action({ params }) {
     const id = params.id;

@@ -10,6 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Grammar.css';
+import Link from '../../components/Link';
 
 /* eslint func-names: ["error", "always"]*/
 
@@ -23,6 +24,7 @@ class Grammar extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
+          <h1>{'<< '}<Link className={s.newsTitle} to={'/japanese/grammars'}>{'日本語文型辞典'}</Link></h1>
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       </div>

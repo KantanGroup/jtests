@@ -3,7 +3,7 @@
     "id": "header.banner.desc",
     "description": "Description in header",
     "defaultMessage": "Complex web apps made easy",
-    "message": "Browse and install your favorite applications and games on your phone",
+    "message": "Improve your Japanese significantly with our free online practice tests",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -12,7 +12,7 @@
     "id": "header.banner.title",
     "description": "Title in page header",
     "defaultMessage": "React",
-    "message": "Mobile app store",
+    "message": "Japanese Test - Japanese Quiz",
     "files": [
       "src/components/Header/Header.js"
     ]
@@ -21,7 +21,7 @@
     "id": "header.brand",
     "description": "Brand name displayed in header",
     "defaultMessage": "Your Company Brand",
-    "message": "Zuzuapp Store",
+    "message": "Japanese Test",
     "files": [
       "src/components/Header/Header.js"
     ]
