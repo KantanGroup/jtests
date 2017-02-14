@@ -5,18 +5,18 @@ import { baseURL } from '../config';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
 function getJSONFromRelativeURL(relativeURL) {
-  console.log(relativeURL);
+  // console.log(`${baseURL}${relativeURL}`);
   return fetch(`${baseURL}${relativeURL}`)
     .then(res => res.json());
 }
 
 function getIndexApps(countryCode, category, collection) {
-  return getJSONFromRelativeURL(`/api/v1/appIndexElasticSearches/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
-    .then(data => {
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
+    .then((data) => {
       const index = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
-        index.apps = data._embedded.kanjis;
+        index.apps = data._embedded.appIndexSolrs;
         index.apps.sort((a, b) => a.index - b.index);
       }
 

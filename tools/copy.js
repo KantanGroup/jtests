@@ -31,6 +31,8 @@ async function copy() {
     copyFile('LICENSE.txt', 'build/LICENSE.txt'),
     copyDir('node_modules/bootstrap/dist/css', 'build/public/css'),
     copyDir('node_modules/bootstrap/dist/fonts', 'build/public/fonts'),
+    makeDir('build/public/css'),
+    copyFile('node_modules/react-rater/lib/react-rater.css', 'build/public/css/react-rater.css'),
     copyDir('public', 'build/public'),
     copyDir('src/messages', 'build/messages'),
   ]);

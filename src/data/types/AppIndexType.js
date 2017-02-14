@@ -11,6 +11,7 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLInt as IntegerType,
+  GraphQLFloat as FloatType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
 
@@ -25,6 +26,9 @@ const AppIndexType = new ObjectType({
     category: { type: StringType },
     collection: { type: StringType },
     icon: { type: StringType },
+    developerId: { type: StringType },
+    score: { type: FloatType },
+    price: { type: StringType },
   },
 });
 

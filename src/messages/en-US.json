@@ -70,5 +70,14 @@
     "files": [
       "src/components/Navigation/Navigation.js"
     ]
+  },
+  {
+    "id": "navigation.home",
+    "description": "Home link in header",
+    "defaultMessage": "Home",
+    "message": "",
+    "files": [
+      "src/components/Navigation/Navigation.js"
+    ]
   }
 ]

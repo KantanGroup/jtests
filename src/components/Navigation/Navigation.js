@@ -15,6 +15,11 @@ import s from './Navigation.css';
 import Link from '../Link';
 
 const messages = defineMessages({
+  home: {
+    id: 'navigation.home',
+    defaultMessage: 'Home',
+    description: 'Home link in header',
+  },
   about: {
     id: 'navigation.about',
     defaultMessage: 'About',
@@ -46,6 +51,9 @@ class Navigation extends React.Component {
   render() {
     return (
       <div className={s.root} role="navigation">
+        <Link className={s.link} to="/">
+          <FormattedMessage {...messages.home} />
+        </Link>
         <Link className={s.link} to="/about">
           <FormattedMessage {...messages.about} />
         </Link>

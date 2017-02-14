@@ -11,23 +11,26 @@ import {
   GraphQLString as StringType,
 } from 'graphql';
 
-import AppIndexType from '../types/AppIndexType';
+import Promise from 'bluebird';
+import AppIndexTypes from '../types/AppIndexTypes';
 import fetch from '../../core/fetch';
 import { baseURL } from '../../config';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
 function getJSONFromRelativeURL(relativeURL) {
+  // console.log(`${baseURL}${relativeURL}`);
   return fetch(`${baseURL}${relativeURL}`)
     .then(res => res.json());
 }
 
 function getIndexApps(countryCode, category, collection) {
-  return getJSONFromRelativeURL(`/appIndexElasticSearches/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
-    .then(data => {
+  // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=au&category=books_and_reference&collection=topgrossing
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
+    .then((data) => {
       const index = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
-        index.apps = data._embedded;
+        index.apps = data._embedded.appIndexSolrs;
         index.apps.sort((a, b) => a.index - b.index);
       }
 
@@ -39,14 +42,17 @@ function getIndexApps(countryCode, category, collection) {
 }
 
 const index = {
-  type: AppIndexType,
+  type: AppIndexTypes,
   args: {
     countryCode: { type: StringType },
     category: { type: StringType },
     collection: { type: StringType },
   },
   async resolve({ request }, { countryCode, category, collection }) {
-    return getIndexApps(countryCode, category, collection);
+    const indexApp = await getIndexApps(countryCode, category, collection);
+    return Promise.props({ // wait for all promises to resolve
+      apps: indexApp.apps,
+    });
   },
 };
 
