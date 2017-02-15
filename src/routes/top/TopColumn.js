@@ -13,23 +13,26 @@ import { Image } from 'react-bootstrap';
 import Rater from 'react-rater';
 import s from './TopColumn.css';
 import Link from '../../components/Link';
+import { imageServer } from '../../config';
 
 class TopColumn extends React.Component {
   static propTypes = {
+    title: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     apps: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { apps, countryName } = this.props;
+    const { apps, countryName, title } = this.props;
     if (apps != null && apps.length > 0) {
       return (
         <div>
+          <center><h3>{title}</h3></center>
           {apps.map(app => (
             <Link key={`app_id_${app.index}`} to={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${app.appId}`}>
               <div className={s.app}>
                 <div className={s.appImage}>
-                  <Image src={`${app.icon.startsWith('http') ? app.icon : `http:${app.icon}`}`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />
+                  <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />
                 </div>
                 <div className={s.appDescription}>
                   <div className={s.appName}>{app.title}</div>

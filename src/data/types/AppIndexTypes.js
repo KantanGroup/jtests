@@ -17,7 +17,11 @@ import AppIndexType from './AppIndexType';
 const AppIndexTypes = new ObjectType({
   name: 'AppIndexs',
   fields: {
-    apps: { type: new List(AppIndexType) },
+    topsellingFree: { type: new List(AppIndexType) },
+    topsellingNewFree: { type: new List(AppIndexType) },
+    topsellingPaid: { type: new List(AppIndexType) },
+    topsellingNewPaid: { type: new List(AppIndexType) },
+    topgrossing: { type: new List(AppIndexType) },
   },
 });
 

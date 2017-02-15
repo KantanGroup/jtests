@@ -5659,9 +5659,9 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
-"react-rater@https://github.com/KantanGroup/react-rater.git#master":
-  version "0.4.1"
-  resolved "https://github.com/KantanGroup/react-rater.git#68e109abf7126156bffcca23ed4332a8f72ea114"
+"react-rater@https://github.com/ReactNativeVN/react-rater#master":
+  version "0.4.2"
+  resolved "https://github.com/ReactNativeVN/react-rater#81679a91167425e173e8ba9135707b4cdfa50b7d"
 
 react-redux@^5.0.2:
   version "5.0.2"

@@ -16,7 +16,7 @@ const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
 };
 
-/* eslint max-len: ["error", 250]*/
+/* eslint max-len: ["error", 1000]*/
 export default {
 
   path: '/top-mobile-app-trend-in-:countryName/:countryCode',
@@ -31,7 +31,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{index(countryCode:"${countryCode}",category:"books_and_reference",collection:"topgrossing"){apps{index,appId,category,collection,countryCode,icon,title,score,price,developerId}}}`,
+        query: `{index(countryCode:"${countryCode}",category:"all"){topgrossing{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}}}`,
       }),
       credentials: 'include',
     });
@@ -39,7 +39,18 @@ export default {
     return {
       title: `Top mobile app trends in ${capitalize(countryName.split('-').join(' '))}`,
       description: `Infographic highlighting the top mobile app trends in ${countryName.split('-').join(' ')}.`,
-      component: <Layout><Top apps={data.index.apps.slice(0, 30)} countryName={countryName} countryCode={countryCode} /></Layout>,
+      component:
+  <Layout>
+    <Top
+      topgrossing={data.index.topgrossing}
+      topsellingFree={data.index.topsellingFree}
+      topsellingPaid={data.index.topsellingPaid}
+      topsellingNewPaid={data.index.topsellingNewPaid}
+      topsellingNewFree={data.index.topsellingNewFree}
+      countryName={countryName}
+      countryCode={countryCode}
+    />
+  </Layout>,
     };
   },
 

@@ -46,12 +46,19 @@ const index = {
   args: {
     countryCode: { type: StringType },
     category: { type: StringType },
-    collection: { type: StringType },
   },
-  async resolve({ request }, { countryCode, category, collection }) {
-    const indexApp = await getIndexApps(countryCode, category, collection);
+  async resolve({ request }, { countryCode, category }) {
+    const topsellingFree = await getIndexApps(countryCode, category, 'topselling_free');
+    const topsellingNewFree = await getIndexApps(countryCode, category, 'topselling_new_free');
+    const topsellingPaid = await getIndexApps(countryCode, category, 'topselling_paid');
+    const topsellingNewPaid = await getIndexApps(countryCode, category, 'topselling_new_paid');
+    const topgrossing = await getIndexApps(countryCode, category, 'topgrossing');
     return Promise.props({ // wait for all promises to resolve
-      apps: indexApp.apps,
+      topsellingFree: topsellingFree.apps,
+      topsellingNewFree: topsellingNewFree.apps,
+      topsellingPaid: topsellingPaid.apps,
+      topsellingNewPaid: topsellingNewPaid.apps,
+      topgrossing: topgrossing.apps,
     });
   },
 };
