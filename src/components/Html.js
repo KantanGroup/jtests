@@ -54,6 +54,7 @@ class Html extends React.Component {
           )}
           <link rel="stylesheet" href="/css/bootstrap.min.css" />
           <link rel="stylesheet" href="/css/react-rater.css" />
+          <link rel="stylesheet" href="/index.css" />
         </head>
         <body>
           <div
