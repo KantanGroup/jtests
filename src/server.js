@@ -98,9 +98,9 @@ googleAuth(app);
 app.use('/graphql', expressGraphQL(req => ({
   context: { loaders: dataloader },
   schema,
-  graphiql: process.env.NODE_ENV !== 'production',
+  graphiql: __DEV__,
   rootValue: { request: req },
-  pretty: process.env.NODE_ENV !== 'production',
+  pretty: __DEV__,
 })));
 
 //
