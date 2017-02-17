@@ -40,7 +40,7 @@ class Home extends React.Component {
             ))}
             <br />
             <Link to={'/top-mobile-app-trend-in-the-world'}>
-              <Button bsStyle="primary"><Glyphicon glyph="search" /> View more counties</Button>
+              <Button bsStyle="primary"><Glyphicon glyph="search" /> View more countries</Button>
             </Link>
           </center>
           <center>

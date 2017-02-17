@@ -18,18 +18,19 @@ import { imageServer } from '../../config';
 class TopColumn extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     apps: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { apps, countryName, title } = this.props;
+    const { apps, countryName, countryCode, title } = this.props;
     if (apps != null && apps.length > 0) {
       return (
         <div>
           <center><h3>{title}</h3></center>
           {apps.map(app => (
-            <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${app.appId}`}>
+            <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${app.appId}/${countryCode}`}>
               <div className={s.app}>
                 <div className={s.appImage}>
                   <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />

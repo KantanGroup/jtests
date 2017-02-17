@@ -10,35 +10,22 @@ function getJSONFromRelativeURL(relativeURL) {
     .then(res => res.json());
 }
 
-function getIndexApps(countryCode, category, collection) {
-  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
-    .then((data) => {
-      const index = {};
-      /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
-      if (data._embedded) {
-        index.apps = data._embedded.appIndexSolrs;
-        index.apps.sort((a, b) => a.index - b.index);
-      }
-
-      if (data.page) {
-        index.page = data.page;
-      }
-      return index;
-    });
+function getAppInformation(id) {
+  return getJSONFromRelativeURL(`/appInformationSolrs/${id}`);
 }
 
 const cacheMap = new Map();
 
-const indexAppLoader =
-  new DataLoader(keys => Promise.all(keys.map(getIndexApps)), {
-    cacheKeyFn: key => `/apps/index/${key}/`,
+const appLoader =
+  new DataLoader(keys => Promise.all(keys.map(getAppInformation)), {
+    cacheKeyFn: key => `/apps/information/${key}/`,
     cacheMap,
   });
 
-indexAppLoader.loadIndex = indexAppLoader.load.bind(indexAppLoader);
+appLoader.loadApp = appLoader.load.bind(appLoader);
 
 const dataloader = {
-  index: indexAppLoader,
+  app: appLoader,
 };
 
 export default dataloader;

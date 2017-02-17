@@ -20,17 +20,17 @@ const capitalize = function capitalize(text) {
 /* eslint max-len: ["error", 200]*/
 class Top extends React.Component {
   static propTypes = {
-    // countryCode: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingFree: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
-    topsellingNewPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
+    // topsellingNewPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingNewFree: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, countryName } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, countryName, countryCode } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -40,16 +40,16 @@ class Top extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col sm={6} md={3}>
-                <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} />
+                <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
               </Col>
               <Col sm={6} md={3}>
-                <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} />
+                <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
               </Col>
               <Col smHidden md={3}>
-                <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} />
+                <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
               </Col>
               <Col smHidden md={3}>
-                <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} />
+                <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
               </Col>
             </Row>
           </Grid>
