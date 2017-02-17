@@ -15,7 +15,7 @@ import s from './Home.css';
 import Flag from '../../components/Flag';
 import Link from '../../components/Link';
 
-const countries = require('./countries.json');
+const countries = require('../../data/countries.json');
 
 /* eslint max-len: ["error", 200]*/
 class Home extends React.Component {

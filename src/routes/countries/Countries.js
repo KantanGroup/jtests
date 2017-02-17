@@ -13,7 +13,7 @@ import s from './Countries.css';
 import Flag from '../../components/Flag';
 import Link from '../../components/Link';
 
-const countries = require('./countries.json');
+const countries = require('../../data/countries.json');
 
 /* eslint max-len: ["error", 200]*/
 class Countries extends React.Component {
@@ -30,7 +30,7 @@ class Countries extends React.Component {
         <div className={s.container}>
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>
-            {enableCountries.map((country) => (
+            {enableCountries.map(country => (
               <Link key={`country_id_${country.id}`} to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}>
                 <Flag countryCode={country.countryCode} countryName={country.countryName} size={30} />
               </Link>
