@@ -38,6 +38,7 @@ async function copy() {
 
   if (process.argv.includes('--watch')) {
     const watcher = chokidar.watch([
+      'src/content/**/*',
       'src/messages/**/*',
       'public/**/*',
     ], { ignoreInitial: true });
