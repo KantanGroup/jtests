@@ -42,7 +42,6 @@ class Home extends React.Component {
         <div className={s.container}>
           <div style={desktopStyles.root}>
             <GridList
-              cellHeight={160}
               cols={6}
               style={desktopStyles.gridList}
             >
