@@ -162,7 +162,6 @@ app.get('*', async (req, res, next) => {
     }
     const muiTheme = getMuiTheme({ userAgent: req.headers['user-agent'] });
     const data = { ...route };
-    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
     data.styles = [
       { id: 'css', cssText: [...css].join('') },
     ];

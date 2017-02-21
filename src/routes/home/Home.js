@@ -32,7 +32,7 @@ const desktopStyles = {
 
 class Home extends React.Component {
   static propTypes = {
-    apps: React.PropTypes.arrayOf(React.PropTypes.object),
+    apps: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   }
 
   render() {
@@ -46,7 +46,7 @@ class Home extends React.Component {
               cols={6}
               style={desktopStyles.gridList}
             >
-              {apps.map((app) => (
+              {apps.map(app => (
                 <Link key={`link_${app.appId}`} to={`/download/apk/${app.appId}`}>
                   <GridTile
                     key={app.appId}
