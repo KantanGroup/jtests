@@ -9,9 +9,8 @@
 
 import React from 'react';
 import Kanjis from './Kanjis';
-import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
-import Maintenance from '../../components/Maintenance';
+
 
 export default {
 
@@ -19,30 +18,11 @@ export default {
 
   async action({ params }) {
     const level = params.level;
-    const resp = await fetch('/graphql', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `{jlpt(level:${level}){kanjis{code,meaning,gradeLevel,jlptLevel,kunReading,onReading,frequency,strokePaths}}}`,
-      }),
-      credentials: 'include',
-    });
-    const { data } = await resp.json();
-    let component = (
-      <Maintenance />
-    );
-    if (data && data.jlpt.kanjis) {
-      component = (
-        <Kanjis kanjis={data.jlpt.kanjis} />
-      );
-    }
+    const kanjis = require(`../../data/kanjis_jlpt_${level}.json`);
     return {
-      title: 'All kanji in japanese',
+      title: `JLTP Kanji ${level}`,
       description: 'More than 6000+ kanji in Japanese. Let\'s learn and master about kanji',
-      component: <Layout type="kanji">{component}</Layout>,
+      component: <Layout type="kanji"><Kanjis kanjis={kanjis.sort((a, b) => a.code - b.code)} /></Layout>,
     };
   },
 

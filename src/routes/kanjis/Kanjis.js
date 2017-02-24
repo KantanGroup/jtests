@@ -20,7 +20,7 @@ import KanjiMobile from './KanjiMobile';
 class Kanjis extends React.Component {
   static propTypes = {
     kanjis: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    device: React.PropTypes.shape(React.PropTypes.object).isRequired,
+    device: React.PropTypes.object,
   }
 
   handlePageClick = (data) => {
