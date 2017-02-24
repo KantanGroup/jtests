@@ -11,6 +11,8 @@ import React from 'react';
 import Grammars from './Grammars';
 import Layout from '../../components/Layout';
 
+const grammars = require('../../data/grammars.json');
+
 export default {
 
   path: '/japanese/grammars',
@@ -19,7 +21,7 @@ export default {
     return {
       title: 'Japanese Grammar Summary - 日本語文型辞典',
       description: 'This summary of some basic Japanese grammar has been derived from the Japanese grammar text books. Let\'s enjoy with these',
-      component: <Layout type="grammar"><Grammars /></Layout>,
+      component: <Layout type="grammar"><Grammars grammars={grammars} /></Layout>,
     };
   },
 

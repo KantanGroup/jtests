@@ -37,14 +37,11 @@ import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { detectDevice } from './actions/device';
-import { getGrammars } from './actions/grammars';
 import { setLocale } from './actions/intl';
 import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
 import googleAuth from './core/auth/google';
 import dataloader from './data/dataloader';
-
-const grammars = require('./data/grammars.json');
 
 const app = express();
 
@@ -130,10 +127,6 @@ app.get('*', async (req, res, next) => {
     store.dispatch(setRuntimeVariable({
       name: 'initialNow',
       value: Date.now(),
-    }));
-
-    store.dispatch(getGrammars({
-      grammars,
     }));
 
     store.dispatch(setRuntimeVariable({

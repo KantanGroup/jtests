@@ -10,6 +10,7 @@
 @import '../../components/variables.css';
 
 .root {
+  margin: 0 auto;
 }
 
 .container {
@@ -20,7 +21,7 @@
 
 .kanjiArea {
   overflow: auto;
-	width: 100%
+  width: 100%;
 }
 
 .kanjiCode {

@@ -8,7 +8,6 @@
  */
 
 import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Grid, Col } from 'react-bootstrap';
 import s from './Grammars.css';
@@ -26,8 +25,8 @@ class Grammars extends React.Component {
           <center><h1>日本語文型辞典</h1></center>
           <Grid>
             {this.props.grammars.map(item => (
-              <Col xs={6} md={6}>
-                <Link className={s.newsTitle} to={`/japanese/grammar/${item.id}/${item.grammar.trim()}`}>{item.id}. {item.grammar}</Link>
+              <Col key={`grammar_col_${item.id}`} xs={6} md={6}>
+                <Link key={`grammar_${item.id}`} className={s.newsTitle} to={`/japanese/grammar/${item.id}/${item.grammar.trim()}`}>{item.id}. {item.grammar}</Link>
               </Col>
             ))}
           </Grid>
@@ -37,10 +36,4 @@ class Grammars extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    grammars: state.grammars.grammars,
-  };
-}
-
-export default connect(mapStateToProps)(withStyles(s)(Grammars));
+export default withStyles(s)(Grammars);

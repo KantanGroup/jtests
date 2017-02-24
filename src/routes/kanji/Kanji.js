@@ -19,8 +19,8 @@ import KanjiWord from './KanjiWord';
 
 class Kanji extends React.Component {
   static propTypes = {
-    code: React.PropTypes.number,
-    kanji: React.PropTypes.object,
+    code: React.PropTypes.number.isRequired,
+    kanji: React.PropTypes.shape(React.PropTypes.object).isRequired,
   }
 
   constructor(props) {
