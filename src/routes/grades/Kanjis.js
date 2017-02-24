@@ -17,6 +17,7 @@ import s from './Kanjis.css';
 import KanjiDesktop from './KanjiDesktop';
 import KanjiMobile from './KanjiMobile';
 
+/* eslint-disable */
 class Kanjis extends React.Component {
   static propTypes = {
     kanjis: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,

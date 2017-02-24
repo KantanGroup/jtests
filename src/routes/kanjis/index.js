@@ -11,7 +11,7 @@ import React from 'react';
 import Kanjis from './Kanjis';
 import Layout from '../../components/Layout';
 
-
+/* eslint-disable */
 export default {
 
   path: '/japanese/jlpt-kanji-n:level',
