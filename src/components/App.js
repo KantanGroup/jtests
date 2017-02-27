@@ -24,6 +24,8 @@ const ContextType = {
     dispatch: PropTypes.func.isRequired,
     getState: PropTypes.func.isRequired,
   }).isRequired,
+  // Apollo Client
+  client: PropTypes.object.isRequired,
 };
 
 /**

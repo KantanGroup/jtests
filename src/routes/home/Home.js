@@ -52,4 +52,4 @@ class Home extends React.Component {
   }
 }
 
-export default withStyles(s)(Home);
+export default withStyles(s)(Home); 
