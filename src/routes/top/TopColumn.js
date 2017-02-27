@@ -25,31 +25,24 @@ class TopColumn extends React.Component {
 
   render() {
     const { apps, countryName, countryCode, title } = this.props;
-    if (apps != null && apps.length > 0) {
-      return (
-        <div>
-          <center><h3>{title}</h3></center>
-          {apps.map(app => (
-            <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${app.appId}/${countryCode}`}>
-              <div className={s.app}>
-                <div className={s.appImage}>
-                  <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />
-                </div>
-                <div className={s.appDescription}>
-                  <div className={s.appName}>{app.title}</div>
-                  <div className={s.appDeveloper}>{app.developerId}</div>
-                  <Rater interactive={false} rating={app.score} />
-                  <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      );
-    }
     return (
       <div>
-        Server undermaintain
+        <center><h3>{title}</h3></center>
+        {apps.map(app => (
+          <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${app.appId}/${countryCode}`}>
+            <div className={s.app}>
+              <div className={s.appImage}>
+                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />
+              </div>
+              <div className={s.appDescription}>
+                <div className={s.appName}>{app.title}</div>
+                <div className={s.appDeveloper}>{app.developerId}</div>
+                <Rater interactive={false} rating={app.score} />
+                <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     );
   }

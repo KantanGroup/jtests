@@ -36,21 +36,35 @@ export default {
       credentials: 'include',
     });
     const { data } = await resp.json();
+    let component;
+    if (data.index) {
+      component = (
+        <Layout>
+          <Top
+            topgrossing={data.index.topgrossing}
+            topsellingFree={data.index.topsellingFree}
+            topsellingPaid={data.index.topsellingPaid}
+            topsellingNewPaid={data.index.topsellingNewPaid}
+            topsellingNewFree={data.index.topsellingNewFree}
+            countryName={countryName}
+            countryCode={countryCode}
+          />
+        </Layout>
+      );
+    } else {
+      component = (
+        <Layout>
+          <Top
+            countryName={countryName}
+            countryCode={countryCode}
+          />
+        </Layout>
+      );
+    }
     return {
       title: `Top mobile app trends in ${capitalize(countryName.split('-').join(' '))}`,
       description: `Infographic highlighting the top mobile app trends in ${countryName.split('-').join(' ')}.`,
-      component:
-  <Layout>
-    <Top
-      topgrossing={data.index.topgrossing}
-      topsellingFree={data.index.topsellingFree}
-      topsellingPaid={data.index.topsellingPaid}
-      topsellingNewPaid={data.index.topsellingNewPaid}
-      topsellingNewFree={data.index.topsellingNewFree}
-      countryName={countryName}
-      countryCode={countryCode}
-    />
-  </Layout>,
+      component,
     };
   },
 

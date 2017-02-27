@@ -25,35 +25,70 @@ class Top extends React.Component {
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingFree: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
-    // topsellingNewPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
+    topsellingNewPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingNewFree: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, countryName, countryCode } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode } = this.props;
+    const columns = [];
+    if (topgrossing != null && topgrossing.length) {
+      columns.push(
+        <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+      );
+    }
+    if (topsellingFree != null && topsellingFree.length) {
+      columns.push(
+        <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+      );
+    }
+    if (topsellingPaid != null && topsellingPaid.length) {
+      columns.push(
+        <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+      );
+    }
+    if (topsellingNewFree != null && topsellingNewFree.length) {
+      columns.push(
+        <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+      );
+    }
+    let columnLen = columns.length;
+    if (columnLen !== 0) {
+      if (columnLen !== 4) {
+        if (topsellingNewPaid != null && topsellingNewPaid.length) {
+          columns.push(
+            <TopColumn title="Top new paid" apps={topsellingNewPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+          );
+        }
+      }
+      columnLen = columns.length;
+      const mdSize = 12 / columnLen;
+      return (
+        <div className={s.root}>
+          <div className={s.container}>
+            <center>
+              <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+            </center>
+            <Grid>
+              <Row className="show-grid">
+                {columns.map(column => (
+                  <Col smHidden md={mdSize}>
+                    {column}
+                  </Col>
+                ))}
+              </Row>
+            </Grid>
+          </div>
+        </div>
+      );
+    }
     return (
       <div className={s.root}>
         <div className={s.container}>
           <center>
             <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+            Server undermaintain
           </center>
-          <Grid>
-            <Row className="show-grid">
-              <Col sm={6} md={3}>
-                <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
-              </Col>
-              <Col sm={6} md={3}>
-                <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
-              </Col>
-              <Col smHidden md={3}>
-                <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
-              </Col>
-              <Col smHidden md={3}>
-                <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />
-              </Col>
-            </Row>
-          </Grid>
-
         </div>
       </div>
     );
