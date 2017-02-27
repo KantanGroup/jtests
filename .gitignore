@@ -8,3 +8,5 @@ ncp-debug.log
 npm-debug.log
 stats.json
 report.html
+.yarnclean
+yarn.lock
