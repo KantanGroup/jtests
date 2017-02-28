@@ -11,10 +11,7 @@ import React from 'react';
 import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import App from './App';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize, getLanguageCode } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -32,22 +29,22 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(appId:"${appId}",language:"${countryCode}"){appId,title,summary,description,descriptionHTML,developerId,video,price}}`,
+        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryCode)}"){appId,title,summary,description,descriptionHTML,developerId,video,price}}`,
       }),
       credentials: 'include',
     });
     const { data } = await resp.json();
+    if (data.app) {
+      return {
+        title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
+        description: `${appId} app trends in ${countryName.split('-').join(' ')}. ${data.app.summary}`,
+        component: <Layout><App app={data.app} appId={appId} countryName={countryName} countryCode={countryCode} /></Layout>,
+      };
+    }
     return {
-      title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
-      description: `${appId} app trends in ${countryName.split('-').join(' ')}. ${data.app.summary}`,
-      component:
-  <Layout>
-    <App
-      app={data.app}
-      countryName={countryName}
-      countryCode={countryCode}
-    />
-  </Layout>,
+      title: `${appId} app trends in ${capitalize(countryName.split('-').join(' '))}`,
+      description: `${appId} app trends in ${countryName.split('-').join(' ')}`,
+      component: <Layout><App appId={appId} countryName={countryName} countryCode={countryCode} /></Layout>,
     };
   },
 

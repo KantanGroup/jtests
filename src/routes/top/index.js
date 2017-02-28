@@ -11,10 +11,7 @@ import React from 'react';
 import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import Top from './Top';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
