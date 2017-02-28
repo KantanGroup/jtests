@@ -39,7 +39,9 @@ import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
 import googleAuth from './core/auth/google';
 import googleplay from './data/googleplay';
-import googleplayapi from './data/api';
+import appleplay from './data/appleplay';
+import googleplayapi from './data/api/googlestore';
+import appleplayapi from './data/api/applestore';
 
 const app = express();
 
@@ -99,6 +101,7 @@ googleAuth(app);
 app.use('/graphql', expressGraphQL(req => ({
   context: {
     googleplay,
+    appleplay,
   },
   schema,
   graphiql: process.env.NODE_ENV !== 'production',
@@ -107,6 +110,8 @@ app.use('/graphql', expressGraphQL(req => ({
 })));
 
 app.use('/api', googleplayapi);
+app.use('/googlestore', googleplayapi);
+app.use('/appstore', appleplayapi);
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------

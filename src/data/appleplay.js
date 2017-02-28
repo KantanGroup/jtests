@@ -2,7 +2,7 @@ import DataLoader from 'dataloader';
 import { host } from '../config';
 import fetch from '../core/fetch';
 
-const BASE_URL = `http://${host}/googlestore/apps`;
+const BASE_URL = `http://${host}/applestore/apps`;
 
 function getApps(page) {
   return fetch(`${BASE_URL}?start=${page * 60}`)
@@ -19,20 +19,20 @@ const cacheMap = new Map();
 
 const appLoader =
   new DataLoader(keys => Promise.all(keys.map(getApp)), {
-    cacheKeyFn: key => `/googlestore/app/${key}/`,
+    cacheKeyFn: key => `/applestore/app/${key}/`,
     cacheMap,
   });
 
 const appsLoader =
   new DataLoader(keys => Promise.all(keys.map(getApps)), {
-    cacheKeyFn: key => `/googlestore/apps/${key}/`,
+    cacheKeyFn: key => `/applestore/apps/${key}/`,
     cacheMap,
   });
 
 appLoader.loadAll = appsLoader.load.bind(appsLoader);
 
-const googleplay = {
+const appleplay = {
   app: appLoader,
 };
 
-export default googleplay;
+export default appleplay;
