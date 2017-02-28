@@ -31,9 +31,9 @@ const styles = {
   },
 };
 
-class Home extends React.Component {
+class App extends React.Component {
   static propTypes = {
-    app: React.PropTypes.object,
+    app: React.PropTypes.object, //eslint-disable-line
   }
 
   render() {
@@ -57,8 +57,7 @@ class Home extends React.Component {
             >
               {app.screenshots.map((screenshot, index) => (
                 <GridTile
-                  cellHeight={250}
-                  key={`${app.appId}_${index}`}
+                  key={`${app.appId}_${index}`} //eslint-disable-line
                   title={app.title}
                   actionIcon={<IconButton>${app.score} <StarBorder color="rgb(0, 188, 212)" /></IconButton>}
                   titleStyle={styles.titleStyle}
@@ -78,4 +77,4 @@ class Home extends React.Component {
   }
 }
 
-export default withStyles(s)(Home);
+export default withStyles(s)(App);
