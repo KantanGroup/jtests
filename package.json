@@ -27,7 +27,7 @@
     "express-request-language": "^1.1.9",
     "fastclick": "^1.0.6",
     "fbjs": "^0.8.9",
-    "google-play-scraper": "^3.2.0",
+    "google-play-scraper": "^3.2.3",
     "graphql": "^0.9.1",
     "history": "^4.5.1",
     "intl": "^1.2.5",
