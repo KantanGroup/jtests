@@ -14,6 +14,28 @@ function getAppInformation(id) {
   return getJSONFromRelativeURL(`/appInformationSolrs/${id}`);
 }
 
+function getIndexApps(id) {
+  const params = id.split('_');
+  const countryCode = params[0];
+  const category = params[1];
+  const collection = params[2];
+  // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=au&category=books_and_reference&collection=topgrossing
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
+    .then((data) => {
+      const index = {};
+      /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
+      if (data._embedded) {
+        index.apps = data._embedded.appIndexSolrs;
+        index.apps.sort((a, b) => a.index - b.index);
+      }
+
+      if (data.page) {
+        index.page = data.page;
+      }
+      return index;
+    });
+}
+
 const cacheMap = new Map();
 
 const appLoader =
@@ -22,7 +44,14 @@ const appLoader =
     cacheMap,
   });
 
+const appIndexLoader =
+  new DataLoader(keys => Promise.all(keys.map(getIndexApps)), {
+    cacheKeyFn: key => `/apps/index/${key}/`,
+    cacheMap,
+  });
+
 appLoader.loadApp = appLoader.load.bind(appLoader);
+appLoader.loadIndex = appIndexLoader.load.bind(appIndexLoader);
 
 const dataloader = {
   app: appLoader,
