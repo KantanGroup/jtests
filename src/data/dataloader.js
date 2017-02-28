@@ -15,7 +15,7 @@ function getAppInformation(id) {
 }
 
 function getIndexApps(id) {
-  const params = id.split('_');
+  const params = id.split('___');
   const countryCode = params[0];
   const category = params[1];
   const collection = params[2];

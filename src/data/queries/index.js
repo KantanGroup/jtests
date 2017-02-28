@@ -21,11 +21,11 @@ const index = {
     category: { type: StringType },
   },
   async resolve({ request }, { countryCode, category }, { loaders }) {
-    const topsellingFree = await loaders.app.loadIndex(`${countryCode}_${category}_topselling_free`);
-    const topsellingNewFree = await loaders.app.loadIndex(`${countryCode}_${category}_topselling_new_free`);
-    const topsellingPaid = await loaders.app.loadIndex(`${countryCode}_${category})topselling_paid`);
-    const topsellingNewPaid = await loaders.app.loadIndex(`${countryCode}_${category}_topselling_new_paid`);
-    const topgrossing = await loaders.app.loadIndex(`${countryCode}_${category}_topgrossing`);
+    const topsellingFree = await loaders.app.loadIndex(`${countryCode}___${category}___topselling_free`);
+    const topsellingNewFree = await loaders.app.loadIndex(`${countryCode}___${category}___topselling_new_free`);
+    const topsellingPaid = await loaders.app.loadIndex(`${countryCode}___${category}___topselling_paid`);
+    const topsellingNewPaid = await loaders.app.loadIndex(`${countryCode}___${category}___topselling_new_paid`);
+    const topgrossing = await loaders.app.loadIndex(`${countryCode}___${category}___topgrossing`);
     return Promise.props({ // wait for all promises to resolve
       topsellingFree: topsellingFree.apps,
       topsellingNewFree: topsellingNewFree.apps,
