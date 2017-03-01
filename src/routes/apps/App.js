@@ -12,10 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Image } from 'react-bootstrap';
 import s from './App.css';
 import { imageServer } from '../../config';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 200]*/
 class App extends React.Component {
@@ -27,14 +24,26 @@ class App extends React.Component {
 
   render() {
     const { app, countryName } = this.props;
+    if (app) {
+      return (
+        <div className={s.root}>
+          <div className={s.container}>
+            <center>
+              <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+            </center>
+            <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`Trend app ${app.appId}`} />
+            <div className={s.description} dangerouslySetInnerHTML={{ __html: app ? app.descriptionHTML : '' }} />
+          </div>
+        </div>
+      );
+    }
     return (
       <div className={s.root}>
         <div className={s.container}>
           <center>
             <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+            Server undermaintain
           </center>
-          <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`Trend app ${app.title}`} />
-          <div className={s.description} dangerouslySetInnerHTML={{ __html: app.descriptionHTML }} />
         </div>
       </div>
     );

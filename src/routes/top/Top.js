@@ -9,9 +9,12 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Button from 'react-bootstrap/lib/Button';
+import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { Grid, Row, Col } from 'react-bootstrap';
 import s from './Top.css';
 import TopColumn from './TopColumn';
+import Link from '../../components/Link';
 
 const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
@@ -72,12 +75,25 @@ class Top extends React.Component {
             <Grid>
               <Row className="show-grid">
                 {columns.map(column => (
-                  <Col smHidden md={mdSize}>
+                  <Col md={mdSize}>
                     {column}
                   </Col>
                 ))}
               </Row>
+              <Row>
+                <Col sm={6} md={6}>
+                  <Link to={`/app-trend-in-${countryName}/android-app-category`}>
+                    <Button bsStyle="primary"><Glyphicon glyph="search" /> Trend of app</Button>
+                  </Link>
+                </Col>
+                <Col sm={6} md={6}>
+                  <Link to={`/app-trend-in-${countryName}/android-game-category`}>
+                    <Button bsStyle="primary"><Glyphicon glyph="search" /> Trend of game</Button>
+                  </Link>
+                </Col>
+              </Row>
             </Grid>
+
           </div>
         </div>
       );

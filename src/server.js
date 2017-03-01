@@ -17,7 +17,6 @@ import expressGraphQL from 'express-graphql';
 import jwt from 'jsonwebtoken';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import { renderToStringWithData } from 'react-apollo';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
 import { IntlProvider } from 'react-intl';
@@ -98,6 +97,7 @@ googleAuth(app);
 // Register API middleware
 // -----------------------------------------------------------------------------
 const graphqlMiddleware = expressGraphQL(req => ({
+  context: { loaders: dataloader },
   schema,
   graphiql: __DEV__,
   rootValue: { request: req },
