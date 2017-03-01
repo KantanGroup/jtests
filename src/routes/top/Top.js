@@ -74,26 +74,35 @@ class Top extends React.Component {
             </center>
             <Grid>
               <Row className="show-grid">
-                {columns.map(column => (
-                  <Col md={mdSize}>
+                {columns.map((column, index) => (
+                  //eslint-disable-next-line
+                  <Col key={`col_${index}`} md={mdSize}>
                     {column}
                   </Col>
                 ))}
               </Row>
+            </Grid>
+            <p />
+            <p />
+            <p />
+            <Grid>
               <Row>
                 <Col sm={6} md={6}>
-                  <Link to={`/app-trend-in-${countryName}/android-app-category`}>
-                    <Button bsStyle="primary"><Glyphicon glyph="search" /> Trend of app</Button>
-                  </Link>
+                  <center>
+                    <Link to={`/app-trend-in-${countryName}/android-app-category`}>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of app</Button>
+                    </Link>
+                  </center>
                 </Col>
                 <Col sm={6} md={6}>
-                  <Link to={`/app-trend-in-${countryName}/android-game-category`}>
-                    <Button bsStyle="primary"><Glyphicon glyph="search" /> Trend of game</Button>
-                  </Link>
+                  <center>
+                    <Link to={`/app-trend-in-${countryName}/android-game-category`}>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of game</Button>
+                    </Link>
+                  </center>
                 </Col>
               </Row>
             </Grid>
-
           </div>
         </div>
       );
