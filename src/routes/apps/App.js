@@ -31,7 +31,7 @@ class App extends React.Component {
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
             </center>
-            <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`Trend app ${app.appId}`} />
+            <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`App trends ${app.title}`} />
             <div className={s.description} dangerouslySetInnerHTML={{ __html: app ? app.descriptionHTML : '' }} />
           </div>
         </div>

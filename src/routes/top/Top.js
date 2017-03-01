@@ -11,7 +11,7 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
 import s from './Top.css';
 import TopColumn from './TopColumn';
 import Link from '../../components/Link';
@@ -68,6 +68,16 @@ class Top extends React.Component {
       const mdSize = 12 / columnLen;
       return (
         <div className={s.root}>
+          <div>
+            <Breadcrumb>
+              <Breadcrumb.Item href="/">
+                Home
+              </Breadcrumb.Item>
+              <Breadcrumb.Item active>
+                App trends in {capitalize(countryName.split('-').join(' '))}
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
           <div className={s.container}>
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
@@ -90,14 +100,14 @@ class Top extends React.Component {
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/googlestore/app-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of app</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trends mobile app</Button>
                     </Link>
                   </center>
                 </Col>
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/googlestore/game-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of game</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trends mobile game</Button>
                     </Link>
                   </center>
                 </Col>

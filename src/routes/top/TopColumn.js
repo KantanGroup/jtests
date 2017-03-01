@@ -32,7 +32,7 @@ class TopColumn extends React.Component {
           <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`}>
             <div className={s.app}>
               <div className={s.appImage}>
-                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trend app ${app.appId}`} />
+                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`trends app ${app.appId}`} />
               </div>
               <div className={s.appDescription}>
                 <div className={s.appName}>{app.title}</div>

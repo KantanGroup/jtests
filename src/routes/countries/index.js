@@ -17,8 +17,8 @@ export default {
 
   async action() {
     return {
-      title: 'Top mobile app trend in the world',
-      description: 'Infographic highlighting the top mobile app trends in 2017. App trends of all countries in the world.',
+      title: 'Top mobile app trends in the world',
+      description: 'Infographic highlighting the top mobile app trends in 2017. App trends in all countries in the world.',
       component: <Layout><Countries /></Layout>,
     };
   },

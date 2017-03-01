@@ -90,14 +90,14 @@ class TopCategory extends React.Component {
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/android-app-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of app</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" />Trends mobile app</Button>
                     </Link>
                   </center>
                 </Col>
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/android-game-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of game</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" />Trends mobile game</Button>
                     </Link>
                   </center>
                 </Col>

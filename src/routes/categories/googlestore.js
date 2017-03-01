@@ -23,15 +23,15 @@ export default {
     if (categoryParent === 'app') {
       const categories = require('./apps.json'); // eslint-disable-line
       return {
-        title: `App trend in category in ${capitalize(countryName.split('-').join(' '))}`,
-        description: `App trend in category in ${countryName.split('-').join(' ')}`,
+        title: `App trends in category in ${capitalize(countryName.split('-').join(' '))}`,
+        description: `App trends in category in ${countryName.split('-').join(' ')}`,
         component: <Layout><Category countryName={countryName} categories={categories} /></Layout>,
       };
     }
     const categories = require('./games.json'); // eslint-disable-line
     return {
-      title: `Game trend in category in ${capitalize(countryName.split('-').join(' '))}`,
-      description: `Game trend in category in ${countryName.split('-').join(' ')}`,
+      title: `Game trends in category in ${capitalize(countryName.split('-').join(' '))}`,
+      description: `Game trends in category in ${countryName.split('-').join(' ')}`,
       component: <Layout><Category countryName={countryName} categories={categories} /></Layout>,
     };
   },

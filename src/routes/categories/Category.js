@@ -9,7 +9,7 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
 import s from './Category.css';
 import Link from '../../components/Link';
 
@@ -20,18 +20,31 @@ const capitalize = function capitalize(text) {
 /* eslint max-len: ["error", 200]*/
 class Category extends React.Component {
   static propTypes = {
-    // countryCode: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   render() {
-    const { countryName, categories } = this.props;
+    const { countryName, countryCode, categories } = this.props;
     return (
       <div className={s.root}>
+        <div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              In category
+            </Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
         <div className={s.container}>
           <center>
-            <h2>Mobile app trends in category in {capitalize(countryName.split('-').join(' '))}</h2>
+            <h2>App trends in category in {capitalize(countryName.split('-').join(' '))}</h2>
           </center>
           <Grid>
             <Row className="show-grid">
