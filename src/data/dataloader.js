@@ -1,7 +1,7 @@
 import DataLoader from 'dataloader';
 
 import fetch from '../core/fetch';
-import { baseURL } from '../config';
+import { baseURL, topSize } from '../config';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
 function getJSONFromRelativeURL(relativeURL) {
@@ -20,7 +20,7 @@ function getIndexApps(id) {
   const category = params[1];
   const collection = params[2];
   // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=au&category=books_and_reference&collection=topgrossing
-  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}`)
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}&size=${topSize}`)
     .then((data) => {
       const index = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/

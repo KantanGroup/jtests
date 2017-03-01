@@ -20,7 +20,7 @@ export const getCountryCode = function getCountryCode(countryName) {
   let countryCode = 'us';
   countries.forEach((country) => {
     if (country.countryName.toLowerCase() === countryName.toLowerCase()) {
-      countryCode = country.languageCode;
+      countryCode = country.countryCode;
     }
   });
   return countryCode;

@@ -11,7 +11,7 @@ import React from 'react';
 import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import TopCategory from './TopCategory';
-import { capitalize, getLanguageCode, getCountryCode } from '../../common';
+import { capitalize, getCountryCode } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -29,7 +29,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{index(countryCode:"${getLanguageCode(countryName)}",category:"${categoryName.split('-').join('_')}"){topgrossing{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}}}`,
+        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"${categoryName.split('-').join('_')}"){topgrossing{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}}}`,
       }),
       credentials: 'include',
     });

@@ -36,22 +36,22 @@ class TopCategory extends React.Component {
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopRow title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} />,
+        <TopRow title="Top grossing" apps={topgrossing} countryName={countryName} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopRow title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} />,
+        <TopRow title="Top free" apps={topsellingFree} countryName={countryName} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopRow title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} />,
+        <TopRow title="Top paid" apps={topsellingPaid} countryName={countryName} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopRow title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} />,
+        <TopRow title="Top new free" apps={topsellingNewFree} countryName={countryName} />,
       );
     }
     let columnLen = columns.length;
@@ -59,7 +59,7 @@ class TopCategory extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopRow title="Top new paid" apps={topsellingNewPaid.slice(0, 10)} countryName={countryName} />,
+            <TopRow title="Top new paid" apps={topsellingNewPaid} countryName={countryName} />,
           );
         }
       }
@@ -102,7 +102,7 @@ class TopCategory extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <center>
-            <h2>App trends in ${countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
+            <h2>App trends in {countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
             Server undermaintain
           </center>
         </div>

@@ -33,7 +33,7 @@ class Countries extends React.Component {
             Home
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
-            Countries in the world
+            All countries in the world
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className={s.container}>

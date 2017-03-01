@@ -37,7 +37,7 @@ export default {
     if (data.app) {
       return {
         title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
-        description: `${appId} app trends in ${countryName.split('-').join(' ')}. ${data.app.summary}`,
+        description: `${data.app.summary}`,
         component: <Layout><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
