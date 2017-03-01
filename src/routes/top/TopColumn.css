@@ -38,12 +38,20 @@
 .app .appName {
   overflow: hidden;
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
   clear: both;
 }
 
 .app .appDeveloper {
   overflow: hidden;
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
   color: #000;
 }
 
