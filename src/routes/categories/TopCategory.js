@@ -12,8 +12,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { Grid, Row, Col } from 'react-bootstrap';
-import s from './Top.css';
-import TopColumn from './TopColumn';
+import s from './TopCategory.css';
+import TopRow from './TopRow';
 import Link from '../../components/Link';
 
 const capitalize = function capitalize(text) {
@@ -21,9 +21,9 @@ const capitalize = function capitalize(text) {
 };
 
 /* eslint max-len: ["error", 200]*/
-class Top extends React.Component {
+class TopCategory extends React.Component {
   static propTypes = {
-    countryCode: PropTypes.string.isRequired,
+    // countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingFree: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -33,26 +33,26 @@ class Top extends React.Component {
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName } = this.props;
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopRow title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopRow title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopRow title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopRow title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} />,
       );
     }
     let columnLen = columns.length;
@@ -60,7 +60,7 @@ class Top extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopColumn title="Top new paid" apps={topsellingNewPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+            <TopRow title="Top new paid" apps={topsellingNewPaid.slice(0, 10)} countryName={countryName} />,
           );
         }
       }
@@ -70,7 +70,7 @@ class Top extends React.Component {
         <div className={s.root}>
           <div className={s.container}>
             <center>
-              <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+              <h2>App trends in ${countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
             </center>
             <Grid>
               <Row className="show-grid">
@@ -89,14 +89,14 @@ class Top extends React.Component {
               <Row>
                 <Col sm={6} md={6}>
                   <center>
-                    <Link to={`/app-trend-in-${countryName}/googlestore/app-category`}>
+                    <Link to={`/app-trend-in-${countryName}/android-app-category`}>
                       <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of app</Button>
                     </Link>
                   </center>
                 </Col>
                 <Col sm={6} md={6}>
                   <center>
-                    <Link to={`/app-trend-in-${countryName}/googlestore/game-category`}>
+                    <Link to={`/app-trend-in-${countryName}/android-game-category`}>
                       <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Trend of game</Button>
                     </Link>
                   </center>
@@ -111,7 +111,7 @@ class Top extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <center>
-            <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
+            <h2>App trends in ${countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
             Server undermaintain
           </center>
         </div>
@@ -120,4 +120,4 @@ class Top extends React.Component {
   }
 }
 
-export default withStyles(s)(Top);
+export default withStyles(s)(TopCategory);

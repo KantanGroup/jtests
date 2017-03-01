@@ -16,11 +16,11 @@ import { capitalize, getLanguageCode } from '../../common';
 /* eslint max-len: ["error", 1000]*/
 export default {
 
-  path: '/app-trend-in-:countryName/:appId/:countryCode',
+  path: '/app-trend-in-:countryName/app/:appId',
 
   async action({ params }) {
     const countryName = params.countryName;
-    const countryCode = params.countryCode;
+    // const countryCode = params.countryCode;
     const appId = params.appId;
     const resp = await fetch('/graphql', {
       method: 'post',
@@ -29,7 +29,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryCode)}"){appId,title,summary,description,descriptionHTML,developerId,video,price}}`,
+        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,description,descriptionHTML,developerId,video,price}}`,
       }),
       credentials: 'include',
     });
@@ -38,13 +38,13 @@ export default {
       return {
         title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${appId} app trends in ${countryName.split('-').join(' ')}. ${data.app.summary}`,
-        component: <Layout><App app={data.app} appId={appId} countryName={countryName} countryCode={countryCode} /></Layout>,
+        component: <Layout><App app={data.app} appId={appId} countryName={countryName} /></Layout>,
       };
     }
     return {
       title: `${appId} app trends in ${capitalize(countryName.split('-').join(' '))}`,
       description: `${appId} app trends in ${countryName.split('-').join(' ')}`,
-      component: <Layout><App appId={appId} countryName={countryName} countryCode={countryCode} /></Layout>,
+      component: <Layout><App appId={appId} countryName={countryName} /></Layout>,
     };
   },
 

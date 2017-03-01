@@ -24,7 +24,10 @@ export default {
     require('./top').default,
     require('./apps').default,
     require('./countries').default,
-    require('./categories').default,
+    // require('./categories').default,
+    require('./categories/googlestore').default,
+    require('./categories/appstore').default,
+    require('./categories/top').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,

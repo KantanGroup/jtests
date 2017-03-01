@@ -6,12 +6,22 @@ export const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
 };
 
-export const getLanguageCode = function getLanguageCode(countryCode) {
+export const getLanguageCode = function getLanguageCode(countryName) {
   let languageCode = 'en';
   countries.forEach((country) => {
-    if (country.countryCode === countryCode) {
+    if (country.countryName.toLowerCase() === countryName.toLowerCase()) {
       languageCode = country.languageCode;
     }
   });
   return languageCode;
+};
+
+export const getCountryCode = function getCountryCode(countryName) {
+  let countryCode = 'us';
+  countries.forEach((country) => {
+    if (country.countryName.toLowerCase() === countryName.toLowerCase()) {
+      countryCode = country.languageCode;
+    }
+  });
+  return countryCode;
 };

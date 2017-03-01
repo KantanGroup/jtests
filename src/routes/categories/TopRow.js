@@ -11,7 +11,7 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Image } from 'react-bootstrap';
 import Rater from 'react-rater';
-import s from './TopColumn.css';
+import s from './TopRow.css';
 import Link from '../../components/Link';
 import { imageServer } from '../../config';
 

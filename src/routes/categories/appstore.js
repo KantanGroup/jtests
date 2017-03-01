@@ -15,7 +15,7 @@ import { capitalize } from '../../common';
 /* eslint max-len: ["error", 1000]*/
 export default {
 
-  path: '/app-trend-in-:countryName/googlestore/:categoryParent-category',
+  path: '/app-trend-in-:countryName/appstore/:categoryParent-category',
 
   async action({ params }) {
     const countryName = params.countryName;
