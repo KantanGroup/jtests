@@ -38,22 +38,22 @@ class Top extends React.Component {
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopColumn title="Top grossing" apps={topgrossing.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top grossing" apps={topgrossing} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopColumn title="Top free" apps={topsellingFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top free" apps={topsellingFree} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopColumn title="Top paid" apps={topsellingPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top paid" apps={topsellingPaid} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopColumn title="Top new free" apps={topsellingNewFree.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top new free" apps={topsellingNewFree} countryName={countryName} countryCode={countryCode} />,
       );
     }
     let columnLen = columns.length;
@@ -61,7 +61,7 @@ class Top extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopColumn title="Top new paid" apps={topsellingNewPaid.slice(0, 10)} countryName={countryName} countryCode={countryCode} />,
+            <TopColumn title="Top new paid" apps={topsellingNewPaid} countryName={countryName} countryCode={countryCode} />,
           );
         }
       }
