@@ -28,7 +28,7 @@ const defaultProps = {
 
 class BreadcrumbItem extends React.Component {
   render() {
-    const { active, href, title, target, className, ...props } = this.props;
+    const { active, href, title, target, className } = this.props;
 
     // Don't try to render these props on non-active <span>.
     const linkProps = { href, title, target };
@@ -36,8 +36,8 @@ class BreadcrumbItem extends React.Component {
     return (
       <li className={classNames(className, { active })}>
         {active ?
-          <span {...props} /> :
-          <Link {...props} to={href} />
+          <span {...this.props} /> :
+          <Link {...this.props} to={href} />
         }
       </li>
     );

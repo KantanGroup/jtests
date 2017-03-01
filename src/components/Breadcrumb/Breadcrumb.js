@@ -6,8 +6,7 @@ import { splitBsProps } from './bootstrapUtils';
 
 class Breadcrumb extends React.Component {
   render() {
-    const { className, ...props } = this.props;
-    const [bsProps, elementProps] = splitBsProps(props);
+    const [bsProps, elementProps] = splitBsProps(this.props);
 
     return (
       <ol
