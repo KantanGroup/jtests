@@ -49,9 +49,6 @@ class Home extends React.Component {
               <Button bsStyle="primary"><Glyphicon glyph="search" /> View more countries</Button>
             </Link>
           </center>
-          <center>
-            <h2>Infographic highlighting the top mobile app trends in 2017</h2>
-          </center>
         </div>
       </div>
     );

@@ -10,7 +10,7 @@
 @import '../../components/variables.css';
 
 .root {
-  padding-top: 2px;
+  padding-top: 0;
   padding-left: 2px;
   padding-right: 2px;
 }

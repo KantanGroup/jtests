@@ -9,7 +9,8 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Login.css';
+import s from './Login.css'; // eslint-disable-line
+import Breadcrumb from '../../components/Breadcrumb';
 
 class Login extends React.Component {
   static propTypes = {
@@ -19,6 +20,14 @@ class Login extends React.Component {
   render() {
     return (
       <div className={s.root}>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">
+            Home
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            Login
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <div className={s.container}>
           <h1>{this.props.title}</h1>
           <p className={s.lead}>Log in with your username or company email address.</p>

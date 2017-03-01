@@ -12,6 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Countries.css';
 import Flag from '../../components/Flag';
 import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const countries = require('../../data/countries.json');
 
@@ -27,6 +28,14 @@ class Countries extends React.Component {
     });
     return (
       <div className={s.root}>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">
+            Home
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            Countries in the world
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <div className={s.container}>
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>
