@@ -11,7 +11,7 @@ import React from 'react';
 import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import TopCategory from './TopCategory';
-import { capitalize, getLanguageCode } from '../../common';
+import { capitalize, getLanguageCode, getCountryCode } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -45,6 +45,7 @@ export default {
             topsellingNewPaid={data.index.topsellingNewPaid}
             topsellingNewFree={data.index.topsellingNewFree}
             countryName={countryName}
+            countryCode={getCountryCode(countryName)}
           />
         </Layout>
       );
@@ -53,6 +54,7 @@ export default {
         <Layout>
           <TopCategory
             countryName={countryName}
+            countryCode={getCountryCode(countryName)}
           />
         </Layout>
       );

@@ -25,6 +25,7 @@ class App extends React.Component {
   render() {
     const { app, countryName } = this.props;
     if (app) {
+      /* eslint-disable */
       return (
         <div className={s.root}>
           <div className={s.container}>
@@ -32,7 +33,7 @@ class App extends React.Component {
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
             </center>
             <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`App trends ${app.title}`} />
-            <div className={s.description} dangerouslySetInnerHTML={{ __html: app ? app.descriptionHTML : '' }} />
+            <div className={s.description} dangerouslySetInnerHTML={{ __html: app ? app.descriptionHTML : 'Server undermaintain' }} />
           </div>
         </div>
       );

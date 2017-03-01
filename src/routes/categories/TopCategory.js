@@ -11,7 +11,7 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
 import s from './TopCategory.css';
 import TopRow from './TopRow';
 import Link from '../../components/Link';
@@ -23,7 +23,7 @@ const capitalize = function capitalize(text) {
 /* eslint max-len: ["error", 200]*/
 class TopCategory extends React.Component {
   static propTypes = {
-    // countryCode: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingFree: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -33,7 +33,7 @@ class TopCategory extends React.Component {
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode } = this.props;
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
@@ -68,9 +68,22 @@ class TopCategory extends React.Component {
       const mdSize = 12 / columnLen;
       return (
         <div className={s.root}>
+          <div>
+            <Breadcrumb>
+              <Breadcrumb.Item href="/">
+                Home
+              </Breadcrumb.Item>
+              <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
+                App trends in {capitalize(countryName.split('-').join(' '))}
+              </Breadcrumb.Item>
+              <Breadcrumb.Item active>
+                In category
+              </Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
           <div className={s.container}>
             <center>
-              <h2>App trends in ${countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
+              <h2>App trends in {countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
             </center>
             <Grid>
               <Row className="show-grid">
