@@ -9,12 +9,10 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import s from './TopCategory.css';
 import TopRow from './TopRow';
-import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
@@ -25,6 +23,7 @@ class TopCategory extends React.Component {
   static propTypes = {
     countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
+    categoryName: PropTypes.string.isRequired,
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingFree: PropTypes.arrayOf(PropTypes.object).isRequired,
     topsellingPaid: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -33,7 +32,7 @@ class TopCategory extends React.Component {
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode, categoryName } = this.props;
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
@@ -76,15 +75,15 @@ class TopCategory extends React.Component {
               <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
                 App trends in {capitalize(countryName.split('-').join(' '))}
               </Breadcrumb.Item>
+              <Breadcrumb.Item href={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
+                {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
+              </Breadcrumb.Item>
               <Breadcrumb.Item active>
-                In category
+                {capitalize(categoryName.split('-').join(' '))}
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
           <div className={s.container}>
-            <center>
-              <h2>App trends in {countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
-            </center>
             <Grid>
               <Row className="show-grid">
                 {columns.map((column, index) => (
@@ -93,27 +92,6 @@ class TopCategory extends React.Component {
                     {column}
                   </Col>
                 ))}
-              </Row>
-            </Grid>
-            <p />
-            <p />
-            <p />
-            <Grid>
-              <Row>
-                <Col sm={6} md={6}>
-                  <center>
-                    <Link to={`/app-trend-in-${countryName}/android-app-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" />Trends mobile app</Button>
-                    </Link>
-                  </center>
-                </Col>
-                <Col sm={6} md={6}>
-                  <center>
-                    <Link to={`/app-trend-in-${countryName}/android-game-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" />Trends mobile game</Button>
-                    </Link>
-                  </center>
-                </Col>
               </Row>
             </Grid>
           </div>

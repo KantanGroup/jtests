@@ -13,21 +13,33 @@ import { Image } from 'react-bootstrap';
 import s from './App.css';
 import { imageServer } from '../../config';
 import { capitalize } from '../../common';
+import Breadcrumb from '../../components/Breadcrumb';
 
 /* eslint max-len: ["error", 200]*/
 class App extends React.Component {
   static propTypes = {
-    // countryCode: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     app: PropTypes.shape(PropTypes.object).isRequired,
   };
 
   render() {
-    const { app, countryName } = this.props;
+    const { app, countryName, countryCode } = this.props;
     if (app) {
       /* eslint-disable */
       return (
         <div className={s.root}>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              {app.title}
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <div className={s.container}>
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>

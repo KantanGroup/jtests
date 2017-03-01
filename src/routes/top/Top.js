@@ -11,10 +11,11 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Button from 'react-bootstrap/lib/Button';
 import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import s from './Top.css';
 import TopColumn from './TopColumn';
 import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());

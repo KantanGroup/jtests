@@ -11,7 +11,7 @@ import React from 'react';
 import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import App from './App';
-import { capitalize, getLanguageCode } from '../../common';
+import { capitalize, getLanguageCode, getCountryCode } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -38,13 +38,13 @@ export default {
       return {
         title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${appId} app trends in ${countryName.split('-').join(' ')}. ${data.app.summary}`,
-        component: <Layout><App app={data.app} appId={appId} countryName={countryName} /></Layout>,
+        component: <Layout><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
     return {
       title: `${appId} app trends in ${capitalize(countryName.split('-').join(' '))}`,
       description: `${appId} app trends in ${countryName.split('-').join(' ')}`,
-      component: <Layout><App appId={appId} countryName={countryName} /></Layout>,
+      component: <Layout><App appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
     };
   },
 

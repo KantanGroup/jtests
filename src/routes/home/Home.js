@@ -14,6 +14,7 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import s from './Home.css';
 import Flag from '../../components/Flag';
 import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const countries = require('../../data/countries.json');
 
@@ -30,6 +31,11 @@ class Home extends React.Component {
     topCountries.sort((a, b) => a.id - b.id);
     return (
       <div className={s.root}>
+        <Breadcrumb>
+          <Breadcrumb.Item active>
+            Home
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <div className={s.container}>
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>

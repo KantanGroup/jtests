@@ -9,9 +9,10 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Grid, Row, Col, Breadcrumb } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import s from './Category.css';
 import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const capitalize = function capitalize(text) {
   return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());

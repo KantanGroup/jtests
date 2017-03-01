@@ -46,6 +46,7 @@ export default {
             topsellingNewFree={data.index.topsellingNewFree}
             countryName={countryName}
             countryCode={getCountryCode(countryName)}
+            categoryName={categoryName}
           />
         </Layout>
       );
@@ -55,6 +56,7 @@ export default {
           <TopCategory
             countryName={countryName}
             countryCode={getCountryCode(countryName)}
+            categoryName={categoryName}
           />
         </Layout>
       );
