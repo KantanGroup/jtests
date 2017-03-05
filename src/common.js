@@ -8,8 +8,9 @@ export const capitalize = function capitalize(text) {
 
 export const getLanguageCode = function getLanguageCode(countryName) {
   let languageCode = 'en';
+  const countryNameRename = countryName.split('-').join(' ');
   countries.forEach((country) => {
-    if (country.countryName.toLowerCase() === countryName.toLowerCase()) {
+    if (country.countryName.toLowerCase() === countryNameRename.toLowerCase()) {
       languageCode = country.languageCode;
     }
   });
@@ -18,8 +19,9 @@ export const getLanguageCode = function getLanguageCode(countryName) {
 
 export const getCountryCode = function getCountryCode(countryName) {
   let countryCode = 'us';
+  const countryNameRename = countryName.split('-').join(' ');
   countries.forEach((country) => {
-    if (country.countryName.toLowerCase() === countryName.toLowerCase()) {
+    if (country.countryName.toLowerCase() === countryNameRename.toLowerCase()) {
       countryCode = country.countryCode;
     }
   });
