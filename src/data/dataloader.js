@@ -42,8 +42,8 @@ function getIndexApps(id) {
   const countryCode = params[0];
   const category = params[1];
   const collection = params[2];
-  // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=au&category=books_and_reference&collection=topgrossing
-  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollection?countryCode=${countryCode}&category=${category}&collection=${collection}&size=${topSize}`)
+  // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollectionOrderByIndexAsc?countryCode=au&category=books_and_reference&collection=topgrossing
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollectionOrderByIndexAsc?countryCode=${countryCode}&category=${category}&collection=${collection}&size=${topSize}`)
     .then((data) => {
       const index = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
