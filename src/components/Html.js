@@ -15,6 +15,8 @@ class Html extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    canonicalUrl: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
     styles: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       cssText: PropTypes.string.isRequired,
@@ -34,7 +36,20 @@ class Html extends React.Component {
   };
 
   render() {
-    const { title, description, styles, scripts, state, lang, children } = this.props;
+    // eslint-disable-next-line
+    const { title, description, canonicalUrl, imageUrl, styles, scripts, state, lang, children } = this.props;
+    let metaCanonicalUrl;
+    if (canonicalUrl) {
+      metaCanonicalUrl = (
+        <meta name="og:url" content={canonicalUrl} />
+      );
+    }
+    let metaImageUrl;
+    if (imageUrl) {
+      metaImageUrl = (
+        <meta name="og:image" content={imageUrl} />
+      );
+    }
     return (
       <html className="no-js" lang={lang}>
         <head>
@@ -43,6 +58,10 @@ class Html extends React.Component {
           <title>{title}</title>
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="og:title" content={title} />
+          <meta name="og:description" content={description} />
+          {metaCanonicalUrl}
+          {metaImageUrl}
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
           {styles.map(style =>
             <style
