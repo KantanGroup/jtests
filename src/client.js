@@ -62,8 +62,14 @@ let onRenderComplete = function initialRenderComplete() {
     updateMeta('description', route.description);
     // Update necessary tags in <head> at runtime here, ie:
     // updateMeta('keywords', route.keywords);
-    // updateCustomMeta('og:url', route.canonicalUrl);
-    // updateCustomMeta('og:image', route.imageUrl);
+    updateMeta('og:title', route.title);
+    updateMeta('og:description', route.description);
+    if (route.canonicalUrl) {
+      updateMeta('og:url', route.canonicalUrl);
+    }
+    if (route.imageUrl) {
+      updateMeta('og:image', route.imageUrl);
+    }
     // updateLink('canonical', route.canonicalUrl);
     // etc.
 

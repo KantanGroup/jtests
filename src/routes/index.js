@@ -40,6 +40,8 @@ export default {
     // Provide default values for title, description etc.
     route.title = `${route.title || 'Mobile app trends in 2017'} - App trends`;
     route.description = route.description || 'Enjoy millions of the latest Android apps, games, music, movies, TV, books, magazines & more. Anytime, anywhere, across your devices.';
+    route.canonicalUrl = `${route.canonicalUrl || ''}`;
+    route.imageUrl = `${route.imageUrl || ''}`;
 
     return route;
   },

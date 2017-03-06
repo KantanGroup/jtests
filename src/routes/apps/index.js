@@ -12,6 +12,7 @@ import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import App from './App';
 import { capitalize, getLanguageCode, getCountryCode } from '../../common';
+import { imageServer, homeServer } from '../../config';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -36,6 +37,8 @@ export default {
     const { data } = await resp.json();
     if (data.app) {
       return {
+        canonicalUrl: `${homeServer}/app-trend-in-${countryName}/app/${appId}`,
+        imageUrl: `${imageServer}/icon/${appId}.png`,
         title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${data.app.summary}`,
         component: <Layout><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
