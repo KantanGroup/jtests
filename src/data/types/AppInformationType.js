@@ -27,7 +27,7 @@ const AppInformationType = new ObjectType({
     developerId: { type: StringType },
     developerUrl: { type: StringType },
     icon: { type: StringType },
-    score: { type: FloatType },
+    point: { type: FloatType },
     price: { type: StringType },
     free: { type: BooleanType },
     developerEmail: { type: StringType },

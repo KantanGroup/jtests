@@ -27,7 +27,7 @@ const AppIndexType = new ObjectType({
     collection: { type: StringType },
     icon: { type: StringType },
     developerId: { type: StringType },
-    score: { type: FloatType },
+    point: { type: FloatType },
     price: { type: StringType },
   },
 });

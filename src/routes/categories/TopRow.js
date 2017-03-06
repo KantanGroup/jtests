@@ -37,7 +37,7 @@ class TopColumn extends React.Component {
               <div className={s.appDescription}>
                 <div className={s.appName}>{app.title}</div>
                 <div className={s.appDeveloper}>{app.developerId}</div>
-                <Rater interactive={false} rating={app.score} />
+                <Rater interactive={false} rating={app.point} />
                 <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
               </div>
             </div>

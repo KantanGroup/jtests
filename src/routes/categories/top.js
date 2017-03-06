@@ -29,7 +29,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"${categoryName.split('-').join('_')}"){topgrossing{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,icon,title,score,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,icon,title,score,price,developerId}}}`,
+        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"${categoryName.split('-').join('_')}"){topgrossing{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,title,point,price,developerId}}}`,
       }),
       credentials: 'include',
     });
