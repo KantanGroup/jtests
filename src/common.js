@@ -3,7 +3,8 @@
 const countries = require('./data/countries.json');
 
 export const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
+  const data = text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
+  return data.replace(' And ', ' and ');
 };
 
 export const getI18n = function getI18n(countryCode) {

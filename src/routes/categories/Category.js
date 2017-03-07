@@ -13,10 +13,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import s from './Category.css';
 import Link from '../../components/Link';
 import Breadcrumb from '../../components/Breadcrumb';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 200]*/
 class Category extends React.Component {

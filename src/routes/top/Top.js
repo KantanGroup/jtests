@@ -16,10 +16,7 @@ import s from './Top.css';
 import TopColumn from './TopColumn';
 import Link from '../../components/Link';
 import Breadcrumb from '../../components/Breadcrumb';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 200]*/
 class Top extends React.Component {

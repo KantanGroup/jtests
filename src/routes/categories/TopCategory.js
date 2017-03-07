@@ -13,10 +13,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import s from './TopCategory.css';
 import TopRow from './TopRow';
 import Breadcrumb from '../../components/Breadcrumb';
-
-const capitalize = function capitalize(text) {
-  return text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-};
+import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 200]*/
 class TopCategory extends React.Component {
