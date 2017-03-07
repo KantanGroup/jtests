@@ -102,7 +102,7 @@ class TopCategory extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <center>
-            <h2>App trends in {countryName} in {capitalize(countryName.split('-').join(' '))}</h2>
+            <h2>App trends in {capitalize(categoryName.split('-').join(' '))} in {capitalize(countryName.split('-').join(' '))}</h2>
             Server undermaintain
           </center>
         </div>

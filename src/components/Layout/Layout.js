@@ -15,15 +15,17 @@ import Footer from '../Footer';
 
 class Layout extends React.Component {
   static propTypes = {
+    countryCode: PropTypes.String,
     children: PropTypes.node.isRequired,
   };
 
   render() {
+    const { countryCode } = this.props;
     return (
       <div>
         <Header />
         {this.props.children}
-        <Footer />
+        <Footer countryCode={countryCode}/>
       </div>
     );
   }

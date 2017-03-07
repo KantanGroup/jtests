@@ -10,7 +10,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import Category from './Category';
-import { capitalize } from '../../common';
+import { capitalize, getCountryCode } from '../../common';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
@@ -25,14 +25,14 @@ export default {
       return {
         title: `App trends in category in ${capitalize(countryName.split('-').join(' '))}`,
         description: `App trends in category in ${countryName.split('-').join(' ')}`,
-        component: <Layout><Category countryName={countryName} categories={categories} /></Layout>,
+        component: <Layout countryCode={getCountryCode(countryName)}><Category countryCode={getCountryCode(countryName)} countryName={countryName} categories={categories} /></Layout>,
       };
     }
     const categories = require('./games.json'); // eslint-disable-line
     return {
       title: `Game trends in category in ${capitalize(countryName.split('-').join(' '))}`,
       description: `Game trends in category in ${countryName.split('-').join(' ')}`,
-      component: <Layout><Category countryName={countryName} categories={categories} /></Layout>,
+      component: <Layout countryCode={getCountryCode(countryName)}><Category countryCode={getCountryCode(countryName)} countryName={countryName} categories={categories} /></Layout>,
     };
   },
 };

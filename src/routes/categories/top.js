@@ -37,7 +37,7 @@ export default {
     let component;
     if (data.index) {
       component = (
-        <Layout>
+        <Layout countryCode={getCountryCode(countryName)}>
           <TopCategory
             topgrossing={data.index.topgrossing}
             topsellingFree={data.index.topsellingFree}
@@ -52,7 +52,7 @@ export default {
       );
     } else {
       component = (
-        <Layout>
+        <Layout countryCode={getCountryCode(countryName)}>
           <TopCategory
             countryName={countryName}
             countryCode={getCountryCode(countryName)}

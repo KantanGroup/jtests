@@ -41,13 +41,13 @@ export default {
         imageUrl: `${imageServer}/icon/${appId}.png`,
         title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${data.app.summary}`,
-        component: <Layout><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
+        component: <Layout countryCode={getCountryCode(countryName)}><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
     return {
       title: `${appId} app trends in ${capitalize(countryName.split('-').join(' '))}`,
       description: `${appId} app trends in ${countryName.split('-').join(' ')}`,
-      component: <Layout><App appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
+      component: <Layout countryCode={getCountryCode(countryName)}><App appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
     };
   },
 
