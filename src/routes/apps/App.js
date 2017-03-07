@@ -9,7 +9,8 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Image } from 'react-bootstrap';
+import { Image, Grid, Row, Col } from 'react-bootstrap';
+import Rater from 'react-rater';
 import s from './App.css';
 import { imageServer } from '../../config';
 import { capitalize } from '../../common';
@@ -47,15 +48,41 @@ class App extends React.Component {
             </Breadcrumb.Item>
           </Breadcrumb>
           <div className={s.container}>
-            <center>
-              <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
-            </center>
-            <Image className={s.image} src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={170} height={170} alt={`App trends ${app.title}`} />
+            <div className={s.app}>
+              <Grid>
+                <Row className="show-grid">
+                  <Col md={2}>
+                    <div className={s.appImage}>
+                      <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={125} height={125} alt={`App trends ${app.title}`} />
+                    </div>
+                  </Col>
+                  <Col md={5}>
+                    <div className={s.appDescription}>
+                      <div className={s.appName}>{app.title}</div>
+                      <div className={s.appDeveloper}>{app.genre}</div>
+                      <div className={s.appDeveloper}>{app.minInstalls}{app.maxInstalls ? `-${app.maxInstalls}` : ''} downloaded</div>
+                      <Rater interactive={false} rating={app.point} />
+                      <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
+                      <div className={s.appDeveloper}>{app.version}</div>
+                    </div>
+                  </Col>
+                  <Col md={5}>
+                    <div className={s.appInformation}>
+                      <div className={s.appName}>{app.developerId}</div>
+                      <div className={s.appDeveloper}>{app.developerEmail}</div>
+                      <div className={s.appDeveloper}>{app.developerWebsite}</div>
+                    </div>
+                  </Col>
+                </Row>
+              </Grid>
+            </div>
+            <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
             <div
               className={s.description}
               // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: app ? app.descriptionHTML : 'Server undermaintain' }}
+              dangerouslySetInnerHTML={{ __html: app.descriptionHTML }}
             />
+            <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
           </div>
         </div>
       );

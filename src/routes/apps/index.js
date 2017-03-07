@@ -30,7 +30,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,description,descriptionHTML,developerId,video,price}}`,
+        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,descriptionHTML,developerId,developerEmail,developerWebsite,genre,version,playstoreUrl,video,point,price,minInstalls,maxInstalls,androidVersion,updated}}`,
       }),
       credentials: 'include',
     });

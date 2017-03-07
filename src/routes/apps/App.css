@@ -21,11 +21,66 @@
   max-width: var(--max-content-width);
 }
 
-.image {
-  margin: 20px;
-}
-
 .description {
   padding: 20px;
   font-weight: 400;
+}
+
+.ads {
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.app {
+  clear: both;
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  padding: 2px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.app .appImage {
+  padding: 10px;
+}
+
+.app .appDescription {
+  margin: 10px;
+  text-decoration: none;
+  color: blue;
+}
+
+.app .appInformation {
+  margin: 10px;
+  text-decoration: none;
+  color: blue;
+}
+
+.app .appName {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  clear: both;
+}
+
+.app .appDeveloper {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  color: #000;
+}
+
+.app .appPrice {
+  color: green;
+  font-weight: 500;
 }
