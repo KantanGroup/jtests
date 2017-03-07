@@ -82,14 +82,14 @@ class Top extends React.Component {
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/googlestore/app-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Mobile app</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> App trend in {capitalize(countryName.split('-').join(' '))}</Button>
                     </Link>
                   </center>
                 </Col>
                 <Col sm={6} md={6}>
                   <center>
                     <Link to={`/app-trend-in-${countryName}/googlestore/game-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Mobile game</Button>
+                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Game trend in {capitalize(countryName.split('-').join(' '))}</Button>
                     </Link>
                   </center>
                 </Col>
