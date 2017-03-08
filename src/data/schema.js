@@ -17,6 +17,7 @@ import news from './queries/news';
 import intl from './queries/intl';
 import index from './queries/index';
 import app from './queries/app';
+import trend from './queries/trend';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -27,6 +28,7 @@ const schema = new Schema({
       intl,
       index,
       app,
+      trend,
     },
   }),
 });

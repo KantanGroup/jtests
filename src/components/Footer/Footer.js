@@ -75,7 +75,7 @@ class Footer extends React.Component {
 }
 
 Footer.propTypes = {
-  countryCode: PropTypes.string.isRequired,
+  countryCode: PropTypes.string,
 };
 
 export default withStyles(s)(Footer);

@@ -30,7 +30,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,descriptionHTML,developerId,developerEmail,developerWebsite,genre,version,playstoreUrl,video,point,price,minInstalls,maxInstalls,androidVersion,updated}}`,
+        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,descriptionHTML,developerId,developerEmail,developerWebsite,genre,version,playstoreUrl,video,point,price,minInstalls,maxInstalls,androidVersion,updated},trend(appId:"${appId}",countryCode:"${getCountryCode(countryName)}",category:"all"){topgrossing{index,createAt},topsellingFree{index,createAt},topsellingPaid{index,createAt},topsellingNewFree{index,createAt},topsellingNewPaid{index,createAt}}}`,
       }),
       credentials: 'include',
     });

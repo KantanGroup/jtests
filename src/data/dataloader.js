@@ -23,17 +23,13 @@ function getAppTrend(id) {
   // http://localhost:9000/api/v1/appTrendSolrs/search/findByCountryCodeAndCategoryAndCollectionAndAppId?countryCode=br&category=all&collection=topgrossing&appId=com.supercell.clashroyale
   return getJSONFromRelativeURL(`/appTrendSolrs/search/findByCountryCodeAndCategoryAndCollectionAndAppId?countryCode=${countryCode}&category=${category}&collection=${collection}&appId=${appId}`)
     .then((data) => {
-      const index = {};
+      const trend = {};
       /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
       if (data._embedded) {
-        index.apps = data._embedded.appIndexSolrs;
-        index.apps.sort((a, b) => a.index - b.index);
+        trend.apps = data._embedded.appTrendSolrs;
+        trend.apps.sort((a, b) => new Date(b.createAt) - new Date(a.createAt));
       }
-
-      if (data.page) {
-        index.page = data.page;
-      }
-      return index;
+      return trend;
     });
 }
 
@@ -50,10 +46,6 @@ function getIndexApps(id) {
       if (data._embedded) {
         index.apps = data._embedded.appIndexSolrs;
         index.apps.sort((a, b) => a.index - b.index);
-      }
-
-      if (data.page) {
-        index.page = data.page;
       }
       return index;
     });
