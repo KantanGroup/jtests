@@ -42,6 +42,7 @@
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .app .appImage {
@@ -49,7 +50,6 @@
 }
 
 .app .appDescription {
-  margin: 10px;
   text-decoration: none;
   color: blue;
 }
@@ -61,6 +61,7 @@
 }
 
 .app .appName {
+  padding-top: 10px;
   overflow: hidden;
   font-weight: 500;
   white-space: nowrap;

@@ -1,12 +1,18 @@
 import DataLoader from 'dataloader';
 
 import fetch from '../core/fetch';
-import { baseURL, topSize } from '../config';
+import { baseURL, appServer, topSize } from '../config';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
 function getJSONFromRelativeURL(relativeURL) {
-  // console.log(`${baseURL}${relativeURL}`);
+  // console.log(`${baseURL}${relativeURL}`); //eslint-disable-line
   return fetch(`${baseURL}${relativeURL}`)
+    .then(res => res.json());
+}
+
+function getJSONFromAppURL(relativeURL) {
+  // console.log(`${appServer}${relativeURL}`); //eslint-disable-line
+  return fetch(`${appServer}${relativeURL}`)
     .then(res => res.json());
 }
 
@@ -51,6 +57,25 @@ function getIndexApps(id) {
     });
 }
 
+function getDeveloperApps(id) {
+  const params = id.split('___');
+  const appId = params[0];
+  const languageCode = params[1];
+  return getJSONFromAppURL(`/developers/${appId}?lang=${languageCode}`);
+}
+
+function getSimilarApps(appId) {
+  return getJSONFromAppURL(`/apps/${appId}/similar`)
+    .then((data) => {
+      const index = {};
+      /* eslint no-underscore-dangle: ["error", { "allow": ["_embedded"] }]*/
+      if (data.results) {
+        index.apps = data.results;
+      }
+      return index;
+    });
+}
+
 const cacheMap = new Map();
 
 const appLoader =
@@ -71,9 +96,23 @@ const appTrendLoader =
     cacheMap,
   });
 
+const appDeveloperLoader =
+  new DataLoader(keys => Promise.all(keys.map(getDeveloperApps)), {
+    cacheKeyFn: key => `/apps/developer/${key}/`,
+    cacheMap,
+  });
+
+const appSimilarLoader =
+  new DataLoader(keys => Promise.all(keys.map(getSimilarApps)), {
+    cacheKeyFn: key => `/apps/similar/${key}/`,
+    cacheMap,
+  });
+
 appLoader.loadApp = appLoader.load.bind(appLoader);
 appLoader.loadIndex = appIndexLoader.load.bind(appIndexLoader);
 appLoader.loadTrend = appTrendLoader.load.bind(appTrendLoader);
+appLoader.loadDeveloper = appDeveloperLoader.load.bind(appDeveloperLoader);
+appLoader.loadSimilar = appSimilarLoader.load.bind(appSimilarLoader);
 
 const dataloader = {
   app: appLoader,

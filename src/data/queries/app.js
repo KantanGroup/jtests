@@ -11,16 +11,24 @@ import {
   GraphQLString as StringType,
 } from 'graphql';
 
-import AppInformationType from '../types/AppInformationType';
+import Promise from 'bluebird';
+import AppObjectType from '../types/AppObjectType';
 
 const app = {
-  type: AppInformationType,
+  type: AppObjectType,
   args: {
     appId: { type: StringType },
     language: { type: StringType },
   },
   async resolve({ request }, { appId, language }, { loaders }) {
-    return loaders.app.load(`${appId}_${language}`);
+    const application = loaders.app.load(`${appId}_${language}`);
+    // const developer = loaders.app.loadDeveloper(`${appId}_${language}`);
+    const similar = loaders.app.loadSimilar(`${appId}`);
+    return Promise.props({ // wait for all promises to resolve
+      app: application,
+      // developer,
+      similar,
+    });
   },
 };
 

@@ -30,18 +30,19 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){appId,title,summary,descriptionHTML,developerId,developerEmail,developerWebsite,genre,version,playstoreUrl,video,point,price,minInstalls,maxInstalls,androidVersion,updated},trend(appId:"${appId}",countryCode:"${getCountryCode(countryName)}",category:"all"){topgrossing{index,createAt},topsellingFree{index,createAt},topsellingPaid{index,createAt},topsellingNewFree{index,createAt},topsellingNewPaid{index,createAt}}}`,
+        query: `{app(appId:"${appId}",language:"${getLanguageCode(countryName)}"){app{appId,title,summary,descriptionHTML,developerId,developerEmail,developerWebsite,genre,version,playstoreUrl,video,point,price,minInstalls,maxInstalls,androidVersion,updated},similar{apps{title,developer{devId},icon,score,price}}}}`,
       }),
       credentials: 'include',
     });
     const { data } = await resp.json();
-    if (data.app) {
+    if (data.app.app) {
+      const app = data.app.app;
       return {
         canonicalUrl: `${homeServer}/app-trend-in-${countryName}/app/${appId}`,
         imageUrl: `${imageServer}/icon/${appId}.png`,
-        title: `${data.app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
-        description: `${data.app.summary}`,
-        component: <Layout countryCode={getCountryCode(countryName)}><App app={data.app} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
+        title: `${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
+        description: `${app.summary}`,
+        component: <Layout><App app={app} similar={data.app.similar} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
     return {

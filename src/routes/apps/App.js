@@ -22,6 +22,7 @@ class App extends React.Component {
     countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     app: PropTypes.shape(PropTypes.object).isRequired,
+    similar: PropTypes.arrayOf(PropTypes.object).isRequired, //eslint-disable-line
   };
 
   constructor(props) {
@@ -32,7 +33,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { app, countryName, countryCode } = this.props;
+    const { app, similar, countryName, countryCode } = this.props;
+    const apps = similar.apps.slice(0, 12);
     if (app) {
       return (
         <div className={s.root}>
@@ -83,6 +85,26 @@ class App extends React.Component {
               dangerouslySetInnerHTML={{ __html: app.descriptionHTML }}
             />
             <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+          </div>
+          <div>
+            <Grid>
+              <Row className="show-grid">
+                {apps.map((similarApp, index) => (
+                  //eslint-disable-next-line
+                  <Col key={`col_${index}`} md={2}>
+                    <div className={s.app}>
+                      <div className={s.appDescription}>
+                        <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`App trends ${similarApp.title}`} />
+                        <div className={s.appName}>{similarApp.title}</div>
+                        <div className={s.appDeveloper}>{similarApp.developer.devId}</div>
+                        <Rater interactive={false} rating={similarApp.score} />
+                        <div className={s.appPrice}>{similarApp.price === '0' ? 'Free' : similarApp.price}</div>
+                      </div>
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            </Grid>
           </div>
         </div>
       );
