@@ -1,6 +1,18 @@
+import moment from 'moment';
 
-
+// const appObject = require('./routes/apps/app.json');
 const countries = require('./data/countries.json');
+
+export const labels = function labels() {
+  const xDatas = [];
+  let index = 1;
+  do {
+    if (index > 30) break;
+    xDatas.push(moment().subtract(index, 'days').format('MM/dd'));
+    index += 1;
+  } while (index === 30);
+  return xDatas;
+};
 
 export const capitalize = function capitalize(text) {
   const data = text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
