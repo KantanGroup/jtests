@@ -104,6 +104,7 @@ class App extends React.Component {
                 </Row>
               </Grid>
             </div>
+            <ReactHighcharts config={this.state.config} />
             <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
             <div
               className={s.description}
@@ -112,7 +113,11 @@ class App extends React.Component {
             />
             <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
           </div>
-          <ReactHighcharts config={this.state.config} />
+          <Breadcrumb>
+            <Breadcrumb.Item active>
+              Application suggestions
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <div>
             <Grid>
               <Row className="show-grid">
@@ -133,6 +138,17 @@ class App extends React.Component {
               </Row>
             </Grid>
           </div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              {app.title}
+            </Breadcrumb.Item>
+          </Breadcrumb>
         </div>
       );
     }
