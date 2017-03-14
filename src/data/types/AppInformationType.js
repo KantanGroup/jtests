@@ -11,7 +11,7 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLBoolean as BooleanType,
-  GraphQLInt as IntegerType,
+  GraphQLFloat as IntegerType,
   GraphQLFloat as FloatType,
   GraphQLList as List,
 } from 'graphql';

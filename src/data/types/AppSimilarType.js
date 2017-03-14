@@ -10,7 +10,7 @@
 import {
   GraphQLObjectType as ObjectType,
   GraphQLString as StringType,
-  GraphQLInt as IntegerType,
+  GraphQLFloat as IntegerType,
   GraphQLFloat as FloatType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
