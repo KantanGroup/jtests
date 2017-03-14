@@ -40,13 +40,13 @@ class App extends React.Component {
       },
       yAxis: {
         title: {
-          text: 'Trends',
+          text: 'Index',
         },
         reversed: true,
         min: 1,
       },
       title: {
-        text: `${app.title} trends`,
+        text: `${app.title} (App trends in ${capitalize(countryName.split('-').join(' '))})`,
       },
       subtitle: {
         text: `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`,
@@ -115,7 +115,7 @@ class App extends React.Component {
           </div>
           <Breadcrumb>
             <Breadcrumb.Item active>
-              Application suggestions
+              Recommended for You
             </Breadcrumb.Item>
           </Breadcrumb>
           <div>
