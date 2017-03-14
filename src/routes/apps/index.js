@@ -42,7 +42,7 @@ export default {
         imageUrl: `${imageServer}/icon/${appId}.png`,
         title: `${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${app.summary}`,
-        component: <Layout><App app={app} similar={data.app.similar} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
+        component: <Layout><App app={app} trend={data.trend} similar={data.app.similar} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
     return {

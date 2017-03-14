@@ -11,9 +11,10 @@ import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Image, Grid, Row, Col } from 'react-bootstrap';
 import Rater from 'react-rater';
+import ReactHighcharts from 'react-highcharts';
 import s from './App.css';
 import { imageServer } from '../../config';
-import { capitalize } from '../../common';
+import { capitalize, labels, getSeriesOfTrend } from '../../common';
 import Breadcrumb from '../../components/Breadcrumb';
 
 /* eslint max-len: ["error", 200]*/
@@ -23,12 +24,37 @@ class App extends React.Component {
     countryName: PropTypes.string.isRequired,
     app: PropTypes.shape(PropTypes.object).isRequired,
     similar: PropTypes.arrayOf(PropTypes.object).isRequired, //eslint-disable-line
+    trend: PropTypes.shape(PropTypes.object).isRequired,
   };
 
   constructor(props) {
     super(props);
+    const { trend, countryName, app } = this.props;
+
+    const config = {
+      chart: {
+        type: 'spline',
+      },
+      xAxis: {
+        categories: labels(),
+      },
+      yAxis: {
+        title: {
+          text: 'Trends',
+        },
+        reversed: true,
+        min: 1,
+      },
+      title: {
+        text: `${app.title} trends`,
+      },
+      subtitle: {
+        text: `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`,
+      },
+      series: getSeriesOfTrend(trend),
+    };
     this.state = {
-      data: {},
+      config,
     };
   }
 
@@ -86,6 +112,7 @@ class App extends React.Component {
             />
             <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
           </div>
+          <ReactHighcharts config={this.state.config} />
           <div>
             <Grid>
               <Row className="show-grid">

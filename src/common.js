@@ -1,17 +1,74 @@
 import moment from 'moment';
 
-// const appObject = require('./routes/apps/app.json');
 const countries = require('./data/countries.json');
 
 export const labels = function labels() {
   const xDatas = [];
-  let index = 1;
+  let index = 30;
   do {
-    if (index > 30) break;
-    xDatas.push(moment().subtract(index, 'days').format('MM/dd'));
-    index += 1;
-  } while (index === 30);
+    xDatas.push(moment().subtract(index, 'days').format('MM/DD'));
+    index -= 1;
+  } while (index > 1);
   return xDatas;
+};
+
+function getIndexInTrendByDay(indexs, day) {
+  const result = indexs.filter(obj => moment(obj.createAt).format('MM/DD') === day);
+  return result.length === 0 ? 0 : result[0].index; // or undefined
+}
+
+function getChartInTrendByCollection(collections) {
+  const chartData = [];
+  let previousIndex = 0;
+  labels().forEach((day) => {
+    const currentIndex = getIndexInTrendByDay(collections, day);
+    if (currentIndex === 0) {
+      if (currentIndex !== previousIndex) {
+        chartData.push(previousIndex);
+      } else {
+        chartData.push(null);
+      }
+    } else {
+      chartData.push(currentIndex);
+      previousIndex = currentIndex;
+    }
+  });
+  return chartData;
+}
+
+export const getSeriesOfTrend = function getSeriesOfTrend(trend) {
+  const series = [];
+  if (trend.topgrossing && trend.topgrossing.length !== 0) {
+    const chartData = {};
+    chartData.name = 'Topgrossing';
+    chartData.data = getChartInTrendByCollection(trend.topgrossing);
+    series.push(chartData);
+  }
+  if (trend.topsellingFree && trend.topsellingFree.length !== 0) {
+    const chartData = {};
+    chartData.name = 'Topselling Free';
+    chartData.data = getChartInTrendByCollection(trend.topsellingFree);
+    series.push(chartData);
+  }
+  if (trend.topsellingPaid && trend.topsellingPaid.length !== 0) {
+    const chartData = {};
+    chartData.name = 'Topselling Paid';
+    chartData.data = getChartInTrendByCollection(trend.topsellingPaid);
+    series.push(chartData);
+  }
+  if (trend.topsellingNewFree && trend.topsellingNewFree.length !== 0) {
+    const chartData = {};
+    chartData.name = 'Topselling New Free';
+    chartData.data = getChartInTrendByCollection(trend.topsellingNewFree);
+    series.push(chartData);
+  }
+  if (trend.topsellingNewPaid && trend.topsellingNewPaid.length !== 0) {
+    const chartData = {};
+    chartData.name = 'Topselling New Paid';
+    chartData.data = getChartInTrendByCollection(trend.topsellingNewPaid);
+    series.push(chartData);
+  }
+  return series;
 };
 
 export const capitalize = function capitalize(text) {
