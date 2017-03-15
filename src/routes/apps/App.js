@@ -25,18 +25,33 @@ class App extends React.Component {
     app: PropTypes.shape(PropTypes.object),
     similar: PropTypes.arrayOf(PropTypes.object),
     trend: PropTypes.shape(PropTypes.object),
+    category: PropTypes.shape(PropTypes.object),
+    categoryName: PropTypes.string,
   };
 
   static defaultProps = {
     app: null,
     similar: [],
     trend: null,
+    category: null,
+    categoryName: 'all',
   }
 
   constructor(props) {
     super(props);
-    const { trend, countryName, app } = this.props;
+    const { trend, category, categoryName, countryName, app } = this.props;
     if (app) {
+      let series = [];
+      if (trend) {
+        series = getSeriesOfTrend(series, trend, 'all');
+      }
+      let chartSubtitle;
+      if (category) {
+        series = getSeriesOfTrend(series, category, categoryName);
+        chartSubtitle = `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}/${categoryName}-category`;
+      } else {
+        chartSubtitle = `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`;
+      }
       const config = {
         chart: {
           type: 'spline',
@@ -55,9 +70,9 @@ class App extends React.Component {
           text: `${app.title} (App trends in ${capitalize(countryName.split('-').join(' '))})`,
         },
         subtitle: {
-          text: `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`,
+          text: chartSubtitle,
         },
-        series: getSeriesOfTrend(trend),
+        series,
       };
       this.state = {
         config,
@@ -66,7 +81,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { app, similar, countryName, countryCode } = this.props;
+    const { app, similar, countryName, countryCode, categoryName } = this.props;
+    let menuBreadcrumb;
+    if (categoryName !== 'all') {
+      menuBreadcrumb = (
+        <Breadcrumb.Item active>
+          In {capitalize(categoryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+      );
+    }
     const apps = similar.apps.slice(0, 12);
     if (app) {
       return (
@@ -81,6 +104,7 @@ class App extends React.Component {
             <Breadcrumb.Item active>
               {app.title}
             </Breadcrumb.Item>
+            {menuBreadcrumb}
           </Breadcrumb>
           <div className={s.container}>
             <div className={s.app}>
@@ -157,6 +181,7 @@ class App extends React.Component {
             <Breadcrumb.Item active>
               {app.title}
             </Breadcrumb.Item>
+            {menuBreadcrumb}
           </Breadcrumb>
         </div>
       );

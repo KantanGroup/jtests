@@ -23,6 +23,7 @@ export default {
     require('./privacy').default,
     require('./top').default,
     require('./apps').default,
+    require('./apps/category').default,
     require('./countries').default,
     // require('./categories').default,
     require('./categories/googlestore').default,

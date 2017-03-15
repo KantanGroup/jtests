@@ -21,15 +21,16 @@ class TopColumn extends React.Component {
     // countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     apps: PropTypes.arrayOf(PropTypes.object).isRequired,
+    categoryName: PropTypes.string.isRequired,
   };
 
   render() {
-    const { apps, countryName, title } = this.props;
+    const { apps, countryName, title, categoryName } = this.props;
     return (
       <div>
         <center><h3>{title}</h3></center>
         {apps.map(app => (
-          <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`}>
+          <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}/${categoryName}-category`}>
             <div className={s.app}>
               <div className={s.appImage}>
                 <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`App trends ${app.title}`} />

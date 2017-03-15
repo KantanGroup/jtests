@@ -37,7 +37,7 @@ class Footer extends React.Component {
           </div>
           {games.map((category, index) => (
             // eslint-disable-next-line
-            <div className={s.footer}>- <Link key={`link_${index}`} className={s.link} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app/${category.split('_').join('-')}-category`}>{capitalize(category.split('_').join(' '))}</Link></div>
+            <div className={s.footer}>- <Link key={`link_game_${index}`} className={s.link} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app/${category.split('_').join('-')}-category`}>{capitalize(category.split('_').join(' '))}</Link></div>
           ))}
         </Col>
       );
@@ -48,7 +48,7 @@ class Footer extends React.Component {
           </div>
           {apps.map((category, index) => (
             // eslint-disable-next-line
-            <div className={s.footer}>- <Link key={`link_${index}`} className={s.link} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app/${category.split('_').join('-')}-category`}>{capitalize(category.split('_').join(' '))}</Link></div>
+            <div className={s.footer}>- <Link key={`link_app_${index}`} className={s.link} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app/${category.split('_').join('-')}-category`}>{capitalize(category.split('_').join(' '))}</Link></div>
           ))}
         </Col>
       );

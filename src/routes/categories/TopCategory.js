@@ -33,22 +33,22 @@ class TopCategory extends React.Component {
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopRow title="Top grossing" apps={topgrossing} countryName={countryName} />,
+        <TopRow title="Top grossing" apps={topgrossing} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopRow title="Top free" apps={topsellingFree} countryName={countryName} />,
+        <TopRow title="Top free" apps={topsellingFree} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopRow title="Top paid" apps={topsellingPaid} countryName={countryName} />,
+        <TopRow title="Top paid" apps={topsellingPaid} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopRow title="Top new free" apps={topsellingNewFree} countryName={countryName} />,
+        <TopRow title="Top new free" apps={topsellingNewFree} countryName={countryName} categoryName={categoryName} />,
       );
     }
     let columnLen = columns.length;
@@ -56,7 +56,7 @@ class TopCategory extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopRow title="Top new paid" apps={topsellingNewPaid} countryName={countryName} />,
+            <TopRow title="Top new paid" apps={topsellingNewPaid} countryName={countryName} categoryName={categoryName} />,
           );
         }
       }

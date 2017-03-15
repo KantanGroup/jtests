@@ -29,6 +29,7 @@ const schema = new Schema({
       index,
       app,
       trend,
+      category: trend,
     },
   }),
 });

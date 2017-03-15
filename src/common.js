@@ -2,6 +2,11 @@ import moment from 'moment';
 
 const countries = require('./data/countries.json');
 
+export const capitalize = function capitalize(text) {
+  const data = text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
+  return data.replace(' And ', ' and ');
+};
+
 export const labels = function labels() {
   const xDatas = [];
   let index = 30;
@@ -36,44 +41,42 @@ function getChartInTrendByCollection(collections) {
   return chartData;
 }
 
-export const getSeriesOfTrend = function getSeriesOfTrend(trend) {
-  const series = [];
+export const getSeriesOfTrend = function getSeriesOfTrend(series, trend, category) {
+  let categoryName = '';
+  if (category !== 'all') {
+    categoryName = `${capitalize(category.split('-').join(' '))} `;
+  }
   if (trend.topgrossing && trend.topgrossing.length !== 0) {
     const chartData = {};
-    chartData.name = 'Topgrossing';
+    chartData.name = `${categoryName}Topgrossing`;
     chartData.data = getChartInTrendByCollection(trend.topgrossing);
     series.push(chartData);
   }
   if (trend.topsellingFree && trend.topsellingFree.length !== 0) {
     const chartData = {};
-    chartData.name = 'Topselling Free';
+    chartData.name = `${categoryName}Topselling Free`;
     chartData.data = getChartInTrendByCollection(trend.topsellingFree);
     series.push(chartData);
   }
   if (trend.topsellingPaid && trend.topsellingPaid.length !== 0) {
     const chartData = {};
-    chartData.name = 'Topselling Paid';
+    chartData.name = `${categoryName}Topselling Paid`;
     chartData.data = getChartInTrendByCollection(trend.topsellingPaid);
     series.push(chartData);
   }
   if (trend.topsellingNewFree && trend.topsellingNewFree.length !== 0) {
     const chartData = {};
-    chartData.name = 'Topselling New Free';
+    chartData.name = `${categoryName}Topselling New Free`;
     chartData.data = getChartInTrendByCollection(trend.topsellingNewFree);
     series.push(chartData);
   }
   if (trend.topsellingNewPaid && trend.topsellingNewPaid.length !== 0) {
     const chartData = {};
-    chartData.name = 'Topselling New Paid';
+    chartData.name = `${categoryName}Topselling New Paid`;
     chartData.data = getChartInTrendByCollection(trend.topsellingNewPaid);
     series.push(chartData);
   }
   return series;
-};
-
-export const capitalize = function capitalize(text) {
-  const data = text.toLowerCase().replace(/\b\w/g, m => m.toUpperCase());
-  return data.replace(' And ', ' and ');
 };
 
 export const getI18n = function getI18n(countryCode) {
