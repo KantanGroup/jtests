@@ -53,14 +53,23 @@ class NavItem extends React.Component {
     } else if (props.role === 'tab') {
       props['aria-selected'] = active;
     }
-
+    let linkCompoment;
+    if (props.href.startsWith("http://")) {
+      linkCompoment = (
+        <a {...props} href={props.href} />
+      );
+    } else {
+      linkCompoment = (
+        <Link {...props} to={props.href} />
+      );
+    }
     return (
       <li
         role="presentation"
         className={classNames(className, { active, disabled })}
         style={style}
       >
-        <Link {...props} to={props.href} />
+        {linkCompoment}
       </li>
     );
   }
