@@ -9,12 +9,9 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
 import { Grid, Row, Col } from 'react-bootstrap';
 import s from './Top.css';
 import TopColumn from './TopColumn';
-import Link from '../../components/Link';
 import Breadcrumb from '../../components/Breadcrumb';
 import { capitalize } from '../../common';
 
@@ -77,24 +74,6 @@ class Top extends React.Component {
             </Breadcrumb>
           </div>
           <div className={s.container}>
-            <Grid>
-              <Row>
-                <Col sm={6} md={6}>
-                  <center>
-                    <Link to={`/app-trend-in-${countryName}/googlestore/app-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> App trend in {capitalize(countryName.split('-').join(' '))}</Button>
-                    </Link>
-                  </center>
-                </Col>
-                <Col sm={6} md={6}>
-                  <center>
-                    <Link to={`/app-trend-in-${countryName}/googlestore/game-category`}>
-                      <Button bsSize="large" bsStyle="default"><Glyphicon glyph="search" /> Game trend in {capitalize(countryName.split('-').join(' '))}</Button>
-                    </Link>
-                  </center>
-                </Col>
-              </Row>
-            </Grid>
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
             </center>
