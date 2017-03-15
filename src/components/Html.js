@@ -53,6 +53,7 @@ class Html extends React.Component {
             />,
           )}
           <link rel="stylesheet" href="/css/bootstrap.min.css" />
+          <link rel="stylesheet" href="/index.css" />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </head>
         <body>

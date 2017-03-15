@@ -12,9 +12,10 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { GridList, GridTile } from 'material-ui/GridList';
-
-import Link from './../../components/Link';
 import s from './Home.css';
+import Flag from '../../components/Flag';
+import Link from '../../components/Link';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const desktopStyles = {
   root: {
@@ -39,6 +40,11 @@ class Home extends React.Component {
     const { apps } = this.props;
     return (
       <div className={s.root}>
+        <Breadcrumb>
+          <Breadcrumb.Item active>
+            Home
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <div className={s.container}>
           <div style={desktopStyles.root}>
             <GridList

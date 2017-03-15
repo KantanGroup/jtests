@@ -11,10 +11,17 @@ import React from 'react';
 import { defineMessages, FormattedMessage } from 'react-intl';
 import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { Nav, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
 import s from './Navigation.css';
 import Link from '../Link';
+import NavItem from '../NavItem';
 
 const messages = defineMessages({
+  home: {
+    id: 'navigation.home',
+    defaultMessage: 'Home',
+    description: 'Home link in header',
+  },
   about: {
     id: 'navigation.about',
     defaultMessage: 'About',
@@ -46,16 +53,27 @@ class Navigation extends React.Component {
   render() {
     return (
       <div className={s.root} role="navigation">
-        <Link className={s.link} to="/about">
-          <FormattedMessage {...messages.about} />
-        </Link>
-        <Link className={s.link} to="/contact">
-          <FormattedMessage {...messages.contact} />
-        </Link>
-        <span className={s.spacer}> | </span>
-        <Link className={s.link} to="/login">
-          <FormattedMessage {...messages.login} />
-        </Link>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to={"/"}>Zuzuapps store</Link>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav pullRight>
+              <NavItem href={'/'}>
+                Home
+              </NavItem>
+              <NavItem href={'http://topapptrends.com/top-mobile-app-trend-in-the-world'}>
+                App trends in countries
+              </NavItem>
+              <NavItem href={'/login'}>
+                Login
+              </NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       </div>
     );
   }
