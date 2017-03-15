@@ -13,7 +13,7 @@ import { Image, Grid, Row, Col } from 'react-bootstrap';
 import Rater from 'react-rater';
 import ReactHighcharts from 'react-highcharts';
 import s from './App.css';
-import { imageServer } from '../../config';
+import { imageServer, downloadServer } from '../../config';
 import { capitalize, labels, getSeriesOfTrend } from '../../common';
 import Breadcrumb from '../../components/Breadcrumb';
 
@@ -133,7 +133,9 @@ class App extends React.Component {
                   <Col key={`col_${index}`} md={2}>
                     <div className={s.app}>
                       <div className={s.appDescription}>
-                        <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`App trends ${similarApp.title}`} />
+                        <a href={`${downloadServer}/download/apk/${similarApp.appId}`}>
+                          <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`Download ${similarApp.title} apk`} />
+                        </a>
                         <div className={s.appName}>{similarApp.title}</div>
                         <div className={s.appDeveloper}>{similarApp.developer.devId}</div>
                         <Rater interactive={false} rating={similarApp.score} />
