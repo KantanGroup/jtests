@@ -9,11 +9,14 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { Image, Grid, Row, Col } from 'react-bootstrap';
+import Rater from 'react-rater';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 import s from './App.css';
+import Breadcrumb from '../../components/Breadcrumb';
 
 const styles = {
   root: {
@@ -40,7 +43,43 @@ class App extends React.Component {
     const { app } = this.props;
     return (
       <div className={s.root}>
+        <Breadcrumb>
+          <Breadcrumb.Item href="/">
+            Home
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            {app.title}
+          </Breadcrumb.Item>
+        </Breadcrumb>
         <div className={s.container}>
+          <div className={s.app}>
+            <Grid>
+              <Row className="show-grid">
+                <Col md={2}>
+                  <div className={s.appImage}>
+                    <Image src={app.icon} rounded width={125} height={125} alt={`App trends ${app.title}`} />
+                  </div>
+                </Col>
+                <Col md={5}>
+                  <div className={s.appDescription}>
+                    <div className={s.appName}>{app.title}</div>
+                    <div className={s.appDeveloper}>{app.genre}</div>
+                    <div className={s.appDeveloper}>{app.minInstalls}{app.maxInstalls ? `-${app.maxInstalls}` : ''} downloaded</div>
+                    <Rater interactive={false} rating={app.score} />
+                    <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
+                    <div className={s.appDeveloper}>{app.version}</div>
+                  </div>
+                </Col>
+                <Col md={5}>
+                  <div className={s.appInformation}>
+                    <div className={s.appName}>{app.developerId}</div>
+                    <div className={s.appDeveloper}>{app.developerEmail}</div>
+                    <div className={s.appDeveloper}>{app.developerWebsite}</div>
+                  </div>
+                </Col>
+              </Row>
+            </Grid>
+          </div>
           <h1>{app.title}</h1>
           <p>{app.summary}</p>
           <img
