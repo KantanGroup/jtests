@@ -20,11 +20,11 @@ class Flag extends React.Component {
 
   render() {
     const { countryCode, countryName, size } = this.props;
-    const flag = require(`./flags/${countryCode}.svg`);
+    const flag = require(`./flags/${countryCode}.svg`); // eslint-disable-line
     return (
       <div className={s.flag}>
         <div className={s.country}>{countryName}</div>
-        <img src={flag} width={4*size} height={3*size} alt={`Top mobile app trends in ${countryName}`} />
+        <img src={flag} width={4 * size} height={3 * size} alt={`Top mobile app trends in ${countryName}`} />
       </div>
     );
   }

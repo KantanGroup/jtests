@@ -11,15 +11,15 @@ const propTypes = {
   /**
    * `href` attribute for the inner `a` element
    */
-  href: React.PropTypes.string,
+  href: React.PropTypes.string, //eslint-disable-line
   /**
    * `title` attribute for the inner `a` element
    */
-  title: React.PropTypes.node,
+  title: React.PropTypes.node, //eslint-disable-line
   /**
    * `target` attribute for the inner `a` element
    */
-  target: React.PropTypes.string,
+  target: React.PropTypes.string, //eslint-disable-line
 };
 
 const defaultProps = {
@@ -28,19 +28,18 @@ const defaultProps = {
 
 class BreadcrumbItem extends React.Component {
   render() {
-    const { active, href, title, target, className } = this.props;
-
+    // eslint-disable-next-line
+    const { active, href, title, target, children, className } = this.props;
     // Don't try to render these props on non-active <span>.
-    const linkProps = { href, title, target };
+    const linkProps = { href, title, children, target };
     let linkCompoment;
     if (active) {
-      delete this.props.active;
       linkCompoment = (
-        <span {...props} />
+        <span {...linkProps} />
       );
     } else {
       linkCompoment = (
-        <Link {...props} to={href} />
+        <Link {...linkProps} to={href} />
       );
     }
     return (

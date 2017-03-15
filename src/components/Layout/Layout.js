@@ -14,19 +14,25 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 class Layout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
   render() {
+    const { countryCode } = this.props;
     return (
       <div>
         <Header />
         {this.props.children}
-        <Footer />
+        <Footer countryCode={countryCode} />
       </div>
     );
   }
 }
+
+Layout.propTypes = {
+  countryCode: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+Layout.defaultProps = {
+  countryCode: null,
+};
 
 export default withStyles(s)(Layout);
