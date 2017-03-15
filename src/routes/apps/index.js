@@ -26,7 +26,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{app(id:"${appId}"){appId,title,summary,icon,developer{devId},developerEmail,developerWebsite,updated,version,screenshots,minInstalls,minInstalls,description,descriptionHTML,androidVersion,androidVersionText,playstoreUrl,contentRating}}`,
+        query: `{app(id:"${appId}"){appId,title,summary,icon,developer{devId},developerEmail,developerWebsite,genre,updated,version,screenshots,minInstalls,maxInstalls,descriptionHTML,playstoreUrl,contentRating}}`,
       }),
       credentials: 'include',
     });

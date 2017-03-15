@@ -75,19 +75,29 @@ class App extends React.Component {
                     <div className={s.appName}>{app.developerId}</div>
                     <div className={s.appDeveloper}>{app.developerEmail}</div>
                     <div className={s.appDeveloper}>{app.developerWebsite}</div>
+                    <div className={s.appDeveloper}>{app.updated}</div>
                   </div>
                 </Col>
               </Row>
             </Grid>
           </div>
-          <h1>{app.title}</h1>
-          <p>{app.summary}</p>
-          <img
-            className="img-circle"
-            src={`${app.icon.startsWith('http') ? app.icon : `http:${app.icon}`}`}
-            alt={`Download ${app.title} apk`}
+          <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+          <Breadcrumb>
+            <Breadcrumb.Item active>
+              Summary
+            </Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            className={s.description}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: app.descriptionHTML }}
           />
-
+          <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+          <Breadcrumb>
+            <Breadcrumb.Item active>
+              Screenshots
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <div style={styles.root}>
             <GridList
               cellHeight={320}
