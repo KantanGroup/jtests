@@ -9,11 +9,11 @@ export const capitalize = function capitalize(text) {
 
 export const labels = function labels() {
   const xDatas = [];
-  let index = 30;
+  let index = 28;
   do {
     xDatas.push(moment().subtract(index, 'days').format('MM/DD'));
     index -= 1;
-  } while (index > 1);
+  } while (index > -1);
   return xDatas;
 };
 
