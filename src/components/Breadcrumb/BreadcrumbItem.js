@@ -28,12 +28,13 @@ const defaultProps = {
 
 class BreadcrumbItem extends React.Component {
   render() {
-    const { active, href, title, target, className, ...props } = this.props;
+    const { active, href, title, target, className } = this.props;
 
     // Don't try to render these props on non-active <span>.
     const linkProps = { href, title, target };
     let linkCompoment;
     if (active) {
+      delete this.props.active;
       linkCompoment = (
         <span {...props} />
       );
