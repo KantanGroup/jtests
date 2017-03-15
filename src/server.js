@@ -23,6 +23,7 @@ import { IntlProvider } from 'react-intl';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './serverIntlPolyfill';
+import createApolloClient from './core/createApolloClient';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -98,17 +99,18 @@ googleAuth(app);
 //
 // Register API middleware
 // -----------------------------------------------------------------------------
-app.use('/graphql', expressGraphQL(req => ({
+const graphqlMiddleware = expressGraphQL(req => ({
   context: {
     googleplay,
     appleplay,
   },
   schema,
-  graphiql: process.env.NODE_ENV !== 'production',
+  graphiql: __DEV__,
   rootValue: { request: req },
-  pretty: process.env.NODE_ENV !== 'production',
-})));
+  pretty: __DEV__,
+}));
 
+app.use('/graphql', graphqlMiddleware);
 app.use('/api', googleplayapi);
 app.use('/googlestore', googleplayapi);
 app.use('/appstore', appleplayapi);
@@ -117,10 +119,16 @@ app.use('/appstore', appleplayapi);
 // -----------------------------------------------------------------------------
 app.get('*', async (req, res, next) => {
   try {
+    const apolloClient = createApolloClient({
+      schema,
+      rootValue: { request: req },
+    });
+
     const store = configureStore({
       user: req.user || null,
     }, {
       cookie: req.headers.cookie,
+      apolloClient,
     });
 
     store.dispatch(setRuntimeVariable({
@@ -152,6 +160,8 @@ app.get('*', async (req, res, next) => {
       // Initialize a new Redux store
       // http://redux.js.org/docs/basics/UsageWithReact.html
       store,
+      // Apollo Client for use with react-apollo
+      client: apolloClient,
     };
 
     const route = await UniversalRouter.resolve(routes, {
@@ -178,10 +188,17 @@ app.get('*', async (req, res, next) => {
       assets.vendor.js,
       assets.client.js,
     ];
+
+    // Furthermore invoked actions will be ignored, client will not receive them!
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.log('Serializing store...');
+    }
+    data.state = context.store.getState();
+
     if (assets[route.chunk]) {
       data.scripts.push(assets[route.chunk].js);
     }
-    data.state = context.store.getState();
     data.lang = locale;
 
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);

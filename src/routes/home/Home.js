@@ -13,7 +13,6 @@ import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { GridList, GridTile } from 'material-ui/GridList';
 import s from './Home.css';
-import Flag from '../../components/Flag';
 import Link from '../../components/Link';
 import Breadcrumb from '../../components/Breadcrumb';
 

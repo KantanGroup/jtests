@@ -5,12 +5,12 @@ import qs from 'querystring';
 
 const router = Express.Router();
 
-const toList = (apps) => ({ results: apps });
+const toList = apps => ({ results: apps });
 
 const buildUrl = (req, subpath) =>
   `${req.protocol}://${path.join(req.get('host'), req.baseUrl, subpath)}`;
 
-const cleanUrls = (req) => (app) => Object.assign({}, app, {
+const cleanUrls = req => app => Object.assign({}, app, {
   playstoreUrl: app.url,
   url: buildUrl(req, `apps/${app.appId}`),
   permissions: buildUrl(req, `apps/${app.appId}/permissions`),
@@ -42,7 +42,7 @@ router.get('/apps/', (req, res, next) => {
   const opts = Object.assign({ term: req.query.q }, req.query);
 
   return gplay.search(opts)
-    .then((apps) => apps.map(cleanUrls(req)))
+    .then(apps => apps.map(cleanUrls(req)))
     .then(toList)
     .then(res.json.bind(res))
     .catch(next);
@@ -55,13 +55,13 @@ router.get('/apps/', (req, res, next) => {
     return next();
   }
 
-  const toJSON = (term) => ({
+  const toJSON = term => ({
     term,
     url: `${buildUrl(req, '/apps/')}?${qs.stringify({ q: term })}`,
   });
 
   return gplay.suggest({ term: req.query.suggest })
-    .then((terms) => terms.map(toJSON))
+    .then(terms => terms.map(toJSON))
     .then(toList)
     .then(res.json.bind(res))
     .catch(next);
@@ -88,7 +88,7 @@ router.get('/apps/', (req, res, next) => {
   }
 
   gplay.list(req.query)
-    .then((apps) => apps.map(cleanUrls(req)))
+    .then(apps => apps.map(cleanUrls(req)))
     .then(toList).then(paginate)
     .then(res.json.bind(res))
     .catch(next);
@@ -107,7 +107,7 @@ router.get('/apps/:appId', (req, res, next) => {
 router.get('/apps/:appId/similar', (req, res, next) => {
   const opts = Object.assign({ appId: req.params.appId }, req.query);
   gplay.similar(opts)
-    .then((apps) => apps.map(cleanUrls(req)))
+    .then(apps => apps.map(cleanUrls(req)))
     .then(toList)
     .then(res.json.bind(res))
     .catch(next);
@@ -154,8 +154,8 @@ router.get('/developers/:devId/', (req, res, next) => {
   const opts = Object.assign({ devId: req.params.devId }, req.query);
 
   gplay.developer(opts)
-    .then((apps) => apps.map(cleanUrls(req)))
-    .then((apps) => ({
+    .then(apps => apps.map(cleanUrls(req)))
+    .then(apps => ({
       devId: req.params.devId,
       apps,
     }))

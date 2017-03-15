@@ -9,7 +9,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import FlatButton from 'material-ui/FlatButton';
 
 class Maintenance extends Component {
@@ -20,10 +19,4 @@ class Maintenance extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    device: state.device.device,
-  };
-}
-
-export default connect(mapStateToProps)(Maintenance);
+export default Maintenance;

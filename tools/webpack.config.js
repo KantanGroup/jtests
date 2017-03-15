@@ -10,10 +10,12 @@
 import path from 'path';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import pkg from '../package.json';
 
 const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
+const isAnalyze = process.argv.includes('--analyze') || process.argv.includes('--analyse');
 
 //
 // Common configuration chunk to be used for both
@@ -21,7 +23,7 @@ const isVerbose = process.argv.includes('--verbose');
 // -----------------------------------------------------------------------------
 
 const config = {
-  context: path.resolve(__dirname, '../src'),
+  context: path.resolve(__dirname, '..'),
 
   output: {
     path: path.resolve(__dirname, '../build/public/assets'),
@@ -126,11 +128,12 @@ const config = {
           limit: 10000,
         },
       },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ],
-  },
-
-  resolve: {
-    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
   },
 
   // Don't attempt to continue if there are any errors.
@@ -162,7 +165,7 @@ const clientConfig = {
   target: 'web',
 
   entry: {
-    client: ['babel-polyfill', './clientLoader.js'],
+    client: ['babel-polyfill', './src/clientLoader.js'],
   },
 
   output: {
@@ -170,8 +173,6 @@ const clientConfig = {
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDebug ? '[name].chunk.js' : '[name].[chunkhash:8].chunk.js',
   },
-
-  resolve: { ...config.resolve },
 
   plugins: [
     // Define free variables
@@ -217,6 +218,10 @@ const clientConfig = {
         },
       }),
     ],
+
+    // Webpack Bundle Analyzer
+    // https://github.com/th0r/webpack-bundle-analyzer
+    ...isAnalyze ? [new BundleAnalyzerPlugin()] : [],
   ],
 
   // Choose a developer tool to enhance debugging
@@ -245,7 +250,7 @@ const serverConfig = {
   target: 'node',
 
   entry: {
-    server: ['babel-polyfill', './server.js'],
+    server: ['babel-polyfill', './src/server.js'],
   },
 
   output: {
@@ -273,8 +278,6 @@ const serverConfig = {
       },
     })),
   },
-
-  resolve: { ...config.resolve },
 
   externals: [
     /^\.\/assets\.json$/,

@@ -9,6 +9,7 @@
 
 import React, { Children, PropTypes } from 'react';
 import { IntlProvider } from 'react-intl';
+import deepForceUpdate from 'react-deep-force-update';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
@@ -24,6 +25,8 @@ const ContextType = {
     dispatch: PropTypes.func.isRequired,
     getState: PropTypes.func.isRequired,
   }).isRequired,
+  // Apollo Client
+  client: PropTypes.object.isRequired,
 };
 
 /**
@@ -69,8 +72,11 @@ class App extends React.PureComponent {
         const newIntl = state.intl;
         if (this.intl !== newIntl) {
           this.intl = newIntl;
-          console.log('Intl changed'); // eslint-disable-line no-console
-          this.forceUpdate();
+          if (__DEV__) {
+            // eslint-disable-next-line no-console
+            console.log('Intl changed — Force rendering');
+          }
+          deepForceUpdate(this);
         }
       });
     }
