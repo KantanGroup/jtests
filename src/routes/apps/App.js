@@ -22,40 +22,47 @@ class App extends React.Component {
   static propTypes = {
     countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
-    app: PropTypes.shape(PropTypes.object).isRequired,
-    similar: PropTypes.arrayOf(PropTypes.object).isRequired, //eslint-disable-line
-    trend: PropTypes.shape(PropTypes.object).isRequired,
+    app: PropTypes.shape(PropTypes.object),
+    similar: PropTypes.arrayOf(PropTypes.object),
+    trend: PropTypes.shape(PropTypes.object),
   };
+
+  static defaultProps = {
+    app: null,
+    similar: [],
+    trend: null,
+  }
 
   constructor(props) {
     super(props);
     const { trend, countryName, app } = this.props;
-
-    const config = {
-      chart: {
-        type: 'spline',
-      },
-      xAxis: {
-        categories: labels(),
-      },
-      yAxis: {
-        title: {
-          text: 'Index',
+    if (app) {
+      const config = {
+        chart: {
+          type: 'spline',
         },
-        reversed: true,
-        min: 1,
-      },
-      title: {
-        text: `${app.title} (App trends in ${capitalize(countryName.split('-').join(' '))})`,
-      },
-      subtitle: {
-        text: `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`,
-      },
-      series: getSeriesOfTrend(trend),
-    };
-    this.state = {
-      config,
-    };
+        xAxis: {
+          categories: labels(),
+        },
+        yAxis: {
+          title: {
+            text: 'Index',
+          },
+          reversed: true,
+          min: 1,
+        },
+        title: {
+          text: `${app.title} (App trends in ${capitalize(countryName.split('-').join(' '))})`,
+        },
+        subtitle: {
+          text: `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`,
+        },
+        series: getSeriesOfTrend(trend),
+      };
+      this.state = {
+        config,
+      };
+    }
   }
 
   render() {

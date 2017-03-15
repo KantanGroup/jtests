@@ -12,8 +12,8 @@
 export const port = process.env.PORT || 6000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 export const baseURL = 'http://127.0.0.1:9000/api/v1';
-// export const appServer = 'http://127.0.0.1:5001/api';
-export const appServer = 'http://zuzuapps.com/api';
+export const appServer = 'http://127.0.0.1:5000/api';
+// export const appServer = 'http://zuzuapps.com/api';
 export const imageServer = 'http://static.topapptrends.com';
 export const homeServer = 'http://topapptrends.com';
 export const topSize = 20;

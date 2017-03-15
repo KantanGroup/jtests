@@ -15,8 +15,8 @@ class Html extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    canonicalUrl: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    canonicalUrl: PropTypes.string,
+    imageUrl: PropTypes.string,
     styles: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       cssText: PropTypes.string.isRequired,
@@ -33,6 +33,8 @@ class Html extends React.Component {
     scripts: [],
     state: null,
     lang: 'en',
+    canonicalUrl: null,
+    imageUrl: null,
   };
 
   render() {

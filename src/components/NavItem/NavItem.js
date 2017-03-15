@@ -6,16 +6,16 @@ import Link from '../Link';
 const propTypes = {
   active: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  role: React.PropTypes.string,
-  href: React.PropTypes.string,
-  onClick: React.PropTypes.func,
-  onSelect: React.PropTypes.func,
-  eventKey: React.PropTypes.any,
+  role: React.PropTypes.string, // eslint-disable-line
+  href: React.PropTypes.string, // eslint-disable-line
+  onClick: React.PropTypes.func, // eslint-disable-line
+  onSelect: React.PropTypes.func, // eslint-disable-line
+  eventKey: React.PropTypes.any, // eslint-disable-line
 };
 
 const defaultProps = {
   active: false,
-  disabled: false
+  disabled: false,
 };
 
 class NavItem extends React.Component {
@@ -36,6 +36,7 @@ class NavItem extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line
     const { active, disabled, onClick, className, style, ...props } =
       this.props;
 
@@ -54,8 +55,9 @@ class NavItem extends React.Component {
       props['aria-selected'] = active;
     }
     let linkCompoment;
-    if (props.href.startsWith("http://")) {
+    if (props.href.startsWith('http://')) {
       linkCompoment = (
+        // eslint-disable-next-line
         <a {...props} href={props.href} />
       );
     } else {

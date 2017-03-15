@@ -16,6 +16,7 @@ function isBsProp(propName) {
   );
 }
 
+// eslint-disable-next-line
 export function splitBsProps(props) {
   const elementProps = {};
   Object.entries(props).forEach(([propName, propValue]) => {

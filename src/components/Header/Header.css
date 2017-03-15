@@ -25,26 +25,6 @@
   max-width: var(--max-content-width);
 }
 
-.brand {
-  color: color(var(--brand-color) lightness(+10%));
-  text-decoration: none;
-  font-size: 1.75em; /* ~28px */
-}
-
-.brand:hover {
-  color: color(var(--brand-color) lightness(+30%));
-}
-
-.brandTxt {
-  margin-left: 10px;
-  font-weight: 400;
-}
-
-.nav {
-  float: right;
-  margin-top: 6px;
-}
-
 .banner {
   text-align: center;
 }

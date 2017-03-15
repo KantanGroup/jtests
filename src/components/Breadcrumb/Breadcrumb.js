@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React from 'react';
 
 import BreadcrumbItem from './BreadcrumbItem';
@@ -6,6 +5,7 @@ import { splitBsProps } from './bootstrapUtils';
 
 class Breadcrumb extends React.Component {
   render() {
+    // eslint-disable-next-line
     const [bsProps, elementProps] = splitBsProps(this.props);
 
     return (
