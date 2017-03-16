@@ -21,10 +21,6 @@ const cleanUrls = req => app => Object.assign({}, app, {
     url: buildUrl(req, `developers/${qs.escape(app.developer)}`),
   },
 });
-/* eslint radix: "error"*/
-
-/* eslint consistent-return: "error"*/
-/* eslint consistent-return: "error"*/
 
 /* Index */
 router.get('/', (req, res) =>

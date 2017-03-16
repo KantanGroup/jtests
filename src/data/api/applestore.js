@@ -13,24 +13,14 @@ const buildUrl = (req, subpath) =>
 const cleanUrls = req => app => Object.assign({}, app, {
   playstoreUrl: app.url,
   url: buildUrl(req, `apps/${app.appId}`),
-  permissions: buildUrl(req, `apps/${app.appId}/permissions`),
   similar: buildUrl(req, `apps/${app.appId}/similar`),
   reviews: buildUrl(req, `apps/${app.appId}/reviews`),
-  developer: {
-    devId: app.developer,
-    url: buildUrl(req, `developers/${qs.escape(app.developer)}`),
-  },
 });
-/* eslint radix: "error"*/
-
-/* eslint consistent-return: "error"*/
-/* eslint consistent-return: "error"*/
 
 /* Index */
 router.get('/', (req, res) =>
   res.json({
     apps: buildUrl(req, 'apps'),
-    developers: buildUrl(req, 'developers'),
   }));
 
 /* App search */
@@ -113,15 +103,6 @@ router.get('/apps/:appId/similar', (req, res, next) => {
     .catch(next);
 });
 
-/* App permissions */
-router.get('/apps/:appId/permissions', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
-  aplay.permissions(opts)
-    .then(toList)
-    .then(res.json.bind(res))
-    .catch(next);
-});
-
 /* App reviews */
 router.get('/apps/:appId/reviews', (req, res, next) => {
   function paginate(apps) {
@@ -148,27 +129,6 @@ router.get('/apps/:appId/reviews', (req, res, next) => {
     .then(res.json.bind(res))
     .catch(next);
 });
-
-/* Apps by developer */
-router.get('/developers/:devId/', (req, res, next) => {
-  const opts = Object.assign({ devId: req.params.devId }, req.query);
-
-  aplay.developer(opts)
-    .then(apps => apps.map(cleanUrls(req)))
-    .then(apps => ({
-      devId: req.params.devId,
-      apps,
-    }))
-    .then(res.json.bind(res))
-    .catch(next);
-});
-
-/* Developer list (not supported) */
-router.get('/developers/', (req, res) =>
-  res.status(400).json({
-    message: 'Please specify a developer id.',
-    example: buildUrl(req, `/developers/${qs.escape('DxCo Games')}`),
-  }));
 
 function errorHandler(err, req, res, next) {
   res.status(400).json({ message: err.message });
