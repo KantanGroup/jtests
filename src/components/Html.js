@@ -40,16 +40,28 @@ class Html extends React.Component {
   render() {
     // eslint-disable-next-line
     const { title, description, canonicalUrl, imageUrl, styles, scripts, state, lang, children } = this.props;
-    let metaCanonicalUrl;
+    const metaCanonicalUrl = [];
     if (canonicalUrl) {
-      metaCanonicalUrl = (
-        <meta name="og:url" content={canonicalUrl} />
+      metaCanonicalUrl.push(
+        <meta property="og:url" content={canonicalUrl} />,
+      );
+      metaCanonicalUrl.push(
+        <link rel="canonical" href={canonicalUrl} />,
       );
     }
-    let metaImageUrl;
+    const metaImageUrl = [];
     if (imageUrl) {
-      metaImageUrl = (
-        <meta name="og:image" content={imageUrl} />
+      metaImageUrl.push(
+        <meta property="og:image" content={imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="twitter:image" content={imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:width" content="170" />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:height" content="170" />,
       );
     }
     return (
@@ -60,8 +72,17 @@ class Html extends React.Component {
           <title>{title}</title>
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <meta name="og:title" content={title} />
-          <meta name="og:description" content={description} />
+          <meta property="fb:app_id" content="2134596160098950" />
+          <meta property="og:site_name" content="App trend in 2017" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="article:publisher" content="https://www.facebook.com/topapptrends" />
+          <meta property="article:section" content="Facebook" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@topapptrends" />
+          <meta name="twitter:creator" content="@topapptrends" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
           {metaCanonicalUrl}
           {metaImageUrl}
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
