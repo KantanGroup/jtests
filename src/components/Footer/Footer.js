@@ -10,6 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { FaFacebookSquare, FaTwitter, FaGooglePlus } from 'react-icons/lib/fa'
 import s from './Footer.css';
 import Link from '../Link';
 import { capitalize, getCountryName } from '../../common';
@@ -59,10 +60,18 @@ class Footer extends React.Component {
           <Grid>
             <Row className="show-grid">
               <Col md={3}>
-                <div className={s.footer}><span className={s.text}>© Zuzuapps</span></div>
+                <div className={s.footer}>
+                  <span className={s.text}>© Zuzuapps</span>
+                </div>
                 <div className={s.footer}>- <Link className={s.link} to="/">Home</Link></div>
                 <div className={s.footer}>- <Link className={s.link} to="/privacy">Privacy</Link></div>
                 <div className={s.footer}>- <Link className={s.link} to="/about">About</Link></div>
+                <div className={s.footer}>
+                  Flow me at
+                   <a className={s.social} href="https://www.facebook.com/topapptrends"><FaFacebookSquare size={18} /></a>
+                   <a className={s.social} href="https://twitter.com/topapptrends"><FaTwitter size={18} /></a>
+                   <a className={s.social} href="https://plus.google.com/u/0/103598052624958897362"><FaGooglePlus size={18} /></a>
+                </div>
               </Col>
               <Col md={3}>
                 <div className={s.footer}><span className={s.text}>Mobile app trends</span></div>

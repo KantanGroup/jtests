@@ -43,3 +43,8 @@
 .link:hover {
   color: rgba(255, 255, 255, 1);
 }
+
+.social {
+  padding: 5px;
+  padding-left: 10px;
+}
