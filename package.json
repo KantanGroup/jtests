@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "apollo-client": "^1.0.0-rc.2",
-    "app-store-scraper": "^0.6.0",
+    "app-store-scraper": "https://github.com/ReactNativeVN/app-store-scraper#master",
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",

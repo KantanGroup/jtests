@@ -77,6 +77,7 @@ router.get('/apps/', (req, res, next) => {
     return apps;
   }
 
+  req.query.category = parseInt(req.query.category); // eslint-disable-line
   aplay.list(req.query)
     .then(apps => apps.map(cleanUrls(req)))
     .then(toList).then(paginate)
@@ -86,7 +87,7 @@ router.get('/apps/', (req, res, next) => {
 
 /* App detail*/
 router.get('/apps/:appId', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ id: req.params.appId }, req.query);
   aplay.app(opts)
     .then(cleanUrls(req))
     .then(res.json.bind(res))
