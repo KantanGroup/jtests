@@ -94,7 +94,16 @@ class Html extends React.Component {
               dangerouslySetInnerHTML={{ __html: style.cssText }}
             />,
           )}
-          <link rel="stylesheet" href="/css/bootstrap.min.css" />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html:
+            `var giftofspeed = document.createElement('link');
+            giftofspeed.rel = 'stylesheet';
+            giftofspeed.href = '/css/bootstrap.min.css';
+            giftofspeed.type = 'text/css';
+            var godefer = document.getElementsByTagName('link')[0];
+            godefer.parentNode.insertBefore(giftofspeed, godefer);` }}
+          />
           <link rel="stylesheet" href="/react-rater/react-rater.css" />
           <link rel="stylesheet" href="/index.css" />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
