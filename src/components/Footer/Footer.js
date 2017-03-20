@@ -10,7 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { FaFacebookSquare, FaTwitter, FaGooglePlus } from 'react-icons/lib/fa'
+import { FaFacebookSquare, FaTwitter, FaGooglePlus } from 'react-icons/lib/fa';
 import s from './Footer.css';
 import Link from '../Link';
 import { capitalize, getCountryName } from '../../common';
@@ -21,6 +21,7 @@ class Footer extends React.Component {
     const menuTrend = [];
     let menuGame;
     let menuApp;
+    let wordApp;
     if (countryCode) {
       const countryName = getCountryName(countryCode);
       const apps = require('../../routes/categories/apps.json'); // eslint-disable-line
@@ -53,6 +54,16 @@ class Footer extends React.Component {
           ))}
         </Col>
       );
+      wordApp = (
+        <div>
+          <h2>app trends in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top app trends in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top app trends in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top app trends {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top trends in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>app trends in {capitalize(countryName).toLowerCase()}</h2>
+        </div>
+      );
     }
     return (
       <div className={s.root}>
@@ -67,10 +78,10 @@ class Footer extends React.Component {
                 <div className={s.footer}>- <Link className={s.link} to="/privacy">Privacy</Link></div>
                 <div className={s.footer}>- <Link className={s.link} to="/about">About</Link></div>
                 <div className={s.footer}>
-                  Flow me at
-                   <a className={s.social} href="https://www.facebook.com/topapptrends"><FaFacebookSquare size={18} /></a>
-                   <a className={s.social} href="https://twitter.com/topapptrends"><FaTwitter size={18} /></a>
-                   <a className={s.social} href="https://plus.google.com/u/0/103598052624958897362"><FaGooglePlus size={18} /></a>
+                  Flow Us
+                  <a className={s.social} href="https://www.facebook.com/topapptrends"><FaFacebookSquare size={18} /></a>
+                  <a className={s.social} href="https://twitter.com/topapptrends"><FaTwitter size={18} /></a>
+                  <a className={s.social} href="https://plus.google.com/u/0/103598052624958897362"><FaGooglePlus size={18} /></a>
                 </div>
               </Col>
               <Col md={3}>
@@ -82,6 +93,21 @@ class Footer extends React.Component {
               {menuApp}
             </Row>
           </Grid>
+          <div className={s.anchor}>
+            <h2>app trends in 2017</h2>
+            <h2>top app trends in 2017</h2>
+            <h2>top app trends in 2017</h2>
+            <h2>top app trends</h2>
+            <h2>top trends in 2017</h2>
+            <h2>app trends in 2017</h2>
+            <h2>app trends android 2017</h2>
+            <h2>top app trends android 2017</h2>
+            <h2>top app trends android 2017</h2>
+            <h2>top app trends android</h2>
+            <h2>top trends android 2017</h2>
+            <h2>app trends android 2017</h2>
+            {wordApp}
+          </div>
         </div>
       </div>
     );

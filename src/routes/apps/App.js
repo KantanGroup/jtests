@@ -183,6 +183,15 @@ class App extends React.Component {
             </Breadcrumb.Item>
             {menuBreadcrumb}
           </Breadcrumb>
+          <div className={s.anchor}>
+            <h2>{app.title.toLowerCase()} app trends in {capitalize(countryName).toLowerCase()}</h2>
+            <h2>{app.title.toLowerCase()} trends in {capitalize(countryName).toLowerCase()}</h2>
+            <h2>{app.title.toLowerCase()} app trends {capitalize(countryName).toLowerCase()}</h2>
+            <h2>{app.title.toLowerCase()} trends {capitalize(countryName).toLowerCase()}</h2>
+            <h2>{app.title.toLowerCase()} app trends</h2>
+            <h2>{app.title.toLowerCase()} app trends 2017</h2>
+            <h2>{app.title.toLowerCase()} trends in 2017</h2>
+          </div>
         </div>
       );
     }
