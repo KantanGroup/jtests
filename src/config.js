@@ -11,6 +11,7 @@
 
 export const port = process.env.PORT || 5000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
+export const homeServer = 'http://zuzuapps.com';
 
 // default locale is the first one
 export const locales = ['en-US', 'cs-CZ'];

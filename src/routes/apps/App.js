@@ -121,6 +121,22 @@ class App extends React.Component {
             </GridList>
           </div>
         </div>
+        <div className={s.anchor}>
+          <h2>download {app.title.toLowerCase()} app</h2>
+          <h2>download {app.title.toLowerCase()} app free</h2>
+          <h2>download {app.title.toLowerCase()} app for android</h2>
+          <h2>download {app.title.toLowerCase()} app for android free</h2>
+          <h2>download {app.title.toLowerCase()} application</h2>
+          <h2>download {app.title.toLowerCase()} application free</h2>
+          <h2>download {app.title.toLowerCase()} apk</h2>
+          <h2>download {app.title.toLowerCase()} apk free</h2>
+          <h2>download {app.title.toLowerCase()} apk 2017</h2>
+          <h2>download {app.title.toLowerCase()} apk free 2017</h2>
+          <h2>download {app.title.toLowerCase()} android apk</h2>
+          <h2>download {app.title.toLowerCase()} android apk free</h2>
+          <h2>download {app.title.toLowerCase()} android apk 2017</h2>
+          <h2>download {app.title.toLowerCase()} android apk free 2017</h2>
+        </div>
       </div>
     );
   }

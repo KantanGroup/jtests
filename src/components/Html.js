@@ -15,6 +15,8 @@ class Html extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    canonicalUrl: PropTypes.string,
+    imageUrl: PropTypes.string,
     styles: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
       cssText: PropTypes.string.isRequired,
@@ -31,10 +33,37 @@ class Html extends React.Component {
     scripts: [],
     state: null,
     lang: 'en',
+    canonicalUrl: null,
+    imageUrl: null,
   };
 
   render() {
-    const { title, description, styles, scripts, state, lang, children } = this.props;
+    // eslint-disable-next-line
+    const { title, description, canonicalUrl, imageUrl, styles, scripts, state, lang, children } = this.props;
+    const metaCanonicalUrl = [];
+    if (canonicalUrl) {
+      metaCanonicalUrl.push(
+        <meta property="og:url" content={canonicalUrl} />,
+      );
+      metaCanonicalUrl.push(
+        <link rel="canonical" href={canonicalUrl} />,
+      );
+    }
+    const metaImageUrl = [];
+    if (imageUrl) {
+      metaImageUrl.push(
+        <meta property="og:image" content={imageUrl.startsWith('//') ? `http:${imageUrl}` : imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="twitter:image" content={imageUrl.startsWith('//') ? `http:${imageUrl}` : imageUrl} />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:width" content="170" />,
+      );
+      metaImageUrl.push(
+        <meta name="og:image:height" content="170" />,
+      );
+    }
     return (
       <html className="no-js" lang={lang}>
         <head>
@@ -43,6 +72,19 @@ class Html extends React.Component {
           <title>{title}</title>
           <meta name="description" content={description} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta property="fb:app_id" content="2134596160098950" />
+          <meta property="og:site_name" content="Download apps free" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="article:publisher" content="https://www.facebook.com/topapptrends" />
+          <meta property="article:section" content="Facebook" />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:site" content="@topapptrends" />
+          <meta name="twitter:creator" content="@topapptrends" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          {metaCanonicalUrl}
+          {metaImageUrl}
           <link rel="apple-touch-icon" href="apple-touch-icon.png" />
           {styles.map(style =>
             <style
@@ -52,7 +94,17 @@ class Html extends React.Component {
               dangerouslySetInnerHTML={{ __html: style.cssText }}
             />,
           )}
-          <link rel="stylesheet" href="/css/bootstrap.min.css" />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html:
+            `var giftofspeed = document.createElement('link');
+            giftofspeed.rel = 'stylesheet';
+            giftofspeed.href = '/css/bootstrap.min.css';
+            giftofspeed.type = 'text/css';
+            var godefer = document.getElementsByTagName('link')[0];
+            godefer.parentNode.insertBefore(giftofspeed, godefer);` }}
+          />
+          <link rel="stylesheet" href="/react-rater/react-rater.css" />
           <link rel="stylesheet" href="/index.css" />
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </head>

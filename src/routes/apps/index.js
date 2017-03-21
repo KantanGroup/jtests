@@ -12,6 +12,7 @@ import App from './App';
 import Layout from '../../components/Layout';
 import Maintenance from '../../components/Maintenance';
 import fetch from '../../core/fetch';
+import { homeServer } from '../../config';
 
 export default {
 
@@ -34,6 +35,8 @@ export default {
     if (data && data.app) {
       const app = data.app;
       return {
+        canonicalUrl: `${homeServer}/download/apk/${appId}`,
+        imageUrl: `${app.icon}`,
         title: `Download ${app.title} apk`,
         description: app.summary,
         component: <Layout><App app={data.app} /></Layout>,

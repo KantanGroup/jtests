@@ -23,6 +23,23 @@ class Footer extends React.Component {
           <span className={s.spacer}>·</span>
           <Link className={s.link} to="/privacy">Privacy</Link>
         </div>
+        <div className={s.anchor}>
+          <h2>download app trends in 2017</h2>
+          <h2>download android apk</h2>
+          <h2>download android apk free</h2>
+          <h2>download android 2017</h2>
+          <h2>download android free 2017</h2>
+          <h2>download apps for android</h2>
+          <h2>download apps for android free</h2>
+          <h2>download apps for ipad</h2>
+          <h2>download apps for iphone</h2>
+          <h2>download apps for android 2017</h2>
+          <h2>download apps for android free 2017</h2>
+          <h2>download apps for ipad 2017</h2>
+          <h2>download apps for iphone 2017</h2>
+          <h2>download apps 2017</h2>
+          <h2>download apps free</h2>
+        </div>
       </div>
     );
   }
