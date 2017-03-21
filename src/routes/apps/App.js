@@ -157,7 +157,7 @@ class App extends React.Component {
                   <Col key={`col_${index}`} md={2}>
                     <div className={s.app}>
                       <div className={s.appDescription}>
-                        <a href={`${downloadServer}/download/apk/${similarApp.appId}`}>
+                        <a href={`${downloadServer}/download/${similarApp.title.replace(/[&\\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase().split(' ').join('-')}/apk/${similarApp.appId}`}>
                           <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`Download ${similarApp.title} apk`} />
                         </a>
                         <div className={s.appName}>{similarApp.title}</div>
