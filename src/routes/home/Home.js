@@ -51,7 +51,7 @@ class Home extends React.Component {
               style={desktopStyles.gridList}
             >
               {apps.map(app => (
-                <Link key={`link_${app.appId}`} to={`/download/apk/${app.appId}`}>
+                <Link key={`link_${app.appId}`} to={`/download/${app.title.replace(/[&\\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase().split(' ').join('-')}/apk/${app.appId}`}>
                   <GridTile
                     key={app.appId}
                     title={app.title}

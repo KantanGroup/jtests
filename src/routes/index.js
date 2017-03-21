@@ -22,6 +22,7 @@ export default {
     require('./about').default,
     require('./privacy').default,
     require('./apps').default,
+    require('./apps/title').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,
