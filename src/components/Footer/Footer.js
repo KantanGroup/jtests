@@ -62,6 +62,15 @@ class Footer extends React.Component {
           <h2>top app trends {capitalize(countryName).toLowerCase()}</h2>
           <h2>top trends in {capitalize(countryName).toLowerCase()}</h2>
           <h2>app trends in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps for android in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps for ipad in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps for iphone in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps 2017 in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps download in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps download free in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps download for android in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps download for ipad in {capitalize(countryName).toLowerCase()}</h2>
+          <h2>top apps download for iphone in {capitalize(countryName).toLowerCase()}</h2>
         </div>
       );
     }
@@ -106,6 +115,18 @@ class Footer extends React.Component {
             <h2>top app trends android</h2>
             <h2>top trends android 2017</h2>
             <h2>app trends android 2017</h2>
+            <h2>top apps for android</h2>
+            <h2>top apps for ipad</h2>
+            <h2>top apps for iphone</h2>
+            <h2>top apps for android 2017</h2>
+            <h2>top apps for ipad 2017</h2>
+            <h2>top apps for iphone 2017</h2>
+            <h2>top apps 2017</h2>
+            <h2>top apps download</h2>
+            <h2>top apps download free</h2>
+            <h2>top apps download for android</h2>
+            <h2>top apps download for ipad</h2>
+            <h2>top apps download for iphone</h2>
             {wordApp}
           </div>
         </div>
