@@ -39,7 +39,7 @@ export default {
     if (data.app.app) {
       const app = data.app.app;
       return {
-        canonicalUrl: `${homeServer}/app-trend-in-${countryName}/app/${appId}`,
+        canonicalUrl: `${homeServer}/app-trend-in-${countryName}/app/${appId}/${categoryName}-category`,
         imageUrl: `${imageServer}/icon/${appId}.png`,
         title: `${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${app.summary}`,
