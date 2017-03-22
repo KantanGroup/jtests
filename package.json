@@ -13,6 +13,7 @@
     "not ie < 9"
   ],
   "dependencies": {
+    "app-store-scraper": "https://github.com/ReactNativeVN/app-store-scraper#master",
     "babel-polyfill": "^6.22.0",
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.0",
@@ -23,6 +24,7 @@
     "express-graphql": "^0.6.3",
     "express-jwt": "^5.1.0",
     "fastclick": "^1.0.6",
+    "google-play-scraper": "^3.2.3",
     "graphql": "^0.9.1",
     "history": "^4.5.1",
     "isomorphic-style-loader": "^1.1.0",

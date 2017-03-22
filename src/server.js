@@ -27,6 +27,8 @@ import models from './data/models';
 import schema from './data/schema';
 import routes from './routes';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
+import googleplayapi from './data/api/googlestore';
+import appleplayapi from './data/api/applestore';
 import { port, auth } from './config';
 
 const app = express();
@@ -82,6 +84,9 @@ app.use('/graphql', expressGraphQL(req => ({
   pretty: __DEV__,
 })));
 
+app.use('/api', googleplayapi);
+app.use('/googlestore', googleplayapi);
+app.use('/appstore', appleplayapi);
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
