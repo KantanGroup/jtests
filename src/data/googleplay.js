@@ -11,7 +11,15 @@ function getApps(page) {
 }
 
 function getApp(id) {
-  return fetch(`${BASE_URL}/${id}`)
+  const params = id.split('___');
+  if (params.length === 2) {
+    const appId = params[0];
+    const languageCode = params[1];
+    return fetch(`${BASE_URL}/${appId}/?lang=${languageCode}`)
+      .then(res => res.json());
+  }
+  const appId = params[0];
+  return fetch(`${BASE_URL}/${appId}`)
     .then(res => res.json());
 }
 

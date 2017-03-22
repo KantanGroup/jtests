@@ -45,7 +45,7 @@ class App extends React.Component {
       <div className={s.root}>
         <Breadcrumb>
           <Breadcrumb.Item href="/">
-            Home
+            Download apps free
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
             {app.title}

@@ -9,7 +9,7 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, FormGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
 import s from './Navigation.css';
 import Link from '../Link';
 import NavItem from '../NavItem';
@@ -21,20 +21,24 @@ class Navigation extends React.Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to={"/"}>Zuzuapps store</Link>
+              <Link to={'/'}>Zuzuapps store</Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
+            <Navbar.Form pullLeft>
+              <FormGroup>
+                <FormControl type="text" placeholder="Search app name" />
+              </FormGroup>
+              {' '}
+              <Button type="submit"><Glyphicon glyph="search" /></Button>
+            </Navbar.Form>
             <Nav pullRight>
               <NavItem href={'/'}>
-                Home
+                Download apps free
               </NavItem>
               <NavItem href={'http://topapptrends.com/top-mobile-app-trend-in-the-world'}>
                 App trends in countries
-              </NavItem>
-              <NavItem href={'/login'}>
-                Login
               </NavItem>
             </Nav>
           </Navbar.Collapse>

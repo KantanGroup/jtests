@@ -19,9 +19,9 @@ class Footer extends React.Component {
         <div className={s.container}>
           <span className={s.text}>© Zuzuapps</span>
           <span className={s.spacer}>·</span>
-          <Link className={s.link} to="/">Home</Link>
+          <Link className={s.link} to="/">Download apps free</Link>
           <span className={s.spacer}>·</span>
-          <Link className={s.link} to="/privacy">Privacy</Link>
+          <Link className={s.link} to="http://topapptrends.com/top-mobile-app-trend-in-the-world">App trends in countries</Link>
         </div>
         <div className={s.anchor}>
           <h2>download app trends in 2017</h2>
