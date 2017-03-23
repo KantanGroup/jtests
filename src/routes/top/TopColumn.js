@@ -14,6 +14,7 @@ import Rater from 'react-rater';
 import s from './TopColumn.css';
 import Link from '../../components/Link';
 import { imageServer } from '../../config';
+import { capitalize } from '../../common';
 
 class TopColumn extends React.Component {
   static propTypes = {
@@ -29,10 +30,15 @@ class TopColumn extends React.Component {
       <div>
         <center><h3>{title}</h3></center>
         {apps.map(app => (
-          <Link key={`app_id_${app.index}`} to={`/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`}>
+          <Link
+            title={`${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`}
+            rel="follow, index"
+            key={`app_id_${app.index}`}
+            to={`/app-trend-in-${countryName}/app/${app.appId}`}
+          >
             <div className={s.app}>
               <div className={s.appImage}>
-                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`trends app ${app.appId}`} />
+                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trends app ${app.appId}`} />
               </div>
               <div className={s.appDescription}>
                 <div className={s.appName}>{app.title}</div>

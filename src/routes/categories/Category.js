@@ -32,7 +32,7 @@ class Category extends React.Component {
             <Breadcrumb.Item href="/">
               Home
             </Breadcrumb.Item>
-            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/${countryCode}`}>
               App trends in {capitalize(countryName.split('-').join(' '))}
             </Breadcrumb.Item>
             <Breadcrumb.Item active>

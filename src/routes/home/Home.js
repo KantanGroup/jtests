@@ -40,7 +40,12 @@ class Home extends React.Component {
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>
             {topCountries.map(country => (
-              <Link key={`country_id_${country.id}`} to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}>
+              <Link
+                title={`App trends in ${country.countryName}`}
+                rel="follow, index"
+                key={`country_id_${country.id}`}
+                to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}
+              >
                 <Flag countryCode={country.countryCode} countryName={country.countryName} size={30} />
               </Link>
             ))}
