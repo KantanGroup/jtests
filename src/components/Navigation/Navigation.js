@@ -34,10 +34,10 @@ class Navigation extends React.Component {
               <Button type="submit"><Glyphicon glyph="search" /></Button>
             </Navbar.Form>
             <Nav pullRight>
-              <NavItem href={'/'}>
+              <NavItem title="Download apps free" href={'/'}>
                 Download apps free
               </NavItem>
-              <NavItem href={'http://topapptrends.com/top-mobile-app-trend-in-the-world'}>
+              <NavItem title="App trends in countries" href={'http://topapptrends.com/top-mobile-app-trend-in-the-world'}>
                 App trends in countries
               </NavItem>
             </Nav>
