@@ -11,14 +11,14 @@
 
 export const port = process.env.PORT || 6000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
-export const baseURL = 'http://1.2.3.4';
-export const appServer = 'http://1.2.3.4';
-export const dataServer = 'http://1.2.3.4';
-export const downloadServer = 'http://1.2.3.4';
-export const imageServer = 'http://1.2.3.4';
-export const homeServer = 'http://1.2.3.4';
-export const topSize = 20;
-export const listSize = 120;
+export const baseURL = process.env.BASE_URL || 'http://1.2.3.4';
+export const appServer = process.env.APP_SERVER || 'http://1.2.3.4';
+export const dataServer = process.env.DATA_SERVER || 'http://1.2.3.4';
+export const downloadServer = process.env.DOWNLOAD_SERVER || 'http://1.2.3.4';
+export const imageServer = process.env.IMAGE_SERVER || 'http://1.2.3.4';
+export const homeServer = process.env.HOME_SERVER || 'http://1.2.3.4';
+export const topSize = process.env.TOP_SIZE || 20;
+export const listSize = process.env.LIST_SIZE || 120;
 
 // default locale is the first one
 export const locales = ['en-US', 'cs-CZ'];

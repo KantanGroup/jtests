@@ -8,13 +8,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Image } from 'react-bootstrap';
-import Rater from 'react-rater';
-import s from './TopColumn.css';
-import Link from '../../components/Link';
-import { imageServer } from '../../config';
-import { capitalize } from '../../common';
+import AppSummaryColumn from '../../components/AppSummaryColumn';
 
 class TopColumn extends React.Component {
   static propTypes = {
@@ -30,27 +24,11 @@ class TopColumn extends React.Component {
       <div>
         <center><h3>{title}</h3></center>
         {apps.map(app => (
-          <Link
-            title={`${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`}
-            key={`app_id_${app.index}`}
-            to={`/app-trend-in-${countryName}/app/${app.appId}`}
-          >
-            <div className={s.app}>
-              <div className={s.appImage}>
-                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trends app ${app.appId}`} />
-              </div>
-              <div className={s.appDescription}>
-                <div className={s.appName}>{app.title}</div>
-                <div className={s.appDeveloper}>{app.developerId}</div>
-                <Rater interactive={false} rating={app.point} />
-                <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
-              </div>
-            </div>
-          </Link>
+          <AppSummaryColumn app={app} countryName={countryName} />
         ))}
       </div>
     );
   }
 }
 
-export default withStyles(s)(TopColumn);
+export default TopColumn;

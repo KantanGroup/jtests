@@ -9,13 +9,14 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Image, Grid, Row, Col } from 'react-bootstrap';
-import Rater from 'react-rater';
-import ReactHighcharts from 'react-highcharts';
+import { Grid, Row, Col } from 'react-bootstrap';
 import s from './App.css';
-import { imageServer, downloadServer } from '../../config';
-import { capitalize, labels, getSeriesOfTrend } from '../../common';
+import { capitalize } from '../../common';
 import Breadcrumb from '../../components/Breadcrumb';
+import AppChart from '../../components/AppChart';
+import AppSimilar from '../../components/AppSimilar';
+import AppSummaryRow from '../../components/AppSummaryRow';
+import Banner from '../../components/Banner';
 
 /* eslint max-len: ["error", 200]*/
 class App extends React.Component {
@@ -37,51 +38,8 @@ class App extends React.Component {
     categoryName: 'all',
   }
 
-  constructor(props) {
-    super(props);
-    const { trend, category, categoryName, countryName, app } = this.props;
-    if (app) {
-      let series = [];
-      if (trend) {
-        series = getSeriesOfTrend(series, trend, 'all');
-      }
-      let chartSubtitle;
-      if (category) {
-        series = getSeriesOfTrend(series, category, categoryName);
-        chartSubtitle = `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}/${categoryName}-category`;
-      } else {
-        chartSubtitle = `http://topapptrends.com/app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/app/${app.appId}`;
-      }
-      const config = {
-        chart: {
-          type: 'spline',
-        },
-        xAxis: {
-          categories: labels(),
-        },
-        yAxis: {
-          title: {
-            text: 'Index',
-          },
-          reversed: true,
-          min: 1,
-        },
-        title: {
-          text: `${app.title} (App trends in ${capitalize(countryName.split('-').join(' '))})`,
-        },
-        subtitle: {
-          text: chartSubtitle,
-        },
-        series,
-      };
-      this.state = {
-        config,
-      };
-    }
-  }
-
   render() {
-    const { app, similar, countryName, countryCode, categoryName } = this.props;
+    const { app, similar, trend, countryName, countryCode, category, categoryName } = this.props;
     let menuBreadcrumb;
     if (categoryName !== 'all') {
       menuBreadcrumb = (
@@ -107,42 +65,15 @@ class App extends React.Component {
             {menuBreadcrumb}
           </Breadcrumb>
           <div className={s.container}>
-            <div className={s.app}>
-              <Grid>
-                <Row className="show-grid">
-                  <Col md={2}>
-                    <div className={s.appImage}>
-                      <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={125} height={125} alt={`App trends ${app.title}`} />
-                    </div>
-                  </Col>
-                  <Col md={5}>
-                    <div className={s.appDescription}>
-                      <div className={s.appName}>{app.title}</div>
-                      <div className={s.appDeveloper}>{app.genre}</div>
-                      <div className={s.appDeveloper}>{app.minInstalls}{app.maxInstalls ? `-${app.maxInstalls}` : ''} downloaded</div>
-                      <Rater interactive={false} rating={app.point} />
-                      <div className={s.appPrice}>{app.price === '0' ? 'Free' : app.price}</div>
-                      <div className={s.appDeveloper}>{app.version}</div>
-                    </div>
-                  </Col>
-                  <Col md={5}>
-                    <div className={s.appInformation}>
-                      <div className={s.appName}>{app.developerId}</div>
-                      <div className={s.appDeveloper}>{app.developerEmail}</div>
-                      <div className={s.appDeveloper}>{app.developerWebsite}</div>
-                    </div>
-                  </Col>
-                </Row>
-              </Grid>
-            </div>
-            <ReactHighcharts config={this.state.config} />
-            <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+            <AppSummaryRow app={app} />
+            <AppChart app={app} trend={trend} countryName={countryName} category={category} categoryName={categoryName} />
+            <Banner type="top-center" />
             <div
               className={s.description}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: app.descriptionHTML }}
             />
-            <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+            <Banner type="bottom-center" />
           </div>
           <Breadcrumb>
             <Breadcrumb.Item active>
@@ -155,21 +86,7 @@ class App extends React.Component {
                 {apps.map((similarApp, index) => (
                   //eslint-disable-next-line
                   <Col key={`col_${index}`} md={2}>
-                    <div className={s.app}>
-                      <div className={s.appDescription}>
-                        <a
-                          title={`Download ${similarApp.title} apk`}
-                          rel="follow, index"
-                          // eslint-disable-next-line
-                          href={`${downloadServer}/download/${similarApp.title.replace(/[&\\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase().split(' ').join('-')}/apk/${similarApp.appId}/in-${countryName.toLowerCase().split(' ').join('-')}`}>
-                          <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`Download ${similarApp.title} apk`} />
-                        </a>
-                        <div className={s.appName}>{similarApp.title}</div>
-                        <div className={s.appDeveloper}>{similarApp.developer.devId}</div>
-                        <Rater interactive={false} rating={similarApp.score} />
-                        <div className={s.appPrice}>{similarApp.price === '0' ? 'Free' : similarApp.price}</div>
-                      </div>
-                    </div>
+                    <AppSimilar similarApp={similarApp} countryName={countryName} />
                   </Col>
                 ))}
               </Row>

@@ -1,0 +1,6 @@
+{
+  "name": "AppSummaryRow",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AppSummaryRow.js"
+}
