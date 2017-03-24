@@ -32,7 +32,6 @@ class TopColumn extends React.Component {
         {apps.map(app => (
           <Link
             title={`${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`}
-            rel="follow, index"
             key={`app_id_${app.index}`}
             to={`/app-trend-in-${countryName}/app/${app.appId}`}
           >

@@ -60,7 +60,6 @@ class NotFound extends React.Component {
             {topCountries.map(country => (
               <Link
                 title={`App trends in ${country.countryName}`}
-                rel="follow, index"
                 key={`country_id_${country.id}`}
                 to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}
               >

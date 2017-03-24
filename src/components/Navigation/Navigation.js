@@ -27,14 +27,14 @@ class Navigation extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem href={'/'}>
-                Home
+              <NavItem title="App trends in 2017" href={'/'}>
+                App trends
               </NavItem>
-              <NavItem href={'/top-mobile-app-trend-in-the-world'}>
+              <NavItem title="Download apps free" href={'http://zuzuapps.com'}>
+                Download apps free
+              </NavItem>
+              <NavItem title="App trends in the world" href={'/top-mobile-app-trend-in-the-world'}>
                 All countries
-              </NavItem>
-              <NavItem href={'/login'}>
-                Login
               </NavItem>
             </Nav>
           </Navbar.Collapse>

@@ -58,7 +58,7 @@ class NavItem extends React.Component {
     if (props.href.startsWith('http://')) {
       linkCompoment = (
         // eslint-disable-next-line
-        <a {...props} href={props.href} />
+        <a {...props} rel="follow, index" href={props.href} />
       );
     } else {
       linkCompoment = (
