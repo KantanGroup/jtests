@@ -28,7 +28,7 @@ class Navigation extends React.Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <NavItem title="App trends in 2017" href={'/'}>
-                App trends
+                App trends in 2017
               </NavItem>
               <NavItem title="Download apps free" href={'http://zuzuapps.com'}>
                 Download apps free

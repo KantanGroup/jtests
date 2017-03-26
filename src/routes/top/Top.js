@@ -68,6 +68,9 @@ class Top extends React.Component {
               <Breadcrumb.Item href="/">
                 Home
               </Breadcrumb.Item>
+              <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+                Download apps free
+              </Breadcrumb.Item>
               <Breadcrumb.Item active>
                 App trends in {capitalize(countryName.split('-').join(' '))}
               </Breadcrumb.Item>
