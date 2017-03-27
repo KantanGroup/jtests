@@ -10,9 +10,8 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Countries.css';
-import Flag from '../../components/Flag';
-import Link from '../../components/Link';
 import Breadcrumb from '../../components/Breadcrumb';
+import Country from '../../components/Country';
 
 const countries = require('../../data/countries.json');
 
@@ -40,9 +39,7 @@ class Countries extends React.Component {
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>
             {enableCountries.map(country => (
-              <Link key={`country_id_${country.id}`} to={`/top-mobile-app-trend-in-${country.countryName.toLowerCase().split(' ').join('-')}/${country.countryCode}`}>
-                <Flag countryCode={country.countryCode} countryName={country.countryName} size={30} />
-              </Link>
+              <Country country={country} store={'googlestore'} />
             ))}
           </center>
         </div>
