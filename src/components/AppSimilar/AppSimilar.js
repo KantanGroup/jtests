@@ -19,14 +19,18 @@ class AppSimilar extends React.Component {
   static propTypes = {
     countryName: PropTypes.string.isRequired,
     similarApp: PropTypes.shape(PropTypes.object).isRequired,
+    iWidth: PropTypes.number,
+    iHeight: PropTypes.number,
   };
 
   static defaultProps = {
     similarApp: null,
+    iWidth: 184,
+    iHeight: 184,
   }
 
   render() {
-    const { similarApp, countryName } = this.props;
+    const { similarApp, countryName, iWidth, iHeight } = this.props;
     return (
       <div className={s.app}>
         <div className={s.appDescription}>
@@ -35,7 +39,7 @@ class AppSimilar extends React.Component {
             rel="follow, index"
             // eslint-disable-next-line
             href={`${downloadServer}/download/${similarApp.title.replace(/[&\\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase().split(' ').join('-')}/apk/${similarApp.appId}/in-${countryName.toLowerCase().split(' ').join('-')}`}>
-            <Image src={`${similarApp.icon}`} rounded width={184} height={184} alt={`Download ${similarApp.title} apk`} />
+            <Image src={`${similarApp.icon}`} rounded width={iWidth} height={iHeight} alt={`Download ${similarApp.title} apk`} />
           </a>
           <div className={s.appName}>{similarApp.title}</div>
           <div className={s.appDeveloper}>{similarApp.developer.devId}</div>
