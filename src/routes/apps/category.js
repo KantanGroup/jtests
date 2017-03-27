@@ -41,14 +41,14 @@ export default {
       return {
         canonicalUrl: `${homeServer}/app-trend-in-${countryName}/app/${appId}/${categoryName}-category`,
         imageUrl: `${imageServer}/icon/${appId}.png`,
-        title: `${app.title} app trends in ${capitalize(countryName.split('-').join(' '))}`,
+        title: `${app.title} app trends in ${capitalize(categoryName.split('-').join(' '))} in ${capitalize(countryName.split('-').join(' '))}`,
         description: `${app.summary}`,
         component: <Layout countryCode={getCountryCode(countryName)}><App app={app} trend={data.trend} category={data.category} categoryName={categoryName} similar={data.app.similar} appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
       };
     }
     return {
-      title: `${appId} app trends in ${capitalize(countryName.split('-').join(' '))}`,
-      description: `${appId} app trends in ${countryName.split('-').join(' ')}`,
+      title: `${appId} app trends in ${capitalize(categoryName.split('-').join(' '))} in ${capitalize(countryName.split('-').join(' '))}`,
+      description: `${appId} app trends in ${capitalize(categoryName.split('-').join(' '))} in ${countryName.split('-').join(' ')}`,
       component: <Layout countryCode={getCountryCode(countryName)}><App appId={appId} countryCode={getCountryCode(countryName)} countryName={countryName} /></Layout>,
     };
   },
