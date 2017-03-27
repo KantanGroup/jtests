@@ -18,7 +18,7 @@ import { capitalize } from '../../common';
 /* eslint max-len: ["error", 200]*/
 class TopCategory extends React.Component {
   static propTypes = {
-    countryCode: PropTypes.string.isRequired,
+    // countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     categoryName: PropTypes.string.isRequired,
     topgrossing: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -29,26 +29,26 @@ class TopCategory extends React.Component {
   };
 
   render() {
-    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, countryCode, categoryName } = this.props;
+    const { topgrossing, topsellingFree, topsellingPaid, topsellingNewFree, topsellingNewPaid, countryName, categoryName } = this.props;
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopRow title="Top grossing" apps={topgrossing} countryName={countryName} categoryName={categoryName} />,
+        <TopRow title="Top grossing" apps={topgrossing} collection={'topgrossing'} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopRow title="Top free" apps={topsellingFree} countryName={countryName} categoryName={categoryName} />,
+        <TopRow title="Top free" apps={topsellingFree} collection={'topselling_free'} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopRow title="Top paid" apps={topsellingPaid} countryName={countryName} categoryName={categoryName} />,
+        <TopRow title="Top paid" apps={topsellingPaid} collection={'topselling_paid'} countryName={countryName} categoryName={categoryName} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopRow title="Top new free" apps={topsellingNewFree} countryName={countryName} categoryName={categoryName} />,
+        <TopRow title="Top new free" apps={topsellingNewFree} collection={'topselling_new_free'} countryName={countryName} categoryName={categoryName} />,
       );
     }
     let columnLen = columns.length;
@@ -56,7 +56,7 @@ class TopCategory extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopRow title="Top new paid" apps={topsellingNewPaid} countryName={countryName} categoryName={categoryName} />,
+            <TopRow title="Top new paid" apps={topsellingNewPaid} collection={'topselling_new_paid'} countryName={countryName} categoryName={categoryName} />,
           );
         }
       }
@@ -64,22 +64,20 @@ class TopCategory extends React.Component {
       const mdSize = 12 / columnLen;
       return (
         <div className={s.root}>
-          <div>
-            <Breadcrumb>
-              <Breadcrumb.Item href="/">
-                Home
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/${countryCode}`}>
-                App trends in {capitalize(countryName.split('-').join(' '))}
-              </Breadcrumb.Item>
-              <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
-                {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>
-                {capitalize(categoryName.split('-').join(' '))}
-              </Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
+              {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              {capitalize(categoryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <div className={s.container}>
             <Grid>
               <Row className="show-grid">
@@ -92,6 +90,20 @@ class TopCategory extends React.Component {
               </Row>
             </Grid>
           </div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
+              {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              {capitalize(categoryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+          </Breadcrumb>
         </div>
       );
     }

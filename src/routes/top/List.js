@@ -9,49 +9,43 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Grid, Row, Col } from 'react-bootstrap';
-import s from './Category.css';
-import Link from '../../components/Link';
+import { Grid, Row } from 'react-bootstrap';
+import s from './Top.css';
+import ListRow from './ListRow';
 import Breadcrumb from '../../components/Breadcrumb';
 import { capitalize } from '../../common';
 
 /* eslint max-len: ["error", 200]*/
-class Category extends React.Component {
+class List extends React.Component {
   static propTypes = {
-    // countryCode: PropTypes.string.isRequired,
+    collection: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    topapps: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
-    const { countryName, categories } = this.props;
+    const { topapps, countryName, countryCode, collection } = this.props;
     return (
       <div className={s.root}>
         <Breadcrumb>
           <Breadcrumb.Item href="/">
             Home
           </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+          <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+            Download apps free
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>
             App trends in {capitalize(countryName.split('-').join(' '))}
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
-            In category
+            {capitalize(collection.split('-').join(' '))}
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className={s.container}>
-          <center>
-            <h2>App trends in category in {capitalize(countryName.split('-').join(' '))}</h2>
-          </center>
           <Grid>
             <Row className="show-grid">
-              {categories.map((category, index) => (
-                //eslint-disable-next-line
-                <Col key={`col_${index}`} md={3}>
-                  <Link to={`/app-trend-in-${countryName}/googlestore/top-app/${category.split('_').join('-')}-category`}>
-                    <div className={s.category}>{capitalize(category.split('_').join(' '))}</div>
-                  </Link>
-                </Col>
-              ))}
+              <ListRow apps={topapps} collection={collection} countryName={countryName} countryCode={countryCode} />
             </Row>
           </Grid>
         </div>
@@ -59,11 +53,14 @@ class Category extends React.Component {
           <Breadcrumb.Item href="/">
             Home
           </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+          <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+            Download apps free
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>
             App trends in {capitalize(countryName.split('-').join(' '))}
           </Breadcrumb.Item>
           <Breadcrumb.Item active>
-            In category
+            {capitalize(collection.split('-').join(' '))}
           </Breadcrumb.Item>
         </Breadcrumb>
       </div>
@@ -71,4 +68,4 @@ class Category extends React.Component {
   }
 }
 
-export default withStyles(s)(Category);
+export default withStyles(s)(List);

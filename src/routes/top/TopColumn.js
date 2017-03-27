@@ -8,7 +8,10 @@
  */
 
 import React, { PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 import AppSummaryColumn from '../../components/AppSummaryColumn';
+import Link from '../../components/Link';
+import { capitalize } from '../../common';
 
 class TopColumn extends React.Component {
   static propTypes = {
@@ -16,16 +19,25 @@ class TopColumn extends React.Component {
     // countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     apps: PropTypes.arrayOf(PropTypes.object).isRequired,
+    collection: PropTypes.string.isRequired,
   };
 
   render() {
-    const { apps, countryName, title } = this.props;
+    const { apps, countryName, title, collection } = this.props;
     return (
       <div>
         <center><h3>{title}</h3></center>
         {apps.map(app => (
           <AppSummaryColumn app={app} countryName={countryName} />
         ))}
+        <center>
+          <Link
+            title={`Top app trends in ${collection.split('_').join(' ')} in ${capitalize(countryName.split('-').join(' '))}`}
+            to={`/top-mobile-app-trend-in-${countryName}/googlestore/list-app/${collection.split('_').join('-')}`}
+          >
+            <Button bsStyle="danger">See more</Button>
+          </Link>
+        </center>
       </div>
     );
   }

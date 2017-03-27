@@ -22,13 +22,16 @@ export default {
     require('./about').default,
     require('./privacy').default,
     require('./top').default,
+    require('./top/topgoogle').default,
+    require('./top/listgoogle').default,
     require('./apps').default,
     require('./apps/category').default,
     require('./countries').default,
     // require('./categories').default,
     require('./categories/googlestore').default,
     require('./categories/appstore').default,
-    require('./categories/top').default,
+    require('./categories/topgoogle').default,
+    require('./categories/listgoogle').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,

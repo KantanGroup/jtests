@@ -32,22 +32,22 @@ class Top extends React.Component {
     const columns = [];
     if (topgrossing != null && topgrossing.length) {
       columns.push(
-        <TopColumn title="Top grossing" apps={topgrossing} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top grossing" apps={topgrossing} collection={'topgrossing'} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingFree != null && topsellingFree.length) {
       columns.push(
-        <TopColumn title="Top free" apps={topsellingFree} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top free" apps={topsellingFree} collection={'topselling_free'} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingPaid != null && topsellingPaid.length) {
       columns.push(
-        <TopColumn title="Top paid" apps={topsellingPaid} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top paid" apps={topsellingPaid} collection={'topselling_paid'} countryName={countryName} countryCode={countryCode} />,
       );
     }
     if (topsellingNewFree != null && topsellingNewFree.length) {
       columns.push(
-        <TopColumn title="Top new free" apps={topsellingNewFree} countryName={countryName} countryCode={countryCode} />,
+        <TopColumn title="Top new free" apps={topsellingNewFree} collection={'topselling_new_free'} countryName={countryName} countryCode={countryCode} />,
       );
     }
     let columnLen = columns.length;
@@ -55,7 +55,7 @@ class Top extends React.Component {
       if (columnLen !== 4) {
         if (topsellingNewPaid != null && topsellingNewPaid.length) {
           columns.push(
-            <TopColumn title="Top new paid" apps={topsellingNewPaid} countryName={countryName} countryCode={countryCode} />,
+            <TopColumn title="Top new paid" apps={topsellingNewPaid} collection={'topselling_new_paid'} countryName={countryName} countryCode={countryCode} />,
           );
         }
       }
@@ -63,19 +63,17 @@ class Top extends React.Component {
       const mdSize = 12 / columnLen;
       return (
         <div className={s.root}>
-          <div>
-            <Breadcrumb>
-              <Breadcrumb.Item href="/">
-                Home
-              </Breadcrumb.Item>
-              <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
-                Download apps free
-              </Breadcrumb.Item>
-              <Breadcrumb.Item active>
-                App trends in {capitalize(countryName.split('-').join(' '))}
-              </Breadcrumb.Item>
-            </Breadcrumb>
-          </div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+              Download apps free
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+          </Breadcrumb>
           <div className={s.container}>
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
@@ -91,6 +89,17 @@ class Top extends React.Component {
               </Row>
             </Grid>
           </div>
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">
+              Home
+            </Breadcrumb.Item>
+            <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+              Download apps free
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active>
+              App trends in {capitalize(countryName.split('-').join(' '))}
+            </Breadcrumb.Item>
+          </Breadcrumb>
         </div>
       );
     }

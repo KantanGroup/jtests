@@ -1,7 +1,7 @@
 import DataLoader from 'dataloader';
 
 import fetch from '../core/fetch';
-import { baseURL, appServer, dataServer, topSize } from '../config';
+import { baseURL, appServer, dataServer, topSize, listSize } from '../config';
 
 function getJSONFromRelativeURL(relativeURL) {
   // console.log(`${baseURL}${relativeURL}`); //eslint-disable-line
@@ -60,6 +60,24 @@ function getIndexApps(id) {
     });
 }
 
+function getListApps(id) {
+  const params = id.split('___');
+  const countryCode = params[0];
+  const category = params[1];
+  const collection = params[2];
+  // http://localhost:9000/api/v1/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollectionOrderByIndexAsc?countryCode=au&category=books_and_reference&collection=topgrossing
+  return getJSONFromRelativeURL(`/appIndexSolrs/search/findByCountryCodeAndCategoryAndCollectionOrderByIndexAsc?countryCode=${countryCode}&category=${category}&collection=${collection}&size=${listSize}`)
+    .then((data) => {
+      const index = {};
+      if (data._embedded) { // eslint-disable-line
+        index.apps = data._embedded.appIndexSolrs; // eslint-disable-line
+        index.apps.sort((a, b) => a.index - b.index);
+      }
+      return index;
+    });
+}
+
+
 function getDeveloperApps(id) {
   const params = id.split('___');
   const appId = params[0];
@@ -109,6 +127,12 @@ const appIndexLoader =
     cacheMap,
   });
 
+const appListLoader =
+  new DataLoader(keys => Promise.all(keys.map(getListApps)), {
+    cacheKeyFn: key => `/apps/list/${key}/`,
+    cacheMap,
+  });
+
 const appTrendLoader =
   new DataLoader(keys => Promise.all(keys.map(getAppTrend)), {
     cacheKeyFn: key => `/apps/trend/${key}/`,
@@ -135,6 +159,7 @@ const appTopDownloadLoader =
 
 appLoader.loadApp = appLoader.load.bind(appLoader);
 appLoader.loadIndex = appIndexLoader.load.bind(appIndexLoader);
+appLoader.loadList = appListLoader.load.bind(appListLoader);
 appLoader.loadTrend = appTrendLoader.load.bind(appTrendLoader);
 appLoader.loadDeveloper = appDeveloperLoader.load.bind(appDeveloperLoader);
 appLoader.loadSimilar = appSimilarLoader.load.bind(appSimilarLoader);

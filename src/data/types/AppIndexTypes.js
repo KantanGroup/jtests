@@ -22,6 +22,7 @@ const AppIndexTypes = new ObjectType({
     topsellingPaid: { type: new List(AppIndexType) },
     topsellingNewPaid: { type: new List(AppIndexType) },
     topgrossing: { type: new List(AppIndexType) },
+    topapps: { type: new List(AppIndexType) },
   },
 });
 

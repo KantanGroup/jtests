@@ -16,6 +16,7 @@ import me from './queries/me';
 import news from './queries/news';
 import intl from './queries/intl';
 import index from './queries/index';
+import list from './queries/list';
 import app from './queries/app';
 import trend from './queries/trend';
 import top from './queries/top';
@@ -28,6 +29,7 @@ const schema = new Schema({
       news,
       intl,
       index,
+      list,
       app,
       trend,
       top,
