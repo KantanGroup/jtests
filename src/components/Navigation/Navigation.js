@@ -34,7 +34,7 @@ class Navigation extends React.Component {
                 Download apps free
               </NavItem>
               <NavItem title="App trends in the world" href={'/top-mobile-app-trend-in-the-world'}>
-                All countries
+                App trends in all countries
               </NavItem>
             </Nav>
           </Navbar.Collapse>

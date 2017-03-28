@@ -25,19 +25,22 @@ class Category extends React.Component {
 
   render() {
     const { countryName, categories } = this.props;
+    const breadCrumbMenu = (
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+          App trends in {capitalize(countryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          In category
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
     return (
       <div className={s.root}>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            In category
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
         <div className={s.container}>
           <center>
             <h2>App trends in category in {capitalize(countryName.split('-').join(' '))}</h2>
@@ -55,17 +58,7 @@ class Category extends React.Component {
             </Row>
           </Grid>
         </div>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            In category
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
       </div>
     );
   }

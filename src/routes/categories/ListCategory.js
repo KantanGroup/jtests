@@ -27,25 +27,28 @@ class ListCategory extends React.Component {
 
   render() {
     const { topapps, countryName, categoryName, collection } = this.props;
+    const breadCrumbMenu = (
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+          App trends in {capitalize(countryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
+          {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {capitalize(categoryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {capitalize(collection.split('-').join(' '))}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
     return (
       <div className={s.root}>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
-            {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(categoryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(collection.split('-').join(' '))}
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
         <div className={s.container}>
           <Grid>
             <Row className="show-grid">
@@ -53,23 +56,7 @@ class ListCategory extends React.Component {
             </Row>
           </Grid>
         </div>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/app-trend-in-${countryName}/googlestore/${categoryName.startsWith('game') ? 'game-category' : 'app-category'}`}>
-            {categoryName.startsWith('game') ? 'Game Category' : 'App Category'}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(categoryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(collection.split('-').join(' '))}
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
       </div>
     );
   }

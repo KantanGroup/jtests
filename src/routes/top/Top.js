@@ -50,6 +50,19 @@ class Top extends React.Component {
         <TopColumn title="Top new free" apps={topsellingNewFree} collection={'topselling_new_free'} countryName={countryName} countryCode={countryCode} />,
       );
     }
+    const breadCrumbMenu = (
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+          Download apps free
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          App trends in {capitalize(countryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
     let columnLen = columns.length;
     if (columnLen !== 0) {
       if (columnLen !== 4) {
@@ -63,17 +76,7 @@ class Top extends React.Component {
       const mdSize = 12 / columnLen;
       return (
         <div className={s.root}>
-          <Breadcrumb>
-            <Breadcrumb.Item href="/">
-              Home
-            </Breadcrumb.Item>
-            <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
-              Download apps free
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              App trends in {capitalize(countryName.split('-').join(' '))}
-            </Breadcrumb.Item>
-          </Breadcrumb>
+          {breadCrumbMenu}
           <div className={s.container}>
             <center>
               <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
@@ -89,17 +92,7 @@ class Top extends React.Component {
               </Row>
             </Grid>
           </div>
-          <Breadcrumb>
-            <Breadcrumb.Item href="/">
-              Home
-            </Breadcrumb.Item>
-            <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
-              Download apps free
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              App trends in {capitalize(countryName.split('-').join(' '))}
-            </Breadcrumb.Item>
-          </Breadcrumb>
+          {breadCrumbMenu}
         </div>
       );
     }

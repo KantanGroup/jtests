@@ -26,22 +26,25 @@ class List extends React.Component {
 
   render() {
     const { topapps, countryName, countryCode, collection } = this.props;
+    const breadCrumbMenu = (
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
+          Download apps free
+        </Breadcrumb.Item>
+        <Breadcrumb.Item title={`App trends in ${capitalize(countryName.split('-').join(' '))}`} href={`/top-mobile-app-trend-in-${countryName}/googlestore/top-app`}>
+          App trends in {capitalize(countryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {capitalize(collection.split('-').join(' '))}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
     return (
       <div className={s.root}>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
-            Download apps free
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(collection.split('-').join(' '))}
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
         <div className={s.container}>
           <Grid>
             <Row className="show-grid">
@@ -49,20 +52,7 @@ class List extends React.Component {
             </Row>
           </Grid>
         </div>
-        <Breadcrumb>
-          <Breadcrumb.Item href="/">
-            Home
-          </Breadcrumb.Item>
-          <Breadcrumb.Item title="Download apps free" href="http://zuzuapps.com">
-            Download apps free
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            App trends in {capitalize(countryName.split('-').join(' '))}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>
-            {capitalize(collection.split('-').join(' '))}
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {breadCrumbMenu}
       </div>
     );
   }

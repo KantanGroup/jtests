@@ -21,7 +21,7 @@ import Banner from '../../components/Banner';
 /* eslint max-len: ["error", 200]*/
 class App extends React.Component {
   static propTypes = {
-    countryCode: PropTypes.string.isRequired,
+    // countryCode: PropTypes.string.isRequired,
     countryName: PropTypes.string.isRequired,
     app: PropTypes.shape(PropTypes.object),
     similar: PropTypes.arrayOf(PropTypes.object),
@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { app, similar, trend, countryName, countryCode, category, categoryName } = this.props;
+    const { app, similar, trend, countryName, category, categoryName } = this.props;
     let menuBreadcrumb;
     if (categoryName !== 'all') {
       menuBreadcrumb = (
@@ -48,22 +48,25 @@ class App extends React.Component {
         </Breadcrumb.Item>
       );
     }
+    const breadCrumbMenu = (
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app`}>
+          App trends in {capitalize(countryName.split('-').join(' '))}
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {app.title}
+        </Breadcrumb.Item>
+        {menuBreadcrumb}
+      </Breadcrumb>
+    );
     const apps = similar.apps.slice(0, 12);
     if (app) {
       return (
         <div className={s.root}>
-          <Breadcrumb>
-            <Breadcrumb.Item href="/">
-              Home
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/googlestore/top-app`}>
-              App trends in {capitalize(countryName.split('-').join(' '))}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              {app.title}
-            </Breadcrumb.Item>
-            {menuBreadcrumb}
-          </Breadcrumb>
+          {breadCrumbMenu}
           <div className={s.container}>
             <AppSummaryRow app={app} />
             <AppChart app={app} trend={trend} countryName={countryName} category={category} categoryName={categoryName} />
@@ -92,18 +95,7 @@ class App extends React.Component {
               </Row>
             </Grid>
           </div>
-          <Breadcrumb>
-            <Breadcrumb.Item href="/">
-              Home
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href={`/top-mobile-app-trend-in-${countryName.toLowerCase().split(' ').join('-')}/${countryCode}`}>
-              App trends in {capitalize(countryName.split('-').join(' '))}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-              {app.title}
-            </Breadcrumb.Item>
-            {menuBreadcrumb}
-          </Breadcrumb>
+          {breadCrumbMenu}
           <div className={s.anchor}>
             <h2>{app.title.toLowerCase()} app trends in {capitalize(countryName).toLowerCase()}</h2>
             <h2>{app.title.toLowerCase()} trends in {capitalize(countryName).toLowerCase()}</h2>
