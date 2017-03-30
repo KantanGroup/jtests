@@ -38,9 +38,17 @@ class BreadcrumbItem extends React.Component {
         <span {...linkProps} />
       );
     } else {
-      linkCompoment = (
-        <Link {...linkProps} to={href} />
-      );
+      // eslint-disable-next-line
+      if (href.startsWith('http://')) {
+        linkCompoment = (
+          // eslint-disable-next-line
+          <a {...linkProps} rel="follow, index" href={href} />
+        );
+      } else {
+        linkCompoment = (
+          <Link {...linkProps} to={href} />
+        );
+      }
     }
     return (
       <li className={classNames(className, { active })}>
