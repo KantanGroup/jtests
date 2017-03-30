@@ -8,35 +8,27 @@
  */
 
 import React from 'react';
-import fetch from '../../core/fetch';
 import Layout from '../../components/Layout';
 import Top from './Top';
 import { capitalize, getCountryCode } from '../../common';
+import top from './top.graphql';
 
 /* eslint max-len: ["error", 1000]*/
 export default {
 
   path: '/top-mobile-app-trend-in-:countryName/googlestore/top-app',
 
-  async action({ params }) {
+  async action({ params, client }) {
     const countryName = params.countryName;
-    // const countryCode = params.countryCode;
-    const resp = await fetch('/graphql', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"all"){topgrossing{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,title,point,price,developerId}}}`,
-      }),
-      credentials: 'include',
+    const countryCode = getCountryCode(countryName);
+    const { data } = await client.networkInterface.query({
+      query: top,
+      variables: { countryCode },
     });
-    const { data } = await resp.json();
     let component;
     if (data.index) {
       component = (
-        <Layout countryCode={getCountryCode(countryName)}>
+        <Layout countryCode={countryCode}>
           <Top
             topgrossing={data.index.topgrossing}
             topsellingFree={data.index.topsellingFree}
@@ -44,16 +36,16 @@ export default {
             topsellingNewPaid={data.index.topsellingNewPaid}
             topsellingNewFree={data.index.topsellingNewFree}
             countryName={countryName}
-            countryCode={getCountryCode(countryName)}
+            countryCode={countryCode}
           />
         </Layout>
       );
     } else {
       component = (
-        <Layout countryCode={getCountryCode(countryName)}>
+        <Layout countryCode={countryCode}>
           <Top
             countryName={countryName}
-            countryCode={getCountryCode(countryName)}
+            countryCode={countryCode}
           />
         </Layout>
       );

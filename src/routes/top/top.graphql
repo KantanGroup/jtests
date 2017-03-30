@@ -1,0 +1,59 @@
+query index ($countryCode:String!) {
+  index(countryCode: $countryCode, category: "all") {
+    topgrossing {
+      index
+      appId
+      category
+      collection
+      countryCode
+      title
+      point
+      price
+      developerId
+    }
+    topsellingFree {
+      index
+      appId
+      category
+      collection
+      countryCode
+      title
+      point
+      price
+      developerId
+    }
+    topsellingPaid {
+      index
+      appId
+      category
+      collection
+      countryCode
+      title
+      point
+      price
+      developerId
+    }
+    topsellingNewFree {
+      index
+      appId
+      category
+      collection
+      countryCode
+      title
+      point
+      price
+      developerId
+    }
+    topsellingNewPaid {
+      index
+      appId
+      category
+      collection
+      countryCode
+      title
+      point
+      price
+      developerId
+    }
+  }
+}

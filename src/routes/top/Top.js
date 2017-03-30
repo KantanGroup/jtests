@@ -101,7 +101,7 @@ class Top extends React.Component {
         <div className={s.container}>
           <center>
             <h2>Infographic highlighting the top mobile app trends in {capitalize(countryName.split('-').join(' '))}</h2>
-            Server undermaintain
+            Data loading ...
           </center>
         </div>
       </div>
