@@ -22,6 +22,8 @@ import PrettyError from 'pretty-error';
 import { IntlProvider } from 'react-intl';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MobileDetect from 'mobile-detect';
+import device from 'express-device';
 import './serverIntlPolyfill';
 import createApolloClient from './core/createApolloClient';
 import App from './components/App';
@@ -40,6 +42,7 @@ import { port, auth, locales } from './config';
 import facebookAuth from './core/auth/facebook';
 import googleAuth from './core/auth/google';
 import dataloader from './data/dataloader';
+import { detectDevice } from './actions/device';
 
 const app = express();
 
@@ -69,6 +72,7 @@ app.use(requestLanguage({
 }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(device.capture());
 
 //
 // Authentication
@@ -122,6 +126,13 @@ app.get('*', async (req, res, next) => {
       cookie: req.headers.cookie,
       apolloClient,
     });
+
+    const userAgent = new MobileDetect(req.headers['user-agent']);
+
+    store.dispatch(detectDevice({
+      device: req.device,
+      userAgent,
+    }));
 
     store.dispatch(setRuntimeVariable({
       name: 'initialNow',

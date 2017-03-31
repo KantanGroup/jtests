@@ -8,49 +8,38 @@
  */
 
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import Button from 'react-bootstrap/lib/Button';
-import Glyphicon from 'react-bootstrap/lib/Glyphicon';
-import s from './Home.css';
-import Link from '../../components/Link';
-import Breadcrumb from '../../components/Breadcrumb';
-import Country from '../../components/Country';
-
-const countries = require('../../data/countries.json');
+import { connect } from 'react-redux';
+import HomeDesktop from './HomeDesktop';
+import HomeMobile from './HomeMobile';
 
 /* eslint max-len: ["error", 200]*/
 class Home extends React.Component {
 
   render() {
-    const topCountries = [];
-    countries.forEach((country) => {
-      if (country.type === 9) {
-        topCountries.push(country);
-      }
-    });
-    topCountries.sort((a, b) => a.id - b.id);
+    let layout = (
+      <HomeMobile />
+    );
+    if (this.props.device.type !== 'phone') {
+      layout = (
+        <HomeDesktop />
+      );
+    }
     return (
-      <div className={s.root}>
-        <Breadcrumb>
-          <Breadcrumb.Item active>
-            Home
-          </Breadcrumb.Item>
-        </Breadcrumb>
-        <div className={s.container}>
-          <center>
-            <h2>Top mobile app trends in the world in 2017</h2>
-            {topCountries.map(country => (
-              <Country country={country} store={'googlestore'} />
-            ))}
-            <br />
-            <Link to={'/top-mobile-app-trend-in-the-world'}>
-              <Button bsStyle="primary"><Glyphicon glyph="search" /> View more countries</Button>
-            </Link>
-          </center>
-        </div>
+      <div>
+        {layout}
       </div>
     );
   }
 }
 
-export default withStyles(s)(Home);
+Home.propTypes = {
+  device: React.PropTypes.object.isRequired, //eslint-disable-line
+};
+
+function mapStateToProps(state) {
+  return {
+    device: state.device.device,
+  };
+}
+
+export default connect(mapStateToProps)(Home);
