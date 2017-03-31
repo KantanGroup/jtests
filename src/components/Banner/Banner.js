@@ -7,20 +7,36 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import React from 'react';
+import { connect } from 'react-redux';
 import s from './Banner.css';
 
-class AppSummaryRow extends React.Component {
-  static propTypes = {
-    app: PropTypes.shape(PropTypes.object).isRequired,
-  };
-
+class Banner extends React.Component {
   render() {
+    let layout = (
+      <center><img className={s.ads} src={'/ads_300x250.jpg'} alt="Download app" /></center>
+    );
+    if (this.props.device.type !== 'phone') {
+      layout = (
+        <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+      );
+    }
     return (
-      <center><img className={s.ads} src={'/ads.jpeg'} alt="Download app" /></center>
+      <div>
+        {layout}
+      </div>
     );
   }
 }
 
-export default withStyles(s)(AppSummaryRow);
+Banner.propTypes = {
+  device: React.PropTypes.object.isRequired, //eslint-disable-line
+};
+
+function mapStateToProps(state) {
+  return {
+    device: state.device.device,
+  };
+}
+
+export default connect(mapStateToProps)(Banner);
