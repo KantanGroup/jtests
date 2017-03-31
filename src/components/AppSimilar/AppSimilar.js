@@ -7,48 +7,37 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Image } from 'react-bootstrap';
-import Rater from 'react-rater';
-import s from './AppSimilar.css';
-import { downloadServer } from '../../config';
+import React from 'react';
+import { connect } from 'react-redux';
+import AppSimilarDesktop from './AppSimilarDesktop';
+import AppSimilarMobile from './AppSimilarMobile';
 
-/* eslint max-len: ["error", 200]*/
 class AppSimilar extends React.Component {
-  static propTypes = {
-    countryName: PropTypes.string.isRequired,
-    similarApp: PropTypes.shape(PropTypes.object).isRequired,
-    iWidth: PropTypes.number,
-    iHeight: PropTypes.number,
-  };
-
-  static defaultProps = {
-    similarApp: null,
-    iWidth: 184,
-    iHeight: 184,
-  }
-
   render() {
-    const { similarApp, countryName, iWidth, iHeight } = this.props;
+    let layout = (
+      <AppSimilarMobile {...this.props} />
+    );
+    if (this.props.device.type !== 'phone') {
+      layout = (
+        <AppSimilarDesktop {...this.props} />
+      );
+    }
     return (
-      <div className={s.app}>
-        <div className={s.appDescription}>
-          <a
-            title={`Download ${similarApp.title} apk`}
-            rel="follow, index"
-            // eslint-disable-next-line
-            href={`${downloadServer}/download/${similarApp.title.replace(/[&\\/\\#,+()$~%.'":*?<>{}]/g, '').toLowerCase().split(' ').join('-')}/apk/${similarApp.appId}/in-${countryName.toLowerCase().split(' ').join('-')}`}>
-            <Image src={`${similarApp.icon}`} rounded width={iWidth} height={iHeight} alt={`Download ${similarApp.title} apk`} />
-          </a>
-          <div className={s.appName}>{similarApp.title}</div>
-          <div className={s.appDeveloper}>{similarApp.developer.devId}</div>
-          <Rater interactive={false} rating={similarApp.score} />
-          <div className={s.appPrice}>{similarApp.price === '0' ? 'Free' : similarApp.price}</div>
-        </div>
+      <div>
+        {layout}
       </div>
     );
   }
 }
 
-export default withStyles(s)(AppSimilar);
+AppSimilar.propTypes = {
+  device: React.PropTypes.object.isRequired, //eslint-disable-line
+};
+
+function mapStateToProps(state) {
+  return {
+    device: state.device.device,
+  };
+}
+
+export default connect(mapStateToProps)(AppSimilar);
