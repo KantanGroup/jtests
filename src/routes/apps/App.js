@@ -59,8 +59,6 @@ class App extends React.Component {
                 <Col md={2}>
                   <div className={s.appImage}>
                     <Image src={app.icon} rounded width={125} height={125} alt={`App trends ${app.title}`} />
-                    <br />
-                    <Link to={`/download/apk/${app.appId}/latest`}>Download apps free</Link>
                   </div>
                 </Col>
                 <Col md={5}>
