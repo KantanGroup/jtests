@@ -35,7 +35,7 @@ router.get('/apps/', (req, res, next) => {
     return next();
   }
 
-  const opts = Object.assign({ term: req.query.q }, req.query);
+  const opts = Object.assign({ term: req.query.q, cache: false }, req.query);
 
   return gplay.search(opts)
     .then(apps => apps.map(cleanUrls(req)))
@@ -56,7 +56,7 @@ router.get('/apps/', (req, res, next) => {
     url: `${buildUrl(req, '/apps/')}?${qs.stringify({ q: term })}`,
   });
 
-  return gplay.suggest({ term: req.query.suggest })
+  return gplay.suggest({ term: req.query.suggest, cache: false })
     .then(terms => terms.map(toJSON))
     .then(toList)
     .then(res.json.bind(res))
@@ -82,7 +82,7 @@ router.get('/apps/', (req, res, next) => {
 
     return apps;
   }
-
+  req.query.cache = false;
   gplay.list(req.query)
     .then(apps => apps.map(cleanUrls(req)))
     .then(toList).then(paginate)
@@ -92,7 +92,7 @@ router.get('/apps/', (req, res, next) => {
 
 /* App detail*/
 router.get('/apps/:appId', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   gplay.app(opts)
     .then(cleanUrls(req))
     .then(res.json.bind(res))
@@ -101,7 +101,7 @@ router.get('/apps/:appId', (req, res, next) => {
 
 /* Similar apps */
 router.get('/apps/:appId/similar', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   gplay.similar(opts)
     .then(apps => apps.map(cleanUrls(req)))
     .then(toList)
@@ -111,7 +111,7 @@ router.get('/apps/:appId/similar', (req, res, next) => {
 
 /* App permissions */
 router.get('/apps/:appId/permissions', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   gplay.permissions(opts)
     .then(toList)
     .then(res.json.bind(res))
@@ -137,7 +137,7 @@ router.get('/apps/:appId/reviews', (req, res, next) => {
     return apps;
   }
 
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   gplay.reviews(opts)
     .then(toList)
     .then(paginate)
@@ -147,7 +147,7 @@ router.get('/apps/:appId/reviews', (req, res, next) => {
 
 /* Apps by developer */
 router.get('/developers/:devId/', (req, res, next) => {
-  const opts = Object.assign({ devId: req.params.devId }, req.query);
+  const opts = Object.assign({ devId: req.params.devId, cache: false }, req.query);
 
   gplay.developer(opts)
     .then(apps => apps.map(cleanUrls(req)))

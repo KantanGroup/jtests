@@ -29,7 +29,7 @@ router.get('/apps/', (req, res, next) => {
     return next();
   }
 
-  const opts = Object.assign({ term: req.query.q }, req.query);
+  const opts = Object.assign({ term: req.query.q, cache: false }, req.query);
 
   return aplay.search(opts)
     .then(apps => apps.map(cleanUrls(req)))
@@ -50,7 +50,7 @@ router.get('/apps/', (req, res, next) => {
     url: `${buildUrl(req, '/apps/')}?${qs.stringify({ q: term })}`,
   });
 
-  return aplay.suggest({ term: req.query.suggest })
+  return aplay.suggest({ term: req.query.suggest, cache: false })
     .then(terms => terms.map(toJSON))
     .then(toList)
     .then(res.json.bind(res))
@@ -76,7 +76,7 @@ router.get('/apps/', (req, res, next) => {
 
     return apps;
   }
-
+  req.query.cache = false;
   req.query.category = parseInt(req.query.category); // eslint-disable-line
   aplay.list(req.query)
     .then(apps => apps.map(cleanUrls(req)))
@@ -87,7 +87,7 @@ router.get('/apps/', (req, res, next) => {
 
 /* App detail*/
 router.get('/apps/:appId', (req, res, next) => {
-  const opts = Object.assign({ id: req.params.appId }, req.query);
+  const opts = Object.assign({ id: req.params.appId, cache: false }, req.query);
   aplay.app(opts)
     .then(cleanUrls(req))
     .then(res.json.bind(res))
@@ -96,7 +96,7 @@ router.get('/apps/:appId', (req, res, next) => {
 
 /* Similar apps */
 router.get('/apps/:appId/similar', (req, res, next) => {
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   aplay.similar(opts)
     .then(apps => apps.map(cleanUrls(req)))
     .then(toList)
@@ -123,7 +123,7 @@ router.get('/apps/:appId/reviews', (req, res, next) => {
     return apps;
   }
 
-  const opts = Object.assign({ appId: req.params.appId }, req.query);
+  const opts = Object.assign({ appId: req.params.appId, cache: false }, req.query);
   aplay.reviews(opts)
     .then(toList)
     .then(paginate)
