@@ -24,6 +24,7 @@ export default {
     require('./apps').default,
     require('./apps/title').default,
     require('./apps/inCountry').default,
+    require('./download').default,
 
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     require('./notFound').default,

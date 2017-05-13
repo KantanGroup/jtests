@@ -17,6 +17,7 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 import s from './App.css';
 import Breadcrumb from '../../components/Breadcrumb';
+import Link from '../../components/Link';
 
 const styles = {
   root: {
@@ -58,6 +59,8 @@ class App extends React.Component {
                 <Col md={2}>
                   <div className={s.appImage}>
                     <Image src={app.icon} rounded width={125} height={125} alt={`App trends ${app.title}`} />
+                    <br />
+                    <Link to={`/download/apk/${app.appId}/latest`}>Download apps free</Link>
                   </div>
                 </Col>
                 <Col md={5}>
