@@ -39,7 +39,7 @@ class HomeDesktop extends React.Component {
           <center>
             <h2>Top mobile app trends in the world in 2017</h2>
             {topCountries.map(country => (
-              <Country country={country} store={'googlestore'} />
+              <Country key={`country_id_${country.id}`} country={country} store={'googlestore'} />
             ))}
             <br />
             <Link to={'/top-mobile-app-trend-in-the-world'}>
