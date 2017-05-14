@@ -69,7 +69,6 @@ class AppMobile extends React.Component {
           {breadCrumbMenu}
           <div className={s.container}>
             <AppSummaryRow app={app} />
-            <AppChart app={app} trend={trend} countryName={countryName} category={category} categoryName={categoryName} />
             <Banner type="top-center" />
             <div
               className={s.description}

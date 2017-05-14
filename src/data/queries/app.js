@@ -21,7 +21,8 @@ const app = {
     language: { type: StringType },
   },
   async resolve({ request }, { appId, language }, { loaders }) {
-    const application = loaders.app.load(`${appId}_${language}`);
+    //const application = loaders.app.load(`${appId}_${language}`);
+    const application = loaders.app.load(`${appId}___${language}`);
     // const developer = loaders.app.loadDeveloper(`${appId}_${language}`);
     const similar = loaders.app.loadSimilar(`${appId}`);
     return Promise.props({ // wait for all promises to resolve
