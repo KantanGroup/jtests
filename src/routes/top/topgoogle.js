@@ -28,7 +28,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"all"){topgrossing{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingPaid{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewFree{index,appId,category,collection,countryCode,title,point,price,developerId}topsellingNewPaid{index,appId,category,collection,countryCode,title,point,price,developerId}}}`,
+        query: `{index(countryCode:"${getCountryCode(countryName)}",category:"all"){topgrossing{index,appId,icon,category,collection,countryCode,title,point,price,developerId}topsellingFree{index,appId,icon,category,collection,countryCode,title,point,price,developerId}topsellingPaid{index,appId,icon,category,collection,countryCode,title,point,price,developerId}topsellingNewFree{index,appId,icon,category,collection,countryCode,title,point,price,developerId}topsellingNewPaid{index,appId,icon,category,collection,countryCode,title,point,price,developerId}}}`,
       }),
       credentials: 'include',
     });

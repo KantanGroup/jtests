@@ -33,7 +33,7 @@ class AppSummaryColumn extends React.Component {
         >
           <div className={s.app}>
             <div className={s.appImage}>
-              <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`Trends app ${app.appId}`} />
+              <Image src={app.icon} rounded width={85} height={85} alt={`Trends app ${app.appId}`} />
             </div>
             <div className={s.appDescription}>
               <div className={s.appName}>{app.title}</div>

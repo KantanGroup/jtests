@@ -50,7 +50,7 @@ class AppTopRow extends React.Component {
               key={`app_id_${app.index}`}
               to={link}
             >
-              <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={iWidth} height={iHeight} alt={`Trends app ${app.appId}`} />
+              <Image src={app.icon} rounded width={iWidth} height={iHeight} alt={`Trends app ${app.appId}`} />
             </Link>
             <div className={s.appName}>{app.title}</div>
             <div className={s.appDeveloper}>{app.developerId}</div>

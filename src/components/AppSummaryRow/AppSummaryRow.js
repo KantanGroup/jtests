@@ -27,7 +27,7 @@ class AppSummaryRow extends React.Component {
           <Row className="show-grid">
             <Col md={2}>
               <div className={s.appImage}>
-                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={125} height={125} alt={`App trends ${app.title}`} />
+                <Image src={app.icon} rounded width={125} height={125} alt={`App trends ${app.title}`} />
               </div>
             </Col>
             <Col md={5}>

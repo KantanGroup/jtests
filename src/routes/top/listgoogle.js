@@ -30,7 +30,7 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: `{list(countryCode:"${getCountryCode(countryName)}",category:"all",collection:"${collectionName.split('-').join('_')}"){topapps{index,appId,category,collection,countryCode,title,point,price,developerId}}}`,
+        query: `{list(countryCode:"${getCountryCode(countryName)}",category:"all",collection:"${collectionName.split('-').join('_')}"){topapps{index,appId,icon,category,collection,countryCode,title,point,price,developerId}}}`,
       }),
       credentials: 'include',
     });

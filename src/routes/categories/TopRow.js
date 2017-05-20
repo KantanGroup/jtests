@@ -39,7 +39,7 @@ class TopRow extends React.Component {
           >
             <div className={s.app}>
               <div className={s.appImage}>
-                <Image src={`${imageServer}/icon/${app.appId}/icon.png`} rounded width={85} height={85} alt={`App trends ${app.title}`} />
+                <Image src={`${app.icon}`} rounded width={85} height={85} alt={`App trends ${app.title}`} />
               </div>
               <div className={s.appDescription}>
                 <div className={s.appName}>{app.title}</div>
