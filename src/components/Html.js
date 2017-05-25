@@ -133,6 +133,17 @@ class Html extends React.Component {
           {analytics.google.trackingId &&
             <script src="https://www.google-analytics.com/analytics.js" async defer />
           }
+          {
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async defer />
+          }
+          {
+            <script
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html:
+              '(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-7198482773381819",enable_page_level_ads: true'
+              }}
+            />
+          }
         </body>
       </html>
     );
